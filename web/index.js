@@ -45,7 +45,31 @@ function togglePopup8() {
         .getElementById("popup-destination8")
         .classList
         .toggle("active");
-}(() => {
+}
+
+
+var menuItem = document.querySelector(".menu-item.icon-cart");
+
+menuItem.innerHTML = "";
+
+var link = document.createElement("a");
+link.href = "/tiket"; 
+
+
+var img = document.createElement("img");
+img.src = "img/Cart.png"; 
+img.alt = "Keranjang Belanja"; 
+
+
+link.appendChild(img);
+
+
+menuItem.appendChild(link);
+
+
+
+
+(() => {
     const openNavMenu = document.querySelector(".open-nav-menu"),
         closeNavMenu = document.querySelector(".close-nav-menu"),
         navMenu = document.querySelector(".nav-menu"),

@@ -117,7 +117,7 @@ body {
 
 header ul {
     list-style: none;
-    margin-left: -3;
+    /* margin-left: -3; */
     float: right;
     padding: 0;
     line-height: 1.5;
@@ -126,17 +126,17 @@ header ul {
 a {
     text-decoration: none;
 }
-.back {
+/* .back {
     margin: 0;
     padding-right: 0;
 
-}
+} */
 .logo {
     display: flex;
     align-items: center;
     margin-left: 0;
     width: 60%;
-    padding: 15px 25px 0;
+    padding: 1% 1% 0;
 }
 
 .logo-destinasi img {
@@ -145,7 +145,7 @@ a {
 }
 
 .header .nav-menu {
-    padding: 0 25px;
+    padding-right: 1%;
 }
 
 .header-main {
@@ -153,7 +153,7 @@ a {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: -5px;
+    /* margin-top: -5px; */
     padding: 0;
     /* border-radius: 50px; */
 }
@@ -162,12 +162,12 @@ a {
     display: inline-block;
     margin-left: 15px;
     position: relative;
+    /* font-size: 15px; */
 }
 
 .header .menu > .menu-item > a {
     display: inline-block;
-    padding: 15px 0;
-    font-size: 15px;
+    font-size: 19px;
     color: #fff;
     font-weight: 500;
     transition: all 0.3s ease;
@@ -357,6 +357,7 @@ body.showCart .listProduct {
 .listCart .item img {
     width: 85px;
     height: 50px;
+    padding-left: 15px;
 }
 .listCart .item {
     display: grid;
@@ -397,7 +398,7 @@ footer {
     justify-items: center;
     align-items: center;
     transition: transform 0.5s;
-    
+    margin-top: 10px;
 }
 
 footer .one,
@@ -413,6 +414,7 @@ footer .one img {
 
 footer ul li {
     font-weight: 300;
+    list-style: none;
 }
 
 footer p {
