@@ -53,10 +53,10 @@
                                     <a href="#">Home</a>
                                 </li>
                                 <li class="menu-item">
-                                    <a href="#tiket">Ticket</a>
+                                    <a href="tiket.html">Ticket</a>
                                 </li>
                                 <li class="menu-item">
-                                    <a href="#destinasi">Destination</a>
+                                    <a href="#pertanyaan">Destination</a>
                                 </li>
                                 <li class="menu-item">
                                     <a href="#gallery">Transportation</a>
@@ -69,6 +69,10 @@
             </header>
         <div class="carouselcontainer">
             <div class="carouselcontent">
+
+                <video autoplay loop muted plays-inline class="background-vid">
+                    <source src="img/video-background.mp4" type="video/mp4">
+                </video>
 
                 <h1>W E L C O M E</h1>
                 <a href="#pertanyaan"> Explore</a>
@@ -113,7 +117,7 @@
                 <p>Di sini, kita menjelajahi dunia bersama-sama, menemukan keindahan dan keajaiban di setiap langkah. Dengan panduan lokal dan saran perjalanan yang terpercaya, mari bersama-sama merencanakan petualangan tak terlupakan di destinasi impian kita.</p> -->
                
             <!-- pertanyaan Cepat -->
-            <div class="destinasi" id="destinasi">
+            <div class="destinasi">
                 <div class="judul-destinasi">
                     <h1>Popular Destination</h1>
                 </div>
@@ -157,7 +161,7 @@
                         </div>
                     </li>
                     <li>
-                        <img src="img/singapura1.jpg" alt="">
+                        <img src="img/singapura.jpg" alt="">
                         <div class="destinasi-content">
                             <h1>Singapore</h1>
                             <p>
@@ -484,7 +488,7 @@
                     <div class="popup-destinasi">
                         <div class="destinasi-hotel">
                             <div class="gambar">
-                                <img src="img/singapura1.jpg" alt="">
+                                <img src="img/singapura.jpg" alt="">
                             </div>
                             <div class="penjelasan">
                                 <h2>Singapore</h2>
@@ -946,7 +950,17 @@
                         </button>
                     </div> 
 
-                     
+                     <ul>
+                        <li ng-repeat="pertanyaan in hasil">
+                            <p> <span class="warna">Question : </span>
+                                {{ pertanyaan.question}}
+                            </p>
+                            <p><span class="warna">Answer :</span> <br>
+                                {{ pertanyaan.answer }}</p>
+                            <br>
+                        </li>
+                        <li ng-if="showNoResultsMessage" style="color: red;">Tidak ada hasil pencarian</li>
+                    </ul>
                 </div>
             </div> 
         </div>
@@ -998,6 +1012,63 @@
             </footer>
 
         </div>
+        <script>
+            var app = angular.module('pertanyaan', []);
+            app.controller('controller', function ($scope) {
+                $scope.trains = [
+                    {
+                        question: 'Apa saja destinasi yang disediakan?',
+                        answer: 'Untuk destinasi yang disediakan dapat dilihat di bagian destination di homepage'
+                    }, {
+                        question: 'Apakah ada restoran atau makanan khas yang harus saya coba di Tokyo?',
+                        answer: 'Salah satu restoran yang wajib di coba di Tokyo adalah Narisawa, sebuah restoran populer milik koki terkenal Yoshihiro Narisawa. Menu disajikan dengan gaya omakase (yang berarti “sesuka hati Anda”) sehingga membuat anda mendapatakn pengalaman khas Jepang.'
+                    }, {
+                        question: 'Bagaimana kondisi cuaca di destinasi London saat ini atau dalam beberapa hari ke depan?',
+                        answer: 'Menurut update cuaca di Website google weather untuk Kondisi cuaca saat ini dan prakiraan untuk beberapa hari mendatang di London adalah cerah.'
+                    }, {
+                        question: 'Bagaimana dengan keamanan dan keselamatan di destinasi ini, apakah ada hal-hal yang perlu diperhatikan?',
+                        answer: 'Beberapa hal penting yang harus diperhatikan pada saat treveling diantaranya yaitu pahami peraturan dan budaya lokal disana, selalu awasi barang-barang Anda, terutama di tempat-tempat ramai, simpan barang berharga seperti paspor, uang, dan kartu kredit di tempat yang aman dan lain sebagainya.'
+                    }, {
+                        question: 'Apakah ada saran transportasi lokal yang efisien untuk menjelajahi destinasi ini?',
+                        answer: 'Prancis'
+                    }, {
+                        question: 'Bagaimana dengan kebijakan pembatalan atau pengembalian uang untuk reservasi akomodasi atau tur?',
+                        answer: 'Pada saat ini, kami tidak menyediakan layanan pembatalan atau pengembalian uang untuk reservasi akomodasi atau tur.  Kami mohon maaf atas ketidaknyamanannya dan kami senantiasa berusaha memberikan pengalaman yang memuaskan kepada pelanggan kami.'
+                    }, {
+                        question: 'Apakah bulan ini ada festival atau acara khusus yang akan berlangsung di Madrid, Spanyol',
+                        answer: 'Di bulan ini, Madrid memiliki beberapa festival dan acara yang menarik. Salah satunya adalah Madrid Carnival biasanya diadakan pada akhir Februari atau awal Maret. Untuk informasi lebih lanjut tentang acara-acara yang berlangsung selama bulan ini, disarankan untuk memeriksa situs web resmi pariwisata Madrid atau kalender acara lokal.'
+                    }
+                ];
+
+                $scope.search = function () {
+                    var searchTerms = $scope
+                        .searchName
+                        .toLowerCase()
+                        .split(' ');
+
+                    var isWhitespaceSearch = searchTerms.every(function (term) {
+                        return term.trim() === '';
+                    });
+
+                    if (isWhitespaceSearch) {
+                        $scope.hasil = [];
+                    } else {
+                        $scope.hasil = $scope
+                            .trains
+                            .filter(function (pertanyaan) {
+                                var namaLowerCase = pertanyaan
+                                    .question
+                                    .toLowerCase();
+                                return searchTerms.some(function (term) {
+                                    return namaLowerCase.includes(term);
+                                });
+                            });
+                    }
+
+                    $scope.showNoResultsMessage = $scope.hasil.length === 0 && !isWhitespaceSearch;
+                };
+            });
+        </script>
         <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
         <script>
             AOS.init();
