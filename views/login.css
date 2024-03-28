@@ -73,11 +73,20 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: .2s ease;
+    /* overflow: hidden; */
+}
+
+.sampul.active{
+  height: 550px;
 }
 
 .sampul .login-box{
     width: 100%;
     padding: 40px;
+    /* display: none; */
+    transition: transform .18s ease;
+    transform: translateX(0);
 }
 
 .sampul .login-box h2{
@@ -202,4 +211,29 @@ body{
 
 .log-register p a:hover{
     text-decoration: underline;
+}
+
+.sampul.active .form.login-box{
+    transition: none;
+    transform: translateX(400px);
+}
+
+.sampul .register-box{
+  width: 100%;
+  padding: 40px;
+  position: absolute;
+  transform: translateX(400px);
+  transition: none;
+}
+
+.sampul.active .form.register-box{
+  transition: transform 0.18s ease;
+  transform: translateX(0);
+  
+}
+
+.sampul .register-box h2{
+  font-size: 32px;
+  color: #fff;
+  text-align: center;
 }
