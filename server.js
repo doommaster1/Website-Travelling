@@ -18,6 +18,11 @@ app.get('/tiket',(req, res) => {
     res.render('tiket');
 })
 
+//login
+app.get('/login',(req, res) => {
+    res.render('login');
+})
+
 //static
 app.use(express.static('Web'))
 
