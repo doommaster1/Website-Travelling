@@ -23,6 +23,11 @@ app.get('/login',(req, res) => {
     res.render('login');
 })
 
+// payment
+app.get('/payment',(req, res) => {
+    res.render('payment');
+})
+
 //static
 app.use(express.static('Web'))
 
