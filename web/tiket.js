@@ -175,5 +175,3 @@ document.addEventListener('DOMContentLoaded', function () {
         alert('Pesanan diterima');
     });
 });
-
-

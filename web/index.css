@@ -279,11 +279,11 @@ a {
     text-decoration: none;
 }
 .logo {
-  display: flex;
-  align-items: center;
-  margin-left: 0;
-  width: 60%;
-  padding: 1% 1% 0;
+    display: flex;
+    align-items: center;
+    margin-left: 0;
+    width: 60%;
+    padding: 1% 1% 0;
 }
 
 .logo-destinasi img {
@@ -312,11 +312,11 @@ a {
 }
 
 .header .menu > .menu-item > a {
-  display: inline-block;
-  font-size: 19px;
-  color: #fff;
-  font-weight: 500;
-  transition: all 0.3s ease;
+    display: inline-block;
+    font-size: 19px;
+    color: #fff;
+    font-weight: 500;
+    transition: all 0.3s ease;
 }
 
 .header .open-nav-menu {
@@ -1076,6 +1076,9 @@ footer .three {
         height: fit-content;
     }
 
+    .header {
+        padding-top: 10px;
+    }
     .header .nav-menu {
         position: fixed;
         right: -280px;
