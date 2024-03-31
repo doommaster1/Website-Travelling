@@ -10,9 +10,11 @@
     "author": "Kelompok 9",
     "license": "ISC",
     "dependencies": {
+        "bcrypt": "^5.1.1",
         "ejs": "^3.1.9",
         "express": "^4.18.3",
         "express-ejs-layouts": "^2.5.1",
+        "mongoose": "^8.2.4",
         "path": "^0.12.7",
         "serve-favicon": "^2.5.0"
     },
