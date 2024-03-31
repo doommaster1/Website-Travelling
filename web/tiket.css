@@ -98,26 +98,21 @@ body {
     position: relative;
     width: 100%;
     margin: auto;
-    /* max-width: 90vw; */
     text-align: center;
-    /* padding-top: 10px; */
     transition: transform 0.5s;
 }
 
 .header {
-    /* position: absolute; */
     width: 100%;
     top: 0;
     left: 0;
     z-index: 9999;
     margin-top: -1.5%;
-    /* padding: 15px 0 15px 15px; */
     font-family: "Raleway", sans-serif;
 }
 
 header ul {
     list-style: none;
-    /* margin-left: -3; */
     float: right;
     padding: 0;
     line-height: 1.5;
@@ -126,11 +121,6 @@ header ul {
 a {
     text-decoration: none;
 }
-/* .back {
-    margin: 0;
-    padding-right: 0;
-
-} */
 .logo {
     display: flex;
     align-items: center;
@@ -141,7 +131,6 @@ a {
 
 .logo-destinasi img {
     width: 100px;
-    /* padding-right: 50px; */
 }
 
 .header .nav-menu {
@@ -153,16 +142,13 @@ a {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* margin-top: -5px; */
     padding: 0;
-    /* border-radius: 50px; */
 }
 
 .header .menu > .menu-item {
     display: inline-block;
     margin-left: 15px;
     position: relative;
-    /* font-size: 15px; */
 }
 
 .header .menu > .menu-item > a {
@@ -226,11 +212,8 @@ a {
 .header .close-nav-menu i {
     font-size: 30px;
     color: #000;
-    /* width: 16px; */
 }
-/* svg {
-    width: 30px;
-} */
+
 header {
     display: flex;
     justify-content: space-between;
@@ -238,17 +221,19 @@ header {
     padding: 20px 0;
     transition: transform 0.5s ease;
 }
+
 header .icon-cart {
     position: relative;
     width: 25px;
     color: #fff;
     height: 25px;
-    /* font-size: 20px; */
     padding-right: 10px;
 }
+
 header .icon-cart img {
     width: 30px;
 }
+
 header .icon-cart span {
     position: absolute;
     background-color: red;
@@ -263,31 +248,37 @@ header .icon-cart span {
     right: -15px;
     margin-right: 10px;
 }
+
 .title {
     font-size: xx-large;
 }
+
 .listProduct .item img {
     width: 90%;
     height: 50%;
     filter: drop-shadow(0 50px 20px rgba(48, 41, 41, 0.6));
 }
+
 .listProduct {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
     transition: transform 0.5s ease-in;
 }
+
 .listProduct .item {
     background-color: #EEEEE6;
     padding: 20px;
     border-radius: 20px;
 }
+
 .listProduct .item h2 {
     font-weight: 500;
     font-size: 20px;
     color: #ff001e;
     padding-top: 25px;
 }
+
 .listProduct .item .price {
     padding-top: 10px;
     letter-spacing: 3px;
@@ -295,6 +286,7 @@ header .icon-cart span {
     color: #ff001e;
     font-size: 15px;
 }
+
 .listProduct .item button {
     background-color: #a01626;
     color: #eee;
@@ -308,7 +300,6 @@ header .icon-cart span {
 .cartTab {
     width: 400px;
     background-color: white;
-    /* color: #eee; */
     position: fixed;
     top: 0;
     right: -400px;
@@ -319,27 +310,33 @@ header .icon-cart span {
     z-index: 999;
     color: #a01626;
 }
+
 body.showCart .cartTab {
     right: 0;
 }
+
 body.showCart .container {
     transform: translateX(-200px);
 }
+
 body.showCart .listProduct {
     transform: translateX(200px);
     width: 80%;
 }
+
 .cartTab h1 {
     padding: 20px;
     margin: 0;
     font-weight: 300;
     font-size: 30px;
 }
+
 .cartTab .btn {
     height: 60px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
 }
+
 .cartTab button {
     background-color: #a01626;
     border: none;
@@ -349,6 +346,7 @@ body.showCart .listProduct {
     color: white;
     font-size: 20px;
 }
+
 .cartTab .close {
     background-color: #eee;
     color: #a01626;
@@ -359,6 +357,7 @@ body.showCart .listProduct {
     height: 50px;
     padding-left: 15px;
 }
+
 .listCart .item {
     display: grid;
     grid-template-columns: 70px 150px 50px 1fr;
@@ -366,6 +365,7 @@ body.showCart .listProduct {
     text-align: center;
     align-items: center;
 }
+
 .listCart .quantity span {
     display: inline-block;
     width: 25px;
@@ -375,17 +375,21 @@ body.showCart .listProduct {
     color: #555;
     cursor: pointer;
 }
+
 .listCart .quantity span:nth-child(2) {
     background-color: transparent;
     color: #a01626;
     cursor: auto;
 }
+
 .listCart .item:nth-child(even) {
     background-color: #eee1;
 }
+
 .listCart {
     overflow: auto;
 }
+
 .listCart::-webkit-scrollbar {
     width: 0;
 }
@@ -426,7 +430,6 @@ footer h1 {
     font-size: large;
     padding-bottom: 7px;
     font-weight: bolder;
-    /* font-weight: bolder; */
 }
 
 footer .two {
@@ -439,7 +442,6 @@ footer .two .developer ul li {
 
 footer .two .social-media ul li {
     display: inline;
-    /* padding-right: 10px; */
 }
 
 footer .two .social-media ul li a {
