@@ -86,6 +86,11 @@ app.get('/payment', (req, res) => {
     res.render('payment');
 })
 
+// setting
+app.get('/setting', (req, res) => {
+    res.render('setting');
+})
+
 //static
 app.use(express.static('Web'))
 
