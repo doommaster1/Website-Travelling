@@ -26,7 +26,7 @@ connect
     }
 })
 
-//mengambil data
-const collection = new mongoose.model('users', loginschema)
+//mengambil data  (custom modul)
+const users = new mongoose.model('users', loginschema)
 
-module.exports = collection;
+module.exports = users;
