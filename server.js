@@ -124,8 +124,14 @@ app.get('/payment', isAuthenticated, (req, res) => {
     res.render('payment');
 });
 
-// Static files
-app.use(express.static('Web'));
+
+// setting
+app.get('/setting', (req, res) => {
+    res.render('setting');
+})
+
+//static
+app.use(express.static('Web'))
 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);

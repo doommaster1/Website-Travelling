@@ -4,9 +4,36 @@
             <div class="logo">
                 <a href="#">
                     <div class="logo-destinasi">
-                        <img src="img/logo-baru.png" alt="logo" width="50px"></div>
+                        <i data-feather="users" onclick="toggleMenu()"></i>
+                        <div class="sub-menu-wrap" id="subMenu">
+                            <div class="sub-menu">
+                                <div class="user-info">
+                                    <img src="img/logonbg.png">
+                                    <h2>Hans Nathanael</h2>
+                                </div>
+                                <hr>
+
+                                <a href="/setting" class="sub-menu-link">
+                                    <i data-feather="user"></i>
+                                    <p>Profile</p>
+                                    <span>></span>
+                                </a>
+                                </a>
+                                <a href="/index#footer" class="sub-menu-link">
+                                    <i data-feather="help-circle"></i>
+                                    <p>Help & Support</p>
+                                    <span>></span>
+                                </a>
+                                <a href="/" class="sub-menu-link">
+                                    <i data-feather="log-out"></i>
+                                    <p>Logout</p>
+                                    <span>></span>
+                                </a>
+                            </div>
+                        </div> 
                     </a>
                 </div>
+                   
                 <div class="open-nav-menu">
                     <span></span>
                 </div>
@@ -38,4 +65,12 @@
                     <!-- nav end -->
                 </div>
             </div>
+            
         </header>
+        <script>
+            let subMenu = document.getElementById("subMenu");
+
+            function toggleMenu(){
+                subMenu.classList.toggle("open-menu");
+            }
+        </script>
