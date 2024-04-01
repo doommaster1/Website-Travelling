@@ -11,11 +11,16 @@ body {
 .btn-default {
     border-color: rgba(24, 28, 33, 0.1);
     background  : rgba(0, 0, 0, 0);
-    color       : #4E5155;
+    color       : white;
+    /* background-color: red; */
 }
 
 label.btn {
     margin-bottom: 0;
+}
+
+.btn-btn-primary1{
+    border-color: red;
 }
 
 .btn-outline-primary {
@@ -23,6 +28,13 @@ label.btn {
     background  : transparent;
     color       : #26B4FF;
 }
+
+/* .btn-btn-primary1{
+    border-color: red;
+    background-color  : red;
+    color       : white;
+    border-radius: 10%;
+} */
 
 .btn {
     cursor: pointer;
