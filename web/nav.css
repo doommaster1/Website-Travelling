@@ -5,88 +5,6 @@ body {
     overflow-x: hidden;
 }
 
-.sub-menu-wrap{
-    position: absolute;
-    top: 88%;
-    margin-left: -2%;
-    width: 300px;
-    max-height: 0px;
-    overflow: hidden;
-    transition: max-height 0.5s;
-}
-
-.sub-menu-wrap.open-menu{
-    max-height: 400px;
-}
-
-.sub-menu{
-    background: #fff;
-    padding: 20px;
-    margin: 10px;
-}
-
-.user-info{
-    display: flex;
-    align-items: center;
-}
-
-.user-info h3{
-    font-weight: 500;
-}
-
-.user-info img{
-    width: 60px;
-    border-radius: 50%;
-    margin-right: 15px;
-}
-
-.header .nav-menu {
-    padding: 0 25px;
-}
-
-.sub-menu hr{
-    border: 0;
-    height: 1px;
-    width: 100%;
-    background: black;
-    margin-bottom: 15px;
-    margin-top: 10px;
-}
-
-.sub-menu-link{
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: #525252;
-    margin: 12px 0;
-}
-
-.sub-menu-link p{
-    width: 100%;
-}
-
-/* .sub-menu-link i{
-    width: 40px;
-    background-color: #e5e5e5;
-    border-radius: 50%;
-    padding: 8px;
-    margin-right: 15px;
-} */
-
-.sub-menu-link span {
-    font-size: 22px;
-    transition: transform 0.5s;
-}
-
-.sub-menu-link:hover span {
-    transform: translateX(5px);
-}
-
-.sub-menu-link:hover p{
-    font-weight: 600;            
-}
-
-
 nav {
     width: 100%;
     display: flex;
@@ -178,6 +96,10 @@ nav .menu > .menu-item > a{
     color: #000;
 }
 
+nav .menu > .menu-item > .sub-menu > .menu-item > a:hover,
+nav .menu > .menu-item:hover a{
+    /* color: #fdcb2c;  */
+}
 
 nav .menu > .menu-item > .sub-menu{
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -241,11 +163,11 @@ nav.nonScrolled{
     display: none;
 }
 
-/* nav.scrolled .login a,
+nav.scrolled .login a,
 nav.scrolled a,
 nav.scrolled h1 {
     color: #fff;
-} */
+}
 
 
 nav ul a {
@@ -280,7 +202,7 @@ nav .menu .menu-item a:hover::before {
   }
 
 
-  /* .login{
+  .login{
     cursor: pointer;
     font-size: 2rem;
   }
@@ -292,7 +214,7 @@ nav .menu .menu-item a:hover::before {
   .login button a{
     text-decoration: none;
     color: #fff;
-  } */
+  }
 
   /* responsive */
 @media(max-width: 991px){
@@ -379,4 +301,3 @@ nav .menu .menu-item a:hover::before {
         display: flex;
     }
 }
-

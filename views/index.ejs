@@ -198,60 +198,44 @@
                         $scope.trains = [
                             {
                                 question: 'Apa saja destinasi yang disediakan?',
-                                answer: 'Untuk destinasi yang disediakan dapat dilihat di bagian destination di homepag' +
-                                        'e'
+                                answer: 'Untuk destinasi yang disediakan dapat dilihat di bagian destination di homepage'
                             }, {
                                 question: 'Apakah ada restoran atau makanan khas yang harus saya coba di Tokyo?',
-                                answer: 'Salah satu restoran yang wajib di coba di Tokyo adalah Narisawa, sebuah restor' +
-                                        'an populer milik koki terkenal Yoshihiro Narisawa. Menu disajikan dengan gaya ' +
-                                        'omakase (yang berarti “sesuka hati Anda”) sehingga membuat anda mendapatakn pe' +
-                                        'ngalaman khas Jepang.'
+                                answer: 'Salah satu restoran yang wajib di coba di Tokyo adalah Narisawa, sebuah restoran populer milik koki terkenal Yoshihiro Narisawa. Menu disajikan dengan gaya omakase (yang berarti “sesuka hati Anda”) sehingga membuat anda mendapatkan pengalaman khas Jepang.'
                             }, {
-                                question: 'Bagaimana kondisi cuaca di destinasi London saat ini atau dalam beberapa hari ' +
-                                        'ke depan?',
-                                answer: 'Menurut update cuaca di Website google weather untuk Kondisi cuaca saat ini da' +
-                                        'n prakiraan untuk beberapa hari mendatang di London adalah cerah.'
+                                question: 'Bagaimana kondisi cuaca di destinasi London saat ini atau dalam beberapa hari ke depan?',
+                                answer: 'Menurut update cuaca di Website google weather untuk Kondisi cuaca saat ini dan prakiraan untuk beberapa hari mendatang di London adalah cerah.'
                             }, {
-                                question: 'Bagaimana dengan keamanan dan keselamatan di destinasi ini, apakah ada hal-hal' +
-                                        ' yang perlu diperhatikan?',
-                                answer: 'Beberapa hal penting yang harus diperhatikan pada saat treveling diantaranya y' +
-                                        'aitu pahami peraturan dan budaya lokal disana, selalu awasi barang-barang Anda' +
-                                        ', terutama di tempat-tempat ramai, simpan barang berharga seperti paspor, uang' +
-                                        ', dan kartu kredit di tempat yang aman dan lain sebagainya.'
+                                question: 'Bagaimana dengan keamanan dan keselamatan di destinasi ini, apakah ada hal-hal yang perlu diperhatikan?',
+                                answer: 'Beberapa hal penting yang harus diperhatikan pada saat traveling diantaranya yaitu pahami peraturan dan budaya lokal disana, selalu awasi barang-barang Anda, terutama di tempat-tempat ramai, simpan barang berharga seperti paspor, uang, dan kartu kredit di tempat yang aman dan lain sebagainya.'
                             }, {
-                                question: 'Apakah ada saran transportasi lokal yang efisien untuk menjelajahi destinasi i' +
-                                        'ni?',
+                                question: 'Apakah ada saran transportasi lokal yang efisien untuk menjelajahi destinasi ini?',
                                 answer: 'Prancis'
                             }, {
-                                question: 'Bagaimana dengan kebijakan pembatalan atau pengembalian uang untuk reservasi a' +
-                                        'komodasi atau tur?',
-                                answer: 'Pada saat ini, kami tidak menyediakan layanan pembatalan atau pengembalian uan' +
-                                        'g untuk reservasi akomodasi atau tur.  Kami mohon maaf atas ketidaknyamanannya' +
-                                        ' dan kami senantiasa berusaha memberikan pengalaman yang memuaskan kepada pela' +
-                                        'nggan kami.'
+                                question: 'Bagaimana dengan kebijakan pembatalan atau pengembalian uang untuk reservasi akomodasi atau tur?',
+                                answer: 'Pada saat ini, kami tidak menyediakan layanan pembatalan atau pengembalian uang untuk reservasi akomodasi atau tur. Kami mohon maaf atas ketidaknyamanannya dan kami senantiasa berusaha memberikan pengalaman yang memuaskan kepada pelanggan kami.'
                             }, {
-                                question: 'Apakah bulan ini ada festival atau acara khusus yang akan berlangsung di Madri' +
-                                        'd, Spanyol',
-                                answer: 'Di bulan ini, Madrid memiliki beberapa festival dan acara yang menarik. Salah ' +
-                                        'satunya adalah Madrid Carnival biasanya diadakan pada akhir Februari atau awal' +
-                                        ' Maret. Untuk informasi lebih lanjut tentang acara-acara yang berlangsung sela' +
-                                        'ma bulan ini, disarankan untuk memeriksa situs web resmi pariwisata Madrid ata' +
-                                        'u kalender acara lokal.'
+                                question: 'Apakah bulan ini ada festival atau acara khusus yang akan berlangsung di Madrid, Spanyol',
+                                answer: 'Di bulan ini, Madrid memiliki beberapa festival dan acara yang menarik. Salah satunya adalah Madrid Carnival biasanya diadakan pada akhir Februari atau awal Maret. Untuk informasi lebih lanjut tentang acara-acara yang berlangsung selama bulan ini, disarankan untuk memeriksa situs web resmi pariwisata Madrid atau kalender acara lokal.'
                             }
                         ];
-
+                
+                        // Initialize showing all FAQs
+                        $scope.hasil = $scope.trains;
+                        $scope.showNoResultsMessage = false;
+                
                         $scope.search = function () {
                             var searchTerms = $scope
                                 .searchName
                                 .toLowerCase()
                                 .split(' ');
-
+                
                             var isWhitespaceSearch = searchTerms.every(function (term) {
                                 return term.trim() === '';
                             });
-
+                
                             if (isWhitespaceSearch) {
-                                $scope.hasil = [];
+                                $scope.hasil = $scope.trains;
                             } else {
                                 $scope.hasil = $scope
                                     .trains
@@ -264,7 +248,7 @@
                                         });
                                     });
                             }
-
+                
                             $scope.showNoResultsMessage = $scope.hasil.length === 0 && !isWhitespaceSearch;
                         };
                     });
