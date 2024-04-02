@@ -137,6 +137,10 @@ a {
     width: 70px;
 }
 
+.container .logo-bar{
+    margin-top: 50px;
+}
+
 .header .nav-menu {
     padding-right: 1%;
 }

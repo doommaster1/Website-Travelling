@@ -1,867 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
         <%- include('layouts/header.ejs') %>
             <link rel="stylesheet" href="index.css">
+            <link rel="stylesheet" href="footer.css">
             <title>Travel with Us</title>
-
-        </head>
         <body>
-            <div class="containers">
+            <div class="home">
                 <%- include('layouts/nav.ejs') %>
-                    <div class="carouselcontainer">
-                        <div class="carouselcontent">
-
-                            <video
-                                autoplay="autoplay"
-                                loop="loop"
-                                muted="muted"
-                                plays-inline="plays-inline"
-                                class="background-vid">
-                                <source src="img/video-background.mp4" type="video/mp4">
-                            </video>
-
-                            <h1>W E L C O M E</h1>
-                            <a href="#destinasi">
-                                Explore</a>
-                            <a href="/tiket">Buy Ticket</a>
-                        </div>
-                    </div>
-
-                    <!-- pertanyaan Cepat -->
-                    <div class="destinasi">
-                        <div id="destinasi"></div>
-                        <div class="judul-destinasi">
-                            <h1>Popular Destination</h1>
-                        </div>
-                        <ul>
-                            <li>
-                                <img src="img/bali.jpg" alt="">
-                                <div class="destinasi-content">
-                                    <h1>Bali, Indonesia</h1>
-                                    <p>
-                                        Bali adalah sebuah provinsi di Indonesia yang terletak di Kepulauan Nusa
-                                        Tenggara. Pulau ini terkenal dengan keindahan alamnya yang luar biasa, seperti
-                                        pantai berpasir putih dan gunung berapi yang menjulang tinggi.
-                                    </p>
-                                    <button onclick="togglePopup()">Selengkapnya</button>
-                                </div>
-                            </li>
-                            <li>
-                                <img src="img/london,england.jpg" alt="">
-                                <div class="destinasi-content">
-                                    <h1>London, England</h1>
-                                    <p>
-                                        London merupakan kota yang paling besar di Inggris Raya. Salah satu landmark
-                                        yang terkenal di kota ini adalah BIG BEN yang merupakan objek wisata yang berada
-                                        di sebelah utara Istana Westminster
-                                    </p>
-                                    <button onclick="togglePopup2()">Selengkapnya</button>
-                                </div>
-                            </li>
-                            <li>
-                                <img src="img/dubai,UAE.jpg" alt="">
-                                <div class="destinasi-content">
-                                    <h1>Dubai, United Arab Emirates (UAE)</h1>
-                                    <p>
-                                        Dubai adalah kota yang terus berkembang dan selalu menghadirkan hal-hal baru.
-                                        Kota ini menjadi tujuan wisata populer bagi wisatawan dari seluruh dunia yang
-                                        ingin merasakan kemewahan, modernitas, dan budaya Arab yang unik. Dubai adalah
-                                        kota yang penuh dengan kejutan dan keajaiban. Jika Anda ingin merasakan
-                                        pengalaman yang tak terlupakan, pastikan untuk mengunjungi Dubai di lain waktu.
-                                    </p>
-                                    <button onclick="togglePopup3()">Selengkapnya</button>
-                                </div>
-                            </li>
-                            <li>
-                                <img src="img/singapura1.jpg" alt="">
-                                <div class="destinasi-content">
-                                    <h1>Singapore</h1>
-                                    <p>
-                                        Singapura merupakan negara yang modern dan maju, dengan infrastruktur yang baik
-                                        dan standar hidup yang tinggi. Singapura menjadi objek wisata yang menarik
-                                        karena merupakan negara terbersih yang berada di Asia Tenggara.
-                                    </p>
-                                    <button onclick="togglePopup4()">Selengkapnya</button>
-                                </div>
-                            </li>
-                            <li>
-                                <img src="img/tokyo,japan.jpg" alt="">
-                                <div class="destinasi-content">
-                                    <h1>Tokyo, Japan</h1>
-                                    <p>
-                                        Tokyo adalah kota yang penuh dengan kontras, di mana modernitas dan tradisi
-                                        berpadu dengan sempurna. Kota ini menjadi tujuan wisata populer bagi wisatawan
-                                        dari seluruh dunia yang ingin merasakan budaya Jepang yang unik.
-                                    </p>
-                                    <button onclick="togglePopup5()">Selengkapnya</button>
-                                </div>
-                            </li>
-                            <li>
-                                <img src="img/kuala lumpur.jpg" alt="">
-                                <div class="destinasi-content">
-                                    <h1>Kuala Lumpur, Malaysia</h1>
-                                    <p>
-                                        Kuala Lumpur adalah kota yang dinamis dan modern, dengan gedung pencakar langit
-                                        yang menjulang tinggi, namun juga tetap mempertahankan budaya tradisionalnya.
-                                    </p>
-                                    <button onclick="togglePopup6()">Selengkapnya</button>
-                                </div>
-                            </li>
-                            <li>
-                                <img src="img/newyorkgelap.jpg" alt="">
-                                <div class="destinasi-content">
-                                    <h1>New York, United States</h1>
-                                    <p>
-                                        New York adalah kota yang dijuluki "The City That Never Sleeps". Diamna setiap
-                                        kota di huni dengan gedung-gedung yang menjulang tinggi. New York juga memiliki
-                                        landmark yang sangat terkenal yaitu Patung Liberty.
-                                    </p>
-                                    <button onclick="togglePopup7()">Selengkapnya</button>
-                                </div>
-                            </li>
-                            <li>
-                                <img src="img/madrid.jpg" alt="">
-                                <div class="destinasi-content">
-                                    <h1>Madrid, Spanyol</h1>
-                                    <p>
-                                        Madrid adalah ibu kota Spanyol, terletak di bagian tengah negara itu. Kota ini
-                                        merupakan pusat politik, budaya, dan ekonomi yang penting. Madrid memiliki
-                                        banyak landmark terkenal, termasuk Palacio Real (Istana Kerajaan), Plaza Mayor
-                                        (Lapangan Utama), dan Museo del Prado (Museum Prado).
-                                    </p>
-                                    <button onclick="togglePopup8()">Selengkapnya</button>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="popup" id="popup-destination1">
-                        <div class="overlay"></div>
-                        <div class="content">
-                            <div class="close-btn" onclick="togglePopup()">&times;</div>
-                            <div class="popup-destinasi">
-                                <div class="destinasi-hotel">
-                                    <div class="gambar">
-                                        <img src="img/bali.jpg" alt="">
-                                    </div>
-                                    <div class="penjelasan">
-                                        <h2>Bali, Indonesia
-                                        </h2>
-                                        <p>
-                                            Bali adalah sebuah provinsi di Indonesia yang terletak di Kepulauan Nusa
-                                            Tenggara. Pulau ini terkenal dengan keindahan alamnya yang luar biasa, seperti
-                                            pantai berpasir putih dan gunung berapi yang menjulang tinggi.
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="keuntungan">
-                                    <div class="fasilitas">
-                                        <h5>Fasilitas</h5>
-                                        <ul class="list-unstyled">
-                                            <li><img src="img/icon/air-conditioner.png" alt="ac">
-                                                AC</li>
-                                            <li><img src="img/icon/restaurant.png" alt="restoran">
-                                                Restoran</li>
-                                            <li><img src="img/icon/swimming-pool.png" alt="kolam_renang">
-                                                Kolam Renang</li>
-                                            <li><img src="img/icon/24-hours-support.png" alt="24Hours">
-                                                Resepsionis 24 Jam</li>
-                                            <li><img src="img/icon/parking-area.png" alt="Parkir">
-                                                Parkir</li>
-                                            <li><img src="img/icon/wifi.png" alt="Wifi">
-                                                Wifi</li>
-                                            <li><img src="img/icon/elevator.png" alt="LIft">
-                                                Elevator</li>
-                                        </ul>
-                                    </div>
-                                    <div class="tentang">
-                                        <div class="hotel">
-                                            <h5>MU De La Hotel</h5>
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, officiis ab
-                                                minima aliquam at pariatur, animi, non in molestias a ut. Quidem incidunt
-                                                necessitatibus</p>
-                                            <br>
-                                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aut aspernatur
-                                                veniam cupiditate fugiat ullam quae aperiam, nam laborum ipsam non. Corporis
-                                                molestias ratione, dicta sed expedita cum porro maxime voluptates!</p>
-                                        </div>
-                                        <div class="akomodasi">
-                                            <h5>Akomodasi</h5>
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque quos dicta
-                                                officiis provident exercitationem, minus modi odio inventore tenetur mollitia
-                                                quia error molestiae? Ipsa amet laborum aut minus excepturi quos.</p>
-                                        </div>
-                                    </div>
-                                    <div class="lokasi">
-                                        <h5>Lokasi Strategis</h5>
-                                        <ul class="kolom1 list-unstyled">
-                                            <li>
-                                                <i class="bi bi-bag-fill"></i>
-                                                Pusat Pembelanjaan</li>
-                                            <li>
-                                                <i class="bi bi-geo-alt-fill"></i>
-                                                Gare du Nord</li>
-                                            <li>
-                                                <i class="bi bi-geo-alt-fill"></i>
-                                                Stadiun Louis-Philippe</li>
-                                        </ul>
-                                        <ul class="kolom2 list-unstyled">
-                                            <li>
-                                                <i class="bi bi-geo-alt-fill"></i>
-                                                Pont d'Arcole</li>
-                                            <li>
-                                                <i class="bi bi-geo-alt-fill"></i>
-                                                Lavender MRT Statiun</li>
-                                            <li>
-                                                <i class="bi bi-geo-alt-fill"></i>
-                                                Marina Bay Sands Casino</li>
-                                        </ul>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="popup" id="popup-destination2">
-                        <div class="overlay"></div>
-                        <div class="content">
-                            <div class="close-btn" onclick="togglePopup2()">&times;</div>
-                            <div class="popup-destinasi">
-                                <div class="destinasi-hotel">
-                                    <div class="gambar">
-                                        <img src="img/london,england.jpg" alt="">
-                                    </div>
-                                    <div class="penjelasan">
-                                        <h2>London, England</h2>
-                                        <p>
-                                            London merupakan kota yang paling besar di Inggris Raya. Salah satu landmark
-                                            yang terkenal di kota ini adalah BIG BEN yang merupakan objek wisata yang berada
-                                            di sebelah utara Istana Westminster
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="keuntungan">
-                                    <div class="fasilitas">
-                                        <h5>Fasilitas</h5>
-                                        <ul class="list-unstyled">
-                                            <li><img src="img/icon/air-conditioner.png" alt="ac">
-                                                AC</li>
-                                            <li><img src="img/icon/restaurant.png" alt="restoran">
-                                                Restoran</li>
-                                            <li><img src="img/icon/swimming-pool.png" alt="kolam_renang">
-                                                Kolam Renang</li>
-                                            <li><img src="img/icon/24-hours-support.png" alt="24Hours">
-                                                Resepsionis 24 Jam</li>
-                                            <li><img src="img/icon/parking-area.png" alt="Parkir">
-                                                Parkir</li>
-                                            <li><img src="img/icon/wifi.png" alt="Wifi">
-                                                Wifi</li>
-                                            <li><img src="img/icon/elevator.png" alt="LIft">
-                                                Elevator</li>
-                                        </ul>
-                                    </div>
-                                    <div class="tentang">
-                                        <div class="hotel">
-                                            <h5>MU De La Hotel</h5>
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, officiis ab
-                                                minima aliquam at pariatur, animi, non in molestias a ut. Quidem incidunt
-                                                necessitatibus</p>
-                                            <br>
-                                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aut aspernatur
-                                                veniam cupiditate fugiat ullam quae aperiam, nam laborum ipsam non. Corporis
-                                                molestias ratione, dicta sed expedita cum porro maxime voluptates!</p>
-                                        </div>
-                                        <div class="akomodasi">
-                                            <h5>Akomodasi</h5>
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque quos dicta
-                                                officiis provident exercitationem, minus modi odio inventore tenetur mollitia
-                                                quia error molestiae? Ipsa amet laborum aut minus excepturi quos.</p>
-                                        </div>
-                                    </div>
-                                    <div class="lokasi">
-                                        <h5>Lokasi Strategis</h5>
-                                        <ul class="kolom1 list-unstyled">
-                                            <li>
-                                                <i class="bi bi-bag-fill"></i>
-                                                Pusat Pembelanjaan</li>
-                                            <li>
-                                                <i class="bi bi-geo-alt-fill"></i>
-                                                Gare du Nord</li>
-                                            <li>
-                                                <i class="bi bi-geo-alt-fill"></i>
-                                                Stadiun Louis-Philippe</li>
-                                        </ul>
-                                        <ul class="kolom2 list-unstyled">
-                                            <li>
-                                                <i class="bi bi-geo-alt-fill"></i>
-                                                Pont d'Arcole</li>
-                                            <li>
-                                                <i class="bi bi-geo-alt-fill"></i>
-                                                Lavender MRT Statiun</li>
-                                            <li>
-                                                <i class="bi bi-geo-alt-fill"></i>
-                                                Marina Bay Sands Casino</li>
-                                        </ul>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="popup" id="popup-destination3">
-                        <div class="overlay"></div>
-                        <div class="content">
-                            <div class="close-btn" onclick="togglePopup3()">&times;</div>
-                            <div class="popup-destinasi">
-                                <div class="destinasi-hotel">
-                                    <div class="gambar">
-                                        <img src="img/dubai,UAE.jpg">
-                                    </div>
-                                    <div class="penjelasan">
-                                        <h2>Dubai, United Arab Emirates (UAE)</h2>
-                                        <p>
-                                            Dubai adalah kota yang terus berkembang dan selalu menghadirkan hal-hal baru.
-                                            Kota ini menjadi tujuan wisata populer bagi wisatawan dari seluruh dunia yang
-                                            ingin merasakan kemewahan, modernitas, dan budaya Arab yang unik. Dubai adalah
-                                            kota yang penuh dengan kejutan dan keajaiban. Jika Anda ingin merasakan
-                                            pengalaman yang tak terlupakan, pastikan untuk mengunjungi Dubai di lain waktu.
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="keuntungan">
-                                    <div class="fasilitas">
-                                        <h5>Fasilitas</h5>
-                                        <ul class="list-unstyled">
-                                            <li><img src="img/icon/air-conditioner.png" alt="ac">
-                                                AC</li>
-                                            <li><img src="img/icon/restaurant.png" alt="restoran">
-                                                Restoran</li>
-                                            <li><img src="img/icon/swimming-pool.png" alt="kolam_renang">
-                                                Kolam Renang</li>
-                                            <li><img src="img/icon/24-hours-support.png" alt="24Hours">
-                                                Resepsionis 24 Jam</li>
-                                            <li><img src="img/icon/parking-area.png" alt="Parkir">
-                                                Parkir</li>
-                                            <li><img src="img/icon/wifi.png" alt="Wifi">
-                                                Wifi</li>
-                                            <li><img src="img/icon/elevator.png" alt="LIft">
-                                                Elevator</li>
-                                        </ul>
-                                    </div>
-                                    <div class="tentang">
-                                        <div class="hotel">
-                                            <h5>MU De La Hotel</h5>
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, officiis ab
-                                                minima aliquam at pariatur, animi, non in molestias a ut. Quidem incidunt
-                                                necessitatibus</p>
-                                            <br>
-                                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aut aspernatur
-                                                veniam cupiditate fugiat ullam quae aperiam, nam laborum ipsam non. Corporis
-                                                molestias ratione, dicta sed expedita cum porro maxime voluptates!</p>
-                                        </div>
-                                        <div class="akomodasi">
-                                            <h5>Akomodasi</h5>
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque quos dicta
-                                                officiis provident exercitationem, minus modi odio inventore tenetur mollitia
-                                                quia error molestiae? Ipsa amet laborum aut minus excepturi quos.</p>
-                                        </div>
-                                    </div>
-                                    <div class="lokasi">
-                                        <h5>Lokasi Strategis</h5>
-                                        <ul class="kolom1 list-unstyled">
-                                            <li>
-                                                <i class="bi bi-bag-fill"></i>
-                                                Pusat Pembelanjaan</li>
-                                            <li>
-                                                <i class="bi bi-geo-alt-fill"></i>
-                                                Gare du Nord</li>
-                                            <li>
-                                                <i class="bi bi-geo-alt-fill"></i>
-                                                Stadiun Louis-Philippe</li>
-                                        </ul>
-                                        <ul class="kolom2 list-unstyled">
-                                            <li>
-                                                <i class="bi bi-geo-alt-fill"></i>
-                                                Pont d'Arcole</li>
-                                            <li>
-                                                <i class="bi bi-geo-alt-fill"></i>
-                                                Lavender MRT Statiun</li>
-                                            <li>
-                                                <i class="bi bi-geo-alt-fill"></i>
-                                                Marina Bay Sands Casino</li>
-                                        </ul>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="popup" id="popup-destination4">
-                        <div class="overlay"></div>
-                        <div class="content">
-                            <div class="close-btn" onclick="togglePopup4()">&times;</div>
-                            <div class="popup-destinasi">
-                                <div class="destinasi-hotel">
-                                    <div class="gambar">
-                                        <img src="img/singapura.jpg" alt="">
-                                    </div>
-                                    <div class="penjelasan">
-                                        <h2>Singapore</h2>
-                                        <p>
-                                            Singapura merupakan negara yang modern dan maju, dengan infrastruktur yang baik
-                                            dan standar hidup yang tinggi. Singapura menjadi objek wisata yang menarik
-                                            karena merupakan negara terbersih yang berada di Asia Tenggara.
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="keuntungan">
-                                    <div class="fasilitas">
-                                        <h5>Fasilitas</h5>
-                                        <ul class="list-unstyled">
-                                            <li><img src="img/icon/air-conditioner.png" alt="ac">
-                                                AC</li>
-                                            <li><img src="img/icon/restaurant.png" alt="restoran">
-                                                Restoran</li>
-                                            <li><img src="img/icon/swimming-pool.png" alt="kolam_renang">
-                                                Kolam Renang</li>
-                                            <li><img src="img/icon/24-hours-support.png" alt="24Hours">
-                                                Resepsionis 24 Jam</li>
-                                            <li><img src="img/icon/parking-area.png" alt="Parkir">
-                                                Parkir</li>
-                                            <li><img src="img/icon/wifi.png" alt="Wifi">
-                                                Wifi</li>
-                                            <li><img src="img/icon/elevator.png" alt="LIft">
-                                                Elevator</li>
-                                        </ul>
-                                    </div>
-                                    <div class="tentang">
-                                        <div class="hotel">
-                                            <h5>MU De La Hotel</h5>
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, officiis ab
-                                                minima aliquam at pariatur, animi, non in molestias a ut. Quidem incidunt
-                                                necessitatibus</p>
-                                            <br>
-                                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aut aspernatur
-                                                veniam cupiditate fugiat ullam quae aperiam, nam laborum ipsam non. Corporis
-                                                molestias ratione, dicta sed expedita cum porro maxime voluptates!</p>
-                                        </div>
-                                        <div class="akomodasi">
-                                            <h5>Akomodasi</h5>
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque quos dicta
-                                                officiis provident exercitationem, minus modi odio inventore tenetur mollitia
-                                                quia error molestiae? Ipsa amet laborum aut minus excepturi quos.</p>
-                                        </div>
-                                    </div>
-                                    <div class="lokasi">
-                                        <h5>Lokasi Strategis</h5>
-                                        <ul class="kolom1 list-unstyled">
-                                            <li>
-                                                <i class="bi bi-bag-fill"></i>
-                                                Pusat Pembelanjaan</li>
-                                            <li>
-                                                <i class="bi bi-geo-alt-fill"></i>
-                                                Gare du Nord</li>
-                                            <li>
-                                                <i class="bi bi-geo-alt-fill"></i>
-                                                Stadiun Louis-Philippe</li>
-                                        </ul>
-                                        <ul class="kolom2 list-unstyled">
-                                            <li>
-                                                <i class="bi bi-geo-alt-fill"></i>
-                                                Pont d'Arcole</li>
-                                            <li>
-                                                <i class="bi bi-geo-alt-fill"></i>
-                                                Lavender MRT Statiun</li>
-                                            <li>
-                                                <i class="bi bi-geo-alt-fill"></i>
-                                                Marina Bay Sands Casino</li>
-                                        </ul>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="popup" id="popup-destination5">
-                        <div class="overlay"></div>
-                        <div class="content">
-                            <div class="close-btn" onclick="togglePopup5()">&times;</div>
-                            <div class="popup-destinasi">
-                                <div class="destinasi-hotel">
-                                    <div class="gambar">
-                                        <img src="img/tokyo,japan.jpg" alt="">
-                                    </div>
-                                    <div class="penjelasan">
-                                        <h2>Tokyo, Japan</h2>
-                                        <p>
-                                            Tokyo adalah kota yang penuh dengan kontras, di mana modernitas dan tradisi
-                                            berpadu dengan sempurna. Kota ini menjadi tujuan wisata populer bagi wisatawan
-                                            dari seluruh dunia yang ingin merasakan budaya Jepang yang unik.
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="keuntungan">
-                                    <div class="fasilitas">
-                                        <h5>Fasilitas</h5>
-                                        <ul class="list-unstyled">
-                                            <li><img src="img/icon/air-conditioner.png" alt="ac">
-                                                AC</li>
-                                            <li><img src="img/icon/restaurant.png" alt="restoran">
-                                                Restoran</li>
-                                            <li><img src="img/icon/swimming-pool.png" alt="kolam_renang">
-                                                Kolam Renang</li>
-                                            <li><img src="img/icon/24-hours-support.png" alt="24Hours">
-                                                Resepsionis 24 Jam</li>
-                                            <li><img src="img/icon/parking-area.png" alt="Parkir">
-                                                Parkir</li>
-                                            <li><img src="img/icon/wifi.png" alt="Wifi">
-                                                Wifi</li>
-                                            <li><img src="img/icon/elevator.png" alt="LIft">
-                                                Elevator</li>
-                                        </ul>
-                                    </div>
-                                    <div class="tentang">
-                                        <div class="hotel">
-                                            <h5>MU De La Hotel</h5>
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, officiis ab
-                                                minima aliquam at pariatur, animi, non in molestias a ut. Quidem incidunt
-                                                necessitatibus</p>
-                                            <br>
-                                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aut aspernatur
-                                                veniam cupiditate fugiat ullam quae aperiam, nam laborum ipsam non. Corporis
-                                                molestias ratione, dicta sed expedita cum porro maxime voluptates!</p>
-                                        </div>
-                                        <div class="akomodasi">
-                                            <h5>Akomodasi</h5>
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque quos dicta
-                                                officiis provident exercitationem, minus modi odio inventore tenetur mollitia
-                                                quia error molestiae? Ipsa amet laborum aut minus excepturi quos.</p>
-                                        </div>
-                                    </div>
-                                    <div class="lokasi">
-                                        <h5>Lokasi Strategis</h5>
-                                        <ul class="kolom1 list-unstyled">
-                                            <li>
-                                                <i class="bi bi-bag-fill"></i>
-                                                Pusat Pembelanjaan</li>
-                                            <li>
-                                                <i class="bi bi-geo-alt-fill"></i>
-                                                Gare du Nord</li>
-                                            <li>
-                                                <i class="bi bi-geo-alt-fill"></i>
-                                                Stadiun Louis-Philippe</li>
-                                        </ul>
-                                        <ul class="kolom2 list-unstyled">
-                                            <li>
-                                                <i class="bi bi-geo-alt-fill"></i>
-                                                Pont d'Arcole</li>
-                                            <li>
-                                                <i class="bi bi-geo-alt-fill"></i>
-                                                Lavender MRT Statiun</li>
-                                            <li>
-                                                <i class="bi bi-geo-alt-fill"></i>
-                                                Marina Bay Sands Casino</li>
-                                        </ul>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="popup" id="popup-destination6">
-                        <div class="overlay"></div>
-                        <div class="content">
-                            <div class="close-btn" onclick="togglePopup6()">&times;</div>
-                            <div class="popup-destinasi">
-                                <div class="destinasi-hotel">
-                                    <div class="gambar">
-                                        <img src="img/kuala lumpur.jpg" alt="">
-                                    </div>
-                                    <div class="penjelasan">
-                                        <h2>Kuala Lumpur, Malaysia</h2>
-                                        <p>
-                                            Kuala Lumpur adalah kota yang dinamis dan modern, dengan gedung pencakar langit
-                                            yang menjulang tinggi, namun juga tetap mempertahankan budaya tradisionalnya.
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="keuntungan">
-                                    <div class="fasilitas">
-                                        <h5>Fasilitas</h5>
-                                        <ul class="list-unstyled">
-                                            <li><img src="img/icon/air-conditioner.png" alt="ac">
-                                                AC</li>
-                                            <li><img src="img/icon/restaurant.png" alt="restoran">
-                                                Restoran</li>
-                                            <li><img src="img/icon/swimming-pool.png" alt="kolam_renang">
-                                                Kolam Renang</li>
-                                            <li><img src="img/icon/24-hours-support.png" alt="24Hours">
-                                                Resepsionis 24 Jam</li>
-                                            <li><img src="img/icon/parking-area.png" alt="Parkir">
-                                                Parkir</li>
-                                            <li><img src="img/icon/wifi.png" alt="Wifi">
-                                                Wifi</li>
-                                            <li><img src="img/icon/elevator.png" alt="LIft">
-                                                Elevator</li>
-                                        </ul>
-                                    </div>
-                                    <div class="tentang">
-                                        <div class="hotel">
-                                            <h5>MU De La Hotel</h5>
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, officiis ab
-                                                minima aliquam at pariatur, animi, non in molestias a ut. Quidem incidunt
-                                                necessitatibus</p>
-                                            <br>
-                                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aut aspernatur
-                                                veniam cupiditate fugiat ullam quae aperiam, nam laborum ipsam non. Corporis
-                                                molestias ratione, dicta sed expedita cum porro maxime voluptates!</p>
-                                        </div>
-                                        <div class="akomodasi">
-                                            <h5>Akomodasi</h5>
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque quos dicta
-                                                officiis provident exercitationem, minus modi odio inventore tenetur mollitia
-                                                quia error molestiae? Ipsa amet laborum aut minus excepturi quos.</p>
-                                        </div>
-                                    </div>
-                                    <div class="lokasi">
-                                        <h5>Lokasi Strategis</h5>
-                                        <ul class="kolom1 list-unstyled">
-                                            <li>
-                                                <i class="bi bi-bag-fill"></i>
-                                                Pusat Pembelanjaan</li>
-                                            <li>
-                                                <i class="bi bi-geo-alt-fill"></i>
-                                                Gare du Nord</li>
-                                            <li>
-                                                <i class="bi bi-geo-alt-fill"></i>
-                                                Stadiun Louis-Philippe</li>
-                                        </ul>
-                                        <ul class="kolom2 list-unstyled">
-                                            <li>
-                                                <i class="bi bi-geo-alt-fill"></i>
-                                                Pont d'Arcole</li>
-                                            <li>
-                                                <i class="bi bi-geo-alt-fill"></i>
-                                                Lavender MRT Statiun</li>
-                                            <li>
-                                                <i class="bi bi-geo-alt-fill"></i>
-                                                Marina Bay Sands Casino</li>
-                                        </ul>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="popup" id="popup-destination7">
-                        <div class="overlay"></div>
-                        <div class="content">
-                            <div class="close-btn" onclick="togglePopup7()">&times;</div>
-                            <div class="popup-destinasi">
-                                <div class="destinasi-hotel">
-                                    <div class="gambar">
-                                        <img src="img/newyorkgelap.jpg" alt="">
-                                    </div>
-                                    <div class="penjelasan">
-                                        <h2>New York, United States</h2>
-                                        <p>
-                                            New York adalah kota yang dijuluki "The City That Never Sleeps". Diamna setiap
-                                            kota di huni dengan gedung-gedung yang menjulang tinggi. New York juga memiliki
-                                            landmark yang sangat terkenal yaitu Patung Liberty.
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="keuntungan">
-                                    <div class="fasilitas">
-                                        <h5>Fasilitas</h5>
-                                        <ul class="list-unstyled">
-                                            <li><img src="img/icon/air-conditioner.png" alt="ac">
-                                                AC</li>
-                                            <li><img src="img/icon/restaurant.png" alt="restoran">
-                                                Restoran</li>
-                                            <li><img src="img/icon/swimming-pool.png" alt="kolam_renang">
-                                                Kolam Renang</li>
-                                            <li><img src="img/icon/24-hours-support.png" alt="24Hours">
-                                                Resepsionis 24 Jam</li>
-                                            <li><img src="img/icon/parking-area.png" alt="Parkir">
-                                                Parkir</li>
-                                            <li><img src="img/icon/wifi.png" alt="Wifi">
-                                                Wifi</li>
-                                            <li><img src="img/icon/elevator.png" alt="LIft">
-                                                Elevator</li>
-                                        </ul>
-                                    </div>
-                                    <div class="tentang">
-                                        <div class="hotel">
-                                            <h5>MU De La Hotel</h5>
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, officiis ab
-                                                minima aliquam at pariatur, animi, non in molestias a ut. Quidem incidunt
-                                                necessitatibus</p>
-                                            <br>
-                                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aut aspernatur
-                                                veniam cupiditate fugiat ullam quae aperiam, nam laborum ipsam non. Corporis
-                                                molestias ratione, dicta sed expedita cum porro maxime voluptates!</p>
-                                        </div>
-                                        <div class="akomodasi">
-                                            <h5>Akomodasi</h5>
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque quos dicta
-                                                officiis provident exercitationem, minus modi odio inventore tenetur mollitia
-                                                quia error molestiae? Ipsa amet laborum aut minus excepturi quos.</p>
-                                        </div>
-                                    </div>
-                                    <div class="lokasi">
-                                        <h5>Lokasi Strategis</h5>
-                                        <ul class="kolom1 list-unstyled">
-                                            <li>
-                                                <i class="bi bi-bag-fill"></i>
-                                                Pusat Pembelanjaan</li>
-                                            <li>
-                                                <i class="bi bi-geo-alt-fill"></i>
-                                                Gare du Nord</li>
-                                            <li>
-                                                <i class="bi bi-geo-alt-fill"></i>
-                                                Stadiun Louis-Philippe</li>
-                                        </ul>
-                                        <ul class="kolom2 list-unstyled">
-                                            <li>
-                                                <i class="bi bi-geo-alt-fill"></i>
-                                                Pont d'Arcole</li>
-                                            <li>
-                                                <i class="bi bi-geo-alt-fill"></i>
-                                                Lavender MRT Statiun</li>
-                                            <li>
-                                                <i class="bi bi-geo-alt-fill"></i>
-                                                Marina Bay Sands Casino</li>
-                                        </ul>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="popup" id="popup-destination8">
-                        <div class="overlay"></div>
-                        <div class="content">
-                            <div class="close-btn" onclick="togglePopup8()">&times;</div>
-                            <div class="popup-destinasi">
-                                <div class="destinasi-hotel">
-                                    <div class="gambar">
-                                        <img src="img/madrid.jpg" alt="">
-                                    </div>
-                                    <div class="penjelasan">
-                                        <h2>Madrid, Spanyol</h2>
-                                        <p>
-                                            Madrid adalah ibu kota Spanyol, terletak di bagian tengah negara itu. Kota ini
-                                            merupakan pusat politik, budaya, dan ekonomi yang penting. Madrid memiliki
-                                            banyak landmark terkenal, termasuk Palacio Real (Istana Kerajaan), Plaza Mayor
-                                            (Lapangan Utama), dan Museo del Prado (Museum Prado).
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="keuntungan">
-                                    <div class="fasilitas">
-                                        <h5>Fasilitas</h5>
-                                        <ul class="list-unstyled">
-                                            <li><img src="img/icon/air-conditioner.png" alt="ac">
-                                                AC</li>
-                                            <li><img src="img/icon/restaurant.png" alt="restoran">
-                                                Restoran</li>
-                                            <li><img src="img/icon/swimming-pool.png" alt="kolam_renang">
-                                                Kolam Renang</li>
-                                            <li><img src="img/icon/24-hours-support.png" alt="24Hours">
-                                                Resepsionis 24 Jam</li>
-                                            <li><img src="img/icon/parking-area.png" alt="Parkir">
-                                                Parkir</li>
-                                            <li><img src="img/icon/wifi.png" alt="Wifi">
-                                                Wifi</li>
-                                            <li><img src="img/icon/elevator.png" alt="LIft">
-                                                Elevator</li>
-                                        </ul>
-                                    </div>
-                                    <div class="tentang">
-                                        <div class="hotel">
-                                            <h5>MU De La Hotel</h5>
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, officiis ab
-                                                minima aliquam at pariatur, animi, non in molestias a ut. Quidem incidunt
-                                                necessitatibus</p>
-                                            <br>
-                                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aut aspernatur
-                                                veniam cupiditate fugiat ullam quae aperiam, nam laborum ipsam non. Corporis
-                                                molestias ratione, dicta sed expedita cum porro maxime voluptates!</p>
-                                        </div>
-                                        <div class="akomodasi">
-                                            <h5>Akomodasi</h5>
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque quos dicta
-                                                officiis provident exercitationem, minus modi odio inventore tenetur mollitia
-                                                quia error molestiae? Ipsa amet laborum aut minus excepturi quos.</p>
-                                        </div>
-                                    </div>
-                                    <div class="lokasi">
-                                        <h5>Lokasi Strategis</h5>
-                                        <ul class="kolom1 list-unstyled">
-                                            <li>
-                                                <i class="bi bi-bag-fill"></i>
-                                                Pusat Pembelanjaan</li>
-                                            <li>
-                                                <i class="bi bi-geo-alt-fill"></i>
-                                                Gare du Nord</li>
-                                            <li>
-                                                <i class="bi bi-geo-alt-fill"></i>
-                                                Stadiun Louis-Philippe</li>
-                                        </ul>
-                                        <ul class="kolom2 list-unstyled">
-                                            <li>
-                                                <i class="bi bi-geo-alt-fill"></i>
-                                                Pont d'Arcole</li>
-                                            <li>
-                                                <i class="bi bi-geo-alt-fill"></i>
-                                                Lavender MRT Statiun</li>
-                                            <li>
-                                                <i class="bi bi-geo-alt-fill"></i>
-                                                Marina Bay Sands Casino</li>
-                                        </ul>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="gallery"></div>
-                    <div class="gallery" data-aos="fade" data-aos-duration="2500">
-                        <div class="gallery-judul">
-                            Transportation
-                        </div>
-                        <div class="content">
-                            <div class="gambar-gallery satu">
-                                <div class="title-box">
-                                    <div class="title">Cruise ship</div>
-                                </div>
-                            </div>
-                            <div class="gambar-gallery dua">
-                                <div class="title-box">
-                                    <div class="title">Train</div>
-                                </div>
-                            </div>
-                            <div class="gambar-gallery tiga">
-                                <div class="title-box">
-                                    <div class="title">Plane</div>
-                                </div>
-                            </div>
-
+                    <div class="penjelasan">
+                        <div class="travel-judul">
+                            <h1>Explore Beautiful World</h1>
+                            <button>Selengkapnya</button>
                         </div>
                     </div>
                 </div>
-
+                <div class="popular">
+                    <div class="judul-popular">
+                        <h1>Popular Place</h1>
+                    </div>
+                    <ul class="popular-item">
+                        <li class="popular-card">
+                            <img src="img/bali.jpg" alt="">
+                            <div class="info">
+                                <div class="rating">
+                                    <div class="city">
+                                        <h1>Bali</h1>
+                                    </div>    
+                                    <div class="rate"><i class="bi bi-star-fill"></i> 4.3</div>
+                                </div>
+                                <div class="location"><i class="bi bi-geo-alt-fill"></i>Indonesia</div>
+                            </div>
+                        </li>
+                        <li class="popular-card">
+                            <img src="img/london.jpg" alt="">
+                            <div class="info">
+                                <div class="rating">
+                                    <div class="city">
+                                        <h1>London</h1>
+                                    </div>    
+                                    <div class="rate"><i class="bi bi-star-fill"></i> 4.3</div>
+                                </div>
+                                <div class="location"><i class="bi bi-geo-alt-fill"></i>Inggris</div>
+                            </div>
+                        </li>
+                        <li class="popular-card">
+                            <img src="img/paris.jpg" alt="">
+                            <div class="info">
+                                <div class="rating">
+                                    <div class="city">
+                                        <h1>Paris</h1>
+                                    </div>    
+                                    <div class="rate"><i class="bi bi-star-fill"></i> 4.3</div>
+                                </div>
+                                <div class="location"><i class="bi bi-geo-alt-fill"></i>Perancis</div>
+                            </div>
+                        </li>
+                        <li class="popular-card">
+                            <img src="img/tokyo,japan.jpg" alt="">
+                            <div class="info">
+                                <div class="rating">
+                                    <div class="city">
+                                        <h1>Tokyo</h1>
+                                    </div>    
+                                    <div class="rate"><i class="bi bi-star-fill"></i> 4.3</div>
+                                </div>
+                                <div class="location"><i class="bi bi-geo-alt-fill"></i>Japan</div>
+                            </div>
+                        </li>
+                        <li class="popular-card">
+                            <img src="img/newyorkgelap.jpg" alt="">
+                            <div class="info">
+                                <div class="rating">
+                                    <div class="city">
+                                        <h1>New York</h1>
+                                    </div>    
+                                    <div class="rate"><i class="bi bi-star-fill"></i> 4.3</div>
+                                </div>
+                                <div class="location"><i class="bi bi-geo-alt-fill"></i>Amerika</div>
+                            </div>
+                        </li>
+                        <li class="popular-card">
+                            <img src="img/singapura2.jpg" alt="">
+                            <div class="info">
+                                <div class="rating">
+                                    <div class="city">
+                                        <h1>Singapura</h1>
+                                    </div>    
+                                    <div class="rate"><i class="bi bi-star-fill"></i> 4.3</div>
+                                </div>
+                                <div class="location"><i class="bi bi-geo-alt-fill"></i>Singapura</div>
+                            </div>
+                        </li>
+                    </ul>
+                
+                <div class="explore">
+                    <div class="explore-img">
+                        <img src="img/travel-removebg-preview.png" alt="">
+                    </div>
+                    <div class="explore-penjelasan">
+                        <div class="explore-judul">
+                            <h1>Explore all corners of the world with us</h1>
+                        </div>
+                            <p>Travel is fatal to prejudice, and narrow mindedness, And many of our people need it sorely on these accounts. And many of our people need it sorely</p>
+                            <div class="fasilitas">
+                                <p><i class='bx bx-wifi'></i> Wifi</p>
+                                <p><i class='bx bxs-bowl-hot'></i> Food</p>
+                                <p><i class='bx bxs-hotel'></i> Hotel</p>
+                                <p><i class='bx bxs-plane'></i> Plane</p>       
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery">
+                    <div class="gallery-judul">
+                        Our Gallery
+                    </div>
+                    <div class="content">
+                        <div class="gambar satu">
+                            <div class="title-box">
+                            <div class="title">Antariksa</div>
+                            </div>
+                        </div>
+                        <div class="gambar dua">
+                            <div class="title-box">
+                            <div class="title">Traveling</div>
+                            </div>
+                        </div>
+                        <div class="gambar tiga">
+                            <div class="title-box">
+                            <div class="title">Tutorial Coding</div>
+                            </div>
+                        </div>
+                        <div class="gambar empat">
+                            <div class="title-box">
+                            <div class="title">Otomotif</div>
+                            </div>
+                        </div>
+                        <div class="gambar lima">
+                            <div class="title-box">
+                            <div class="title">Skincare</div>
+                            </div>
+                        </div>
+                        <div class="gambar enam">
+                            <div class="title-box">
+                            <div class="title">Skincare</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>    
+                
                 <div class="faq">
                     <div class="faq-penjelasan">
                         <h1>FAQ</h1>
@@ -903,8 +190,6 @@
                 <!-- footer -->
                 <div id="footer"></div>
                 <%- include('layouts/footer.ejs') %>
-
-                </div>
                 <script>
                     var app = angular.module('pertanyaan', []);
                     app.controller('controller', function ($scope) {
@@ -985,6 +270,21 @@
                 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
                 <script>
                     AOS.init();
+                </script>
+                <script>
+                    document.addEventListener('scroll', () => {
+                        const nav = document.querySelector('nav');
+        
+                        if (window.scrollY > 0) {
+                            nav
+                                .classList
+                                .add('scrolled');
+                        } else {
+                            nav
+                                .classList
+                                .remove('scrolled')
+                        }
+                    })
                 </script>
                 <script src="index.js"></script>
                 <script>

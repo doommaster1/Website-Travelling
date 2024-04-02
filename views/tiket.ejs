@@ -2,18 +2,22 @@
 <html lang="en">
     <head>
         <%- include('layouts/header.ejs') %>
-            <link rel="stylesheet" href="tiket.css">
-            
+            <link rel="stylesheet" href="footer.css">
+            <link rel="stylesheet" href="nav.css">        
             <title>Get your Ticket</title>
         </head>
         <body>
             <div class="container">
                 <%- include('layouts/nav.ejs') %>
-
+                
                     <!-- mulai tiket -->
+                    <div class="logo-bar">
+                        <i class="bi bi-cart-fill"></i>
+                        <i class="bi bi-filter"></i>
+                    </div>
                     <div class="listProduct"></div>
                 </div>
-                <!-- <div class="listProduct"></div> -->
+                <div class="listProduct"></div>
                 <div class="cartTab">
                     <h1>Shopping Cart</h1>
                     <div class="listCart"></div>
@@ -26,6 +30,6 @@
                     </div>
                 </div>
                 <%- include('layouts/footer.ejs') %>
-                    <script src="tiket.js"></script>
+                    <script src="/web/tiket.js"></script>
                 </body>
             </html>
