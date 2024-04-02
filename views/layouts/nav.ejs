@@ -1,76 +1,83 @@
-<header class="header">
-    <div class="container">
-        <div class="header-main">
-            <div class="logo">
-                <a href="#">
-                    <div class="logo-destinasi">
-                        <i data-feather="users" onclick="toggleMenu()"></i>
-                        <div class="sub-menu-wrap" id="subMenu">
-                            <div class="sub-menu">
-                                <div class="user-info">
-                                    <img src="img/logonbg.png">
-                                    <h2>Hans Nathanael</h2>
-                                </div>
-                                <hr>
+        <nav>
+            <div class="icon">
+                <img src="img/logonbg.png" alt="">
+            </div>
+            <div class="open-nav-menu">
+                <span></span>
+            </div>
+            <div class="menu-overlay"></div>
+            <div class="nav-menu">
+                <div class="close-nav-menu">
+                    <i class='bx bx-x'></i>
+                </div>
+                <ul class="menu">
+                    <li class="menu-item">
+                        <a href="/#">Home</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="/#about">About Us</a>
+                    </li>
+                    <li class="menu-item menu-item-has-children">
+                        <a href="#" data-toggle="sub-menu">Cathegory</a>
+                        <ul class="sub-menu">
+                            <li class="menu-item">
+                                <a href="/#gallery">Gallery</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="#">Category B</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="#">Category C</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="#">Category D</a>
 
-                                <a href="/setting" class="sub-menu-link">
-                                    <i data-feather="user"></i>
-                                    <p>Profile</p>
-                                    <span>></span>
-                                </a>
-                                </a>
-                                <a href="/index#footer" class="sub-menu-link">
-                                    <i data-feather="help-circle"></i>
-                                    <p>Help & Support</p>
-                                    <span>></span>
-                                </a>
-                                <a href="/" class="sub-menu-link">
-                                    <i data-feather="log-out"></i>
-                                    <p>Logout</p>
-                                    <span>></span>
-                                </a>
-                            </div>
-                        </div> 
-                    </a>
-                </div>
-                   
-                <div class="open-nav-menu">
-                    <span></span>
-                </div>
-                <div class="menu-overlay"></div>
-                <!-- nav start -->
-                <nav class="nav-menu">
-                    <div class="close-nav-menu">
-                        <i class='bx bx-x'></i>
-                    </div>
-                    <ul class="menu">
-                        <li class="menu-item">
-                            <a href="/">Home</a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="/tiket">Ticket</a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="/#destinasi">Destination</a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="/logout">Transportation</a>
-                        </li>
-                        <li class="menu-item icon-cart">
-                            <img src="img/Cart.png" alt="">
-                                <span>0</span>
                             </li>
                         </ul>
-                    </nav>
-                    <!-- nav end -->
-                </div>
+                    </li>
+                    <li class="menu-item">
+                        <a href="/#footer   ">Contact</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="/tiket">Tiket</a>
+                    </li>
+                </ul>
             </div>
-            
-        </header>
-        <script>
-            let subMenu = document.getElementById("subMenu");
+            <div class="login">
+                <a href="/setting"><i class="bi bi-person-circle" ></i></a> 
+                 <!-- <div class="sub-menu-wrap" id="subMenu">
+                    <div class="sub-menu">
+                        <div class="user-info">
+                            <img src="img/logonbg.png">
+                            <h2>Hans Nathanael</h2>
+                        </div> -->
+                        <!--<hr>
 
-            function toggleMenu(){
-                subMenu.classList.toggle("open-menu");
-            }
-        </script>
+                        <a href="/setting" class="sub-menu-link">
+                            <i data-feather="user"></i>
+                            <p>Profile</p>
+                            <span>></span>
+                        </a>
+                        </a>
+                        <a href="/index#footer" class="sub-menu-link">
+                            <i data-feather="help-circle"></i>
+                            <p>Help & Support</p>
+                            <span>></span>
+                        </a>
+                        <a href="/logout" class="sub-menu-link">
+                            <i data-feather="log-out"></i>
+                            <p>Logout</p>
+                            <span>></span>
+                        </a>
+                    </div>
+                </div> -->
+            </div>
+            <script>
+                let subMenu = document.getElementById("subMenu");
+    
+                function toggleMenu(){
+                    subMenu.classList.toggle("open-menu");
+                }
+            </script>
+            </nav>
+            

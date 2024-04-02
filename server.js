@@ -34,6 +34,8 @@ const isAuthenticated = (req, res, next) => {
 
 // Index route
 app.get('/', isAuthenticated, (req, res) => {
+    // const User = req.session.user;
+    // res.render('index', { user: User, message: null });
     res.render('index');
 });
 
@@ -41,9 +43,9 @@ app.get('/', isAuthenticated, (req, res) => {
 app.post('/login', async (req, res) => {
     if (req.body.userlogin && req.body.passwordlogin) {
         try {
-            const check = await collection.findOne({name: req.body.userlogin})
+            const check = await collection.findOne({username: req.body.userlogin})
             if (!check) {
-                res.send('user tidak ditemukan')
+                res.send('user tidak ditemukann')
             }
 
             const cekpassword = await bcrypt.compare(
@@ -62,12 +64,13 @@ app.post('/login', async (req, res) => {
         }
     } else {
         const data = {
-            name: req.body.userregis,
+            username: req.body.userregis,
             email: req.body.emailregis,
-            password: req.body.passwordregis
-        }
+            password: req.body.passwordregis,
+            name: ""
+        }   
 
-        const existuser = await collection.findOne({name: data.name})
+        const existuser = await collection.findOne({username: data.username})
         if (existuser) {
             res.send("username sudah digunakan, tolong ganti username yang lain")
         } else {
@@ -111,24 +114,128 @@ const loginRedirect = (req, res, next) => {
 
 // Login route - Redirect to index if already logged in
 app.get('/login', loginRedirect, (req, res) => {
-    res.render('login');
+    res.render('login');;
 });
 
 // Tiket route
 app.get('/tiket', isAuthenticated, (req, res) => {
+    // const user = req.session.user;
+    // res.render('tiket', { user: user, message: null });
     res.render('tiket');
 });
 
 // Payment route
 app.get('/payment', isAuthenticated, (req, res) => {
+    // const user = req.session.user;
+    // res.render('payment', { user: user, message: null });
     res.render('payment');
 });
 
 
 // setting
-app.get('/setting', (req, res) => {
-    res.render('setting');
-})
+app.get('/setting', isAuthenticated, (req, res) => {
+    // Retrieve user data from session
+    const user = req.session.user;
+    res.render('setting', { user: user, message: null });
+});
+
+// Handle form submission for updating user information
+app.post('/update', isAuthenticated, async (req, res) => {
+    try {
+        // Retrieve user data from session
+        const user = req.session.user;
+
+        // Update user information with form data
+        const updatedUsername = req.body.username;
+        const updatedName = req.body.name;
+        const updatedEmail = req.body.email;
+
+        // Update user information in the database
+        await collection.updateOne({ _id: user._id }, {
+            $set: {
+                username: updatedUsername,
+                name: updatedName,
+                email: updatedEmail
+            }
+        });
+
+        // Update user data in session
+        req.session.user.username = updatedUsername;
+        req.session.user.name = updatedName;
+        req.session.user.email = updatedEmail;
+
+        res.json({ message: 'User information updated successfully.' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Failed to update user information. Please try again.' });
+    }
+});
+
+// Handle form submission for changing password
+app.post('/changepass', isAuthenticated, async (req, res) => {
+    try {
+        const currentUser = req.session.user;
+        const currentPassword = req.body.currentPassword;
+        const newPassword = req.body.newPassword;
+        const repeatNewPassword = req.body.repeatNewPassword;
+
+        // Check if new password and repeat new password match
+        if (newPassword !== repeatNewPassword) {
+            return res.status(400).send('New password and repeat new password do not match');
+        }
+
+        // Check if current password is correct
+        const user = await collection.findOne({ _id: currentUser._id });
+        const isPasswordCorrect = await bcrypt.compare(currentPassword, user.password);
+        if (!isPasswordCorrect) {
+            return res.status(400).send('Current password is incorrect');
+        }
+
+        // Hash the new password
+        const hashedNewPassword = await bcrypt.hash(newPassword, 10);
+
+        // Update password in the database
+        await collection.updateOne({ _id: currentUser._id }, { $set: { password: hashedNewPassword } });
+
+        // Send success alert to client
+        res.status(200).send('<script>alert("Password updated successfully"); window.location="/setting";</script>');
+    } catch (error) {
+        console.error(error);
+        // Send error alert to client
+        res.status(500).send('<script>alert("Internal server error"); window.location="/setting";</script>');
+    }
+});
+
+// Handle form submission for deleting account
+app.post('/delete', isAuthenticated, async (req, res) => {
+    try {
+        const currentUser = req.session.user;
+        const confirmPassword = req.body.confirmpassword;
+
+        // Check if current password is correct
+        const user = await collection.findOne({ _id: currentUser._id });
+        const isPasswordCorrect = await bcrypt.compare(confirmPassword, user.password);
+        if (!isPasswordCorrect) {
+            return res.status(400).send('Password is incorrect. Account deletion failed.');
+        }
+
+        // Delete the user account from the database
+        await collection.deleteOne({ _id: currentUser._id });
+
+        // Clear session
+        req.session.destroy(err => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.redirect('/login'); // Redirect to login page after successful deletion
+            }
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Internal server error');
+    }
+});
+
 
 //static
 app.use(express.static('Web'))

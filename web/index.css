@@ -119,7 +119,7 @@ blockquote:after,
 blockquote:before,
 q:after,
 q:before {
-    content: "";
+    content: '';
     content: none;
 }
 table {
@@ -128,1153 +128,568 @@ table {
 }
 
 body {
+    font-family: 'Josefin Sans', sans-serif;
+    background-color: #f5f5f5;
+    color: #000;
     overflow-x: hidden;
-    font-family: "Poppins", sans-serif;
-    width: 100%;
-    height: fit-content;
 }
-
-/* .header {
-  position: absolute;
-  width: 100%;
-  top: 0;
-  left: 0;
-  z-index: 9999;
-  font-family: "Raleway", sans-serif;
-}
-
-header ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  line-height: 1.5;
-}
-
-a {
-  text-decoration: none;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  padding: 0 25px;
-}
-
-.logo-destinasi img {
-  width: 70px;
-}
-
-.header .nav-menu {
-  padding: 0 25px;
-}
-
-.header-main {
-  background-color: #a01626;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0px 0;
-}
-
-.header .menu > .menu-item {
-  display: inline-block;
-  margin-left: 30px;
-  position: relative;
-}
-
-.header .menu > .menu-item > a {
-  display: block;
-  padding: 15px 0;
-  font-size: 15px;
-  color: #fff;
-  font-weight: 600;
-  transition: all 0.3s ease;
-}
-
-.header .open-nav-menu {
-  height: 34px;
-  width: 40px;
-  margin-right: 15px;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  cursor: pointer;
-}
-
-.header .open-nav-menu span {
-  position: relative;
-  display: block;
-  height: 3px;
-  width: 24px;
-  background-color: #fff;
-}
-
-.header .open-nav-menu span:before,
-.header .open-nav-menu span:after {
-  content: "";
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #fff;
-  box-sizing: border-box;
-}
-
-.header .open-nav-menu span:before {
-  top: -7px;
-}
-
-.header .open-nav-menu span:after {
-  top: 7px;
-}
-
-.header .close-nav-menu {
-  height: 40px;
-  width: 40px;
-  background-color: #fff;
-  margin: 0 0 15px 15px;
-  color: #000;
-  cursor: pointer;
-  display: none;
-  justify-content: center;
-  align-items: center;
-}
-
-.header .close-nav-menu i {
-  font-size: 30px;
-  color: #000;
-} */
 
 .container {
-    position: relative;
-    width: 100%;
-    margin: auto;
-    /* max-width: 90vw; */
-    text-align: center;
-    /* padding-top: 10px; */
-    transition: transform 0.5s;
+    overflow: hidden;
 }
 
-.header {
-    /* position: absolute; */
+.container p{
+    line-height: 23px;
+}
+
+.home {
+    background-size: cover;
+    background-position: center;
+    /* filter: grayscale(100%); */
+    /* display: flex; */
+}
+
+nav {
     width: 100%;
+    display: flex;
+    position: fixed;
     top: 0;
     left: 0;
+    right: 0;
+    justify-content: space-around;
+    align-items: center;
+    letter-spacing: 3px;
     z-index: 9999;
-    margin-top: -1.5%;
-    /* padding: 15px 0 15px 15px; */
-    font-family: "Raleway", sans-serif;
+    transition: 0.3s ease-in-out;
+    /* background-color: #000; */
 }
 
-header ul {
-    list-style: none;
-    margin-left: -3;
-    float: right;
-    padding: 0;
-    line-height: 1.5;
+nav .icon img{
+    width: 6.5em;
 }
 
-a {
-    text-decoration: none;
-}
-.logo {
-    display: flex;
-    align-items: center;
-    margin-left: 1%;
-    /* width: 10px; */
-    padding: 1% 1% 0;
-    border-radius: 50%;
-    cursor: pointer;
-    margin-top: -1%;
-    color: white;
-    /* background-color: white; */
-}
-
-.logo-destinasi img {
-    width: 70px;
-    /* color: white; */
-    /* padding-right: 50px; */
-}
-
-.logo-destinasi a{
-    color: black;
-}
-
-.sub-menu-wrap{
-    position: absolute;
-    top: 88%;
-    margin-left: -2%;
-    width: 300px;
-    max-height: 0px;
-    overflow: hidden;
-    transition: max-height 0.5s;
-}
-
-.sub-menu-wrap.open-menu{
-    max-height: 400px;
-}
-
-.sub-menu{
-    background: #fff;
-    padding: 20px;
-    margin: 10px;
-}
-
-.user-info{
-    display: flex;
-    align-items: center;
-}
-
-.user-info h3{
-    font-weight: 500;
-}
-
-.user-info img{
-    width: 60px;
-    border-radius: 50%;
-    margin-right: 15px;
-}
-
-.header .nav-menu {
-    padding: 0 25px;
-}
-
-.sub-menu hr{
-    border: 0;
-    height: 1px;
-    width: 100%;
-    background: black;
-    margin-bottom: 15px;
-    margin-top: 10px;
-}
-
-.sub-menu-link{
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: #525252;
-    margin: 12px 0;
-}
-
-.sub-menu-link p{
-    width: 100%;
-}
-
-/* .sub-menu-link i{
-    width: 40px;
-    background-color: #e5e5e5;
-    border-radius: 50%;
-    padding: 8px;
-    margin-right: 15px;
-} */
-
-.sub-menu-link span {
-    font-size: 22px;
-    transition: transform 0.5s;
-}
-
-.sub-menu-link:hover span {
-    transform: translateX(5px);
-}
-
-.sub-menu-link:hover p{
-    font-weight: 600;            
-}
-
-.header-main {
-    background-color: #a01626;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: -5px;
-    padding: 0;
-    height: 90px;
-    /* border-radius: 50px; */
-}
-
-
-.header .menu > .menu-item {
+ nav .menu > .menu-item{
     display: inline-block;
-    /* padding-left: 150px; */
-    margin-left: 15px;
+    margin-left: 2em;
     position: relative;
 }
 
-.header .menu {
-    position: static;
-    margin-left: 58rem;
+nav .menu > .menu-item > a{
+    display: block;
+    padding: 2em 0;
+    font-size: 16px;
+    color: #000;
+    font-weight: 700;
+    transition: all .3s ease;
 }
 
-.header .menu > .menu-item > a {
-    display: inline-block;
-    font-size: 19px;
-    color: #fff;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    /* margin-bottom: 3px; */
-}
-
-.header .open-nav-menu {
+.open-nav-menu{
     height: 34px;
     width: 40px;
     margin-right: 15px;
     display: none;
     align-items: center;
     justify-content: center;
-    color: white;
     cursor: pointer;
 }
 
-.header .open-nav-menu span {
+.open-nav-menu span{
     position: relative;
     display: block;
     height: 3px;
     width: 24px;
-    background-color: #fff;
+    background-color: #000;
 }
 
-.header .open-nav-menu span:after,
-.header .open-nav-menu span:before {
+.open-nav-menu span:before,
+.open-nav-menu span:after{
     content: "";
     position: absolute;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #fff;
+    background-color: #000;
     box-sizing: border-box;
 }
 
-.header .open-nav-menu span:before {
+.open-nav-menu span:before{
     top: -7px;
 }
 
-.header .open-nav-menu span:after {
+.open-nav-menu span:after{
     top: 7px;
 }
 
-.header .close-nav-menu {
+.close-nav-menu{
     height: 40px;
     width: 40px;
     background-color: #fff;
     margin: 0 0 15px 15px;
-    color: #000;
     cursor: pointer;
     display: none;
     justify-content: center;
     align-items: center;
 }
 
-.header .close-nav-menu i {
+/* nav .nav-menu{
+    padding: 0 25px;
+} */
+
+.close-nav-menu i{
     font-size: 30px;
     color: #000;
-    /* width: 16px; */
-}
-/* svg {
-  width: 30px;
-} */
-header {
-    /* width: 200%; */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 25px;
-    transition: transform 0.5s ease;
 }
 
-header .icon-cart {
-    position: relative;
-    width: 25px;
-    color: #fff;
-    height: 25px;
-    /* font-size: 20px; */
-    padding-right: 10px;
+nav .menu > .menu-item > .sub-menu > .menu-item > a:hover,
+nav .menu > .menu-item:hover a{
+    /* color: #fdcb2c;  */
 }
-header .icon-cart img {
-    width: 30px;
-}
-header .icon-cart span {
+
+nav .menu > .menu-item > .sub-menu{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    width: 220px;
     position: absolute;
-    background-color: red;
-    width: 20px;
-    height: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    color: #fff;
-    top: 50%;
-    right: -15px;
-    margin-right: 10px;
-}
-
-.background {
-    margin-top: 150px;
-    background-image: url("img/train.jpg");
-    background-position: center;
-    min-height: 470px;
-    background-size: cover;
-}
-
-/* carousel */
-@font-face {
-    font-family: 'Dancing Script';
-    src: url("font/Dancing_Script/DancingScript-VariableFont_wght.ttf") format('truetype');
-}
-
-.carouselcontainer {
-    width: 100%;
-    height: 85vh;
-    background-color: rgba(0,0,0,0);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.carouselcontent {
-    text-align: center;
-    margin-top: 8%;
-}
-
-.carouselcontent h1 {
-    font-size: 95px;
-    color: white;
-    margin-bottom: 50px;
-    font-family: "Dancing Script", cursive;
-    margin-bottom: 70px;
-}
-
-/* .btncarousel{
-  font-size: 18px;
-  color: #fff;
-  text-decoration: none;
-  padding: 15px 40px;
-  border: none;
-  outline: none;
-  border-radius: 20px;
-  cursor: pointer;
-  position: relative;
-  z-index: 0;
-}
-
-.btncarousel:active{
-  color: white;
-}
-
-.btncarousel::after{
-  content: "";
-  margin-bottom: 10%;
-  z-index: -1;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: #333;
-  left: 0;
-  top: 0;
-  border-radius: 18px;
-} */
-
-.carouselcontent a {
-    font-size: 23px;
-    color: white;
-    text-decoration: none;
-    border: 2px solid white;
-    padding: 15px 25px;
-    border-radius: 50px;
-    margin: 20px;
-}
-
-.carouselcontent a :hover {
-    background-color: #a01626;
-}
-
-.background-vid {
-    position: absolute;
-    z-index: -1;
-    right: 0;
-    bottom: 0;
-}
-
-@media (min-aspect-ratio:16/9) {
-    .background-vid {
-        width: 100%;
-        height: auto;
-    }
-}
-
-@media (max-aspect-ratio:16/9) {
-    .background-vid {
-        width: auto;
-        height: 100%;
-    }
-}
-
-/* about us */
-.about-us {
-    padding: 40px 0 80px;
-    display: grid;
-    place-content: center;
-    text-align: center;
-    height: max-content;
-    margin: 0 150px;
-}
-
-.about-us h1 {
-    color: #a01626;
-    font-size: 25px;
-    font-weight: 700;
-    padding-bottom: 30px;
-}
-
-.about-us p {
-    font-weight: 500;
-    font-size: 18px;
-}
-
-.about-us .button {
-    display: flex;
-    justify-content: center;
-}
-
-.about-us button {
-    cursor: pointer;
-    color: white;
-    font-weight: bolder;
-    font-size: 16px;
-    margin-top: 40px;
-    width: fit-content;
-    background-color: #a01626;
-    border: none;
-    border-radius: 15px;
-    padding: 6px 10px;
-}
-
-.input {
-    text-align: center;
-    height: max-content;
-}
-
-/* destinasi */
-.destinasi {
-    background-color: #535c68;
-    padding: 50px 0;
-}
-
-.destinasi .judul-destinasi {
-    display: flex;
-    color: #fff;
-    justify-content: center;
-    align-items: center;
-    font-size: 35px;
-    font-weight: bolder;
-    margin: 30px auto;
-}
-
-.destinasi ul {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-}
-
-.destinasi li {
-    display: flex;
-    background-color: white;
-    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
-    border-radius: 6px;
-    overflow: hidden;
-    margin: 15px;
-    box-sizing: border-box;
-}
-
-.destinasi img {
-    width: 300px;
-    height: 280px;
-    object-fit: cover;
-}
-
-.destinasi-content button {
-    margin-top: 10px;
-    width: fit-content;
-    background-color: transparent;
-    border: none;
-    color: #22a6b3;
-    text-align: left;
-    font-weight: bold;
-}
-
-.destinasi li:nth-of-type(3) {
-    grid-column: 1 / span 2;
-}
-
-.destinasi li:nth-of-type(8) {
-    grid-column: 1 / span 2;
-}
-
-.destinasi-content {
-    display: grid;
-    align-content: center;
-    padding: 10px;
-}
-
-.destinasi-content h1 {
-    font-weight: bolder;
-    margin-bottom: 10px;
-}
-
-.popup .overlay {
-    position: fixed;
-    top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.7);
-    z-index: 1;
-    display: none;
+    top: 100%;
+    background-color: #fff;
+    padding: 10px 0;
+    border-top: 3px solid #fdcb2c;
+    transform: translateY(10px);
+    transition: all .3s ease;
+    opacity: 0;
+    visibility: hidden;
 }
 
-.popup .content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    background: #fff;
-    width: 80vw;
-    height: 80vh;
-    z-index: 2;
-    padding: 10px;
-    box-sizing: border-box;
-    overflow: auto;
+@media(min-width: 992px){
+    nav .menu > .menu-item-has-children:hover > .sub-menu{
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
 }
 
-.popup .close-btn {
-    cursor: pointer;
-    position: absolute;
-    right: 20px;
-    top: 20px;
-    width: 30px;
-    height: 30px;
-    background-color: #222;
-    color: #fff;
-    font-weight: 600;
-    line-height: 30px;
-    text-align: center;
-    border-radius: 50%;
-}
-
-.popup.active .overlay {
+nav .menu > .menu-item > .sub-menu > .menu-item{
     display: block;
 }
 
-.popup.active .content {
-    position: fixed;
-    transition: all 300ms linear;
-    transform: translate(-50%, -50%) scale(1);
+nav .menu > .menu-item > .sub-menu > .menu-item > a{
+    display: block;
+    padding: 10px 20px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #000;
+    transition: all .3s ease;
 }
 
-.popup .destinasi-hotel {
+nav .menu-overlay{
+    position: fixed;
+    z-index: 999;
+    background-color: rgba(0, 0, 0, 0.5);
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    visibility: hidden;
+    opacity: 0;
+}
+
+nav .menu-overlay.active{
+    visibility: visible;
+    opacity: 1;
+}
+
+nav.scrolled {
+    background-color: #fff;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+nav.nonScrolled{
+    display: none;
+}
+
+nav.scrolled .login a,
+nav.scrolled a,
+nav.scrolled h1 {
+    color: #fff;
+}
+
+
+nav ul a {
+    text-decoration: none;
+    color: white;
+    transition: 0.4s ease-in-out;
+    position: relative;
+}
+
+/* nav ul a:hover {
+    color: white;
+} */
+
+nav ul a::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background-color: #000;
+    transition: width 0.3s ease-in-out;
+} 
+
+nav .menu .menu-item a:hover::before {
+    width: 100%; 
+    left: 0; 
+  }
+
+  nav .menu > .menu-item > .sub-menu > .menu-item > a:hover::before{
+    width: 90%;
+    left: 0;
+  }
+
+
+  .login{
+    cursor: pointer;
+    font-size: 2rem;
+  }
+
+  .login button{
+    border: none;
+  }
+
+  .login button a{
+    text-decoration: none;
+    color: #fff;
+  }
+
+.home {
+    height: 800px;
+}
+
+.home .penjelasan {
+    place-items: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-content: center;
+    height: 600px;
+    padding: 60px;
+    color: #000;
+    background-image: url(img/bg_home.jpg);
+    background-position: center;
+    background-size: cover;
+}
+
+.penjelasan h4 {
+    font-size: 25px;
+    padding-bottom: 13px;
+    font-weight: lighter;
+}
+
+.penjelasan h1 {
+    font-size: 50px;
+    font-weight: bolder;
+    padding-bottom: 13px;
+}
+
+button {
+    display: inline-flex;
+    transition: 0.6s ease-out;
+    width: fit-content;
+    background-color: transparent;
+    color: #000;
+    padding: 10px 25px;
+    font-size: 14px;
+    font-weight: 700;
+    /* cursor: pointer; */
+    text-transform: uppercase;
+    position: relative;
+    z-index: 1;
+}
+
+.penjelasan button:hover {
+    color: black;
+}
+
+.penjelasan button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: white;
+    z-index: -999;
+    transition: 0.5s;
+}
+
+.penjelasan button:hover::before {
+    width: 100%;
+} 
+
+/* popular */
+.popular {
+    display: flex;
+    /* align-items: center; */
+    flex-direction: column;
+    margin: 2em;
+}
+
+.popular .judul-popular{
+    font-size: 2rem;
+    padding-bottom: 15px;
+}
+
+
+
+.popular .popular-item{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.popular-card{
+    border-radius: 10px;
+    width: 24em;
+    font-size: 16px;
+    object-fit: cover;
+    overflow: hidden;
+    background-color: #fff;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.popular-card .info{
+    height: 4em;
+    padding: 10px;
+    /* box-sizing: border-box; */
+}
+
+.popular-card .rating{
+    display: flex;
+    align-content: center;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.popular-card .info h1{
+    font-size: larger;
+    font-weight: bolder;
+    margin-bottom: 8px;
+}
+
+.popular-card img{
+    object-fit: cover;
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+/* responsive */
+@media (max-width:991px) {
+    .popular{
+        display: grid;
+        justify-items: center;
+    }
+
+    .popular .popular-item{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width:528px) {
+    .popular .popular-item{
+        grid-template-columns: 1fr;
+    }
+
+}
+
+/* explore */
+.explore{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    min-height: 400px;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5em;
+    margin-top: 100px;
+    background-color: #fff;
 }
 
-.popup .destinasi-hotel .gambar img {
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
+.explore-penjelasan{
+    width: 80%;
 }
 
-.popup .destinasi-hotel .penjelasan {
-    background-color: #2e6d99;
-    color: #fff;
+.explore-judul{
+    font-size: 2.6rem;
+    margin-bottom: 18px;
+}
+
+.explore-penjelasan p{
+    line-height: 23px;
+}
+
+.explore .fasilitas{
     display: grid;
-    align-content: center;
-    text-align: left;
-    padding: 20px;
-    box-sizing: border-box;
-}
-
-.popup .destinasi-hotel .penjelasan h2 {
-    font-size: 32px;
-    margin-bottom: 10px;
-}
-
-.popup .destinasi-hotel .penjelasan p {
-    font-size: 18px;
-    line-height: 20px;
-}
-
-.keuntungan {
-    font-size: 14px;
-    width: 95%;
-    padding: 20px;
-    margin: 25px auto;
-    display: grid;
-    align-content: center;
-    grid-template-columns: 0.8fr 2.2fr;
-    grid-template-rows: repeat(2, 1fr);
-    grid-template-areas: 'fasilitas tentang' 'fasilitas lokasi';
-}
-
-.keuntungan .fasilitas {
-    grid-area: fasilitas;
-}
-
-.keuntungan .fasilitas ul img {
-    width: 22px;
-}
-
-.keuntungan .tentang {
-    grid-area: tentang;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-}
-
-.keuntungan .hotel {
-    /* width: 80%; */
-    width: 90%;
-    height: 150px;
-    overflow: auto;
-}
-
-.keuntungan .akomodasi {
-    /* height: 150px;
-  overflow: auto; */
-    text-align: end;
-}
-
-.keuntungan .lokasi {
-    grid-area: lokasi;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
     margin-top: 15px;
+    font-size: 1.1rem;
 }
 
-.lokasi h5 {
-    grid-column-start: 1;
-    grid-column-end: 4;
-}
+ .explore .fasilitas i{
+    color: #f08d47;
+    padding-right: 10px;
+    font-size: larger;
+ }
 
-.lokasi ul li i {
-    color: #c70101;
-}
-
-.keuntungan h5 {
-    padding-bottom: 7px;
-    font-weight: 700;
-    font-size: 18px;
-}
-
-.keuntungan li {
-    padding-bottom: 10px;
-}
-
-@media (max-width: 768px) {
-    /* destinasi */
-    .destinasi {
-        /* overflow: hidden; */
-        /* height: fit-content; */
-        box-sizing: border-box;
-    }
-    .destinasi ul {
-        /* overflow: hidden; */
-        display: grid;
-        width: 100%;
-        box-sizing: border-box;
-    }
-
-    .destinasi ul li {
-        display: grid;
-        /* padding: 20px; */
-        width: fit-content;
-        height: 500px;
-    }
-
-    .destinasi-content {
-        height: fit-content;
-    }
-
-    .destinasi li:nth-of-type(3) img,
-    .destinasi li:nth-of-type(8) img {
-        width: 100%;
-    }
-
-    .popup .content {
-        /* height: fit-content; */
-        display: block;
-        width: 90vw;
-
-    }
-
-    .popup {
-        border-color: red;
-    }
-
-    .popup-destinasi {
-        height: min-content;
-    }
-
-    .popup .destinasi-hotel {
-        display: grid;
+ @media (max-width:991px) {
+    .explore {
         grid-template-columns: 1fr;
-        grid-template-rows: repeat(2, 1fr);
-        height: fit-content;
-        overflow: hidden;
+        text-align: center;
+        justify-content: center;
     }
 
-    .popup .destinasi-hotel .penjelasan {
-        display: grid;
-        height: fit-content;
-        padding: 25px 8px;
-        text-align: left;
-        box-sizing: border-box;
+    .explore-penjelasan{
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
+ }
 
-    .popup .destinasi-hotel .keuntungan {
-        margin-top: -30px;
-    }
-
-    .keuntungan {
-        margin-top: -250px;
-        grid-template-areas: 'fasilitas tentang' 'lokasi lokasi';
-    }
-
-    .keuntungan .tentang {
-        grid-template-columns: 1fr;
-        grid-template-rows: repeat(2, 1fr);
-    }
-
-    .keuntungan .tentang .hotel {
-        margin-bottom: 20px;
-    }
-
-    .keuntungan .tentang .akomodasi {
-        text-align: left;
-        margin: 0;
-    }
-
-    .keuntungan .lokasi {
-        grid-area: lokasi;
-        display: block;
-        height: fit-content;
-        margin-top: -20px;
-        grid-template-columns: 1fr;
-
-    }
-}
-
-/* Gallery */
-.gallery {
+ /* gallery */
+ .gallery {
     display: grid;
-    /* background-color: #c7ecee; */
-    /* margin: 70px 0; */
-    margin-top: 3%;
+    background-color: #f5f5f5;
 }
 
 .gallery .gallery-judul {
-    /* padding: 40px; */
+    margin: 40px auto 20px;
     display: flex;
     font-size: 35px;
-    /* margin-left: 3%; */
     font-weight: bolder;
     align-items: center;
     justify-content: center;
-    color: #000;
 }
 
 .gallery .content {
-    /* padding-top: 25px; */
-    /* padding-left: 10%; */
-    /* padding: 3%; */
-    /* gap: 10px; */
-    padding-top: 3%;
-    padding-bottom: 3%;
+    padding: 25px;
+    gap: 10px;
     display: grid;
-    margin-left: 10%;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-areas: 'gambar-1 gambar-2 gambar-3'
+        'gambar-1 gambar-4 gambar-3' 
+        'gambar-5 gambar-4 gambar-6'
+    
 }
 
-.content .gambar-gallery {
+.content .gambar {
     background-size: cover;
     background-position: center;
-    border: 1% solid #fff;
-    border-radius: 5%;
-    /* height: 350px; */
+    border: 1px solid #fff;
     object-fit: cover;
     overflow: hidden;
     position: relative;
-    min-height: 500px;
-    width: 400px;
+    border-radius: 10px;
 }
 
-.content .title-box {
+.content .title-box{
     content: "";
     height: 100px;
     width: 100%;
     position: absolute;
     left: 0;
     bottom: 0;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0), #000);
+    background: linear-gradient(180deg, rgba(0,0,0,0), #000);
     z-index: 1;
     transform: translateY(50px);
     transition: 0.5s ease-in-out;
 }
 
-.content .gambar-gallery:hover .title,
-.content .gambar-gallery:hover .title-box {
+.content .gambar:hover .title,
+.content .gambar:hover .title-box{
     transform: translateY(0);
 }
 
-.content .title {
+.content .title{
     position: absolute;
     width: 100%;
     color: white;
     z-index: 2;
-    font-size: 20px;
-    bottom: 1%;
-    padding: 5%;
+    bottom: 10px;
+    padding: 10px;
     transform: translateY(50px);
     transition: 0.5s ease-in-out;
     cursor: pointer;
 }
 
-.content .gambar-gallery:hover {
+.content .gambar:hover {
     transition: 0.4s ease-in-out;
 }
 
-.content {
-    background-size: cover;
-    background-position: center;
-}
-
 .content .satu {
-    background-image: url("img/transport/kapal.jpg");
-
+    background-image: url("img/ver-3.jpg");
+    grid-area: gambar-1;
+    min-height: 470px;
 }
 
 .content .dua {
-    background-image: url("img/transport/kereta.jpg");
-
+    background-image: url("img/hor-1.jpg");
+    grid-area: gambar-2;
 }
 
 .content .tiga {
-    background-image: url("img/transport/pesawat.jpg");
-
+    background-image: url("img/ver-2.jpg");
+    grid-area: gambar-3;
 }
 
-/* faq */
-.faq {
-    background-color: #535c68;
-    color: #e5c80d;
-    padding: 30px 0;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+.content .empat {
+    background-image: url("img/ver-1.jpg");
+    grid-area: gambar-4;
 }
 
-.faq-penjelasan {
-    width: 85%;
+.content .lima {
+    background-image: url("img/hor-2.jpg");
+    grid-area: gambar-5;
 }
 
-.faq-penjelasan p {
-    margin-bottom: 10px;
-    line-height: 20px;
-    padding-bottom: 10px;
-
-}
-
-.faq h1 {
-    font-size: 35px;
-    margin-bottom: 10px;
-    font-weight: 600;
-    padding-bottom: 15px;
-}
-
-.input ul {
-    text-align: left;
-}
-
-.input ul li p {
-    color: #fff;
-    line-height: 18px;
-    padding: 8px 20px 0;
-}
-
-.input ul li .warna {
-    color: #e5c80d;
-}
-
-/* footer */
-footer {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    background-color: #a01626;
-    color: white;
-    justify-items: center;
-    align-items: center;
-}
-
-footer .one,
-footer .three,
-footer .two {
-    padding: 20px;
-}
-
-footer .one img {
-    width: 250px;
-    padding-top: 10px;
-}
-
-footer ul li {
-    font-weight: 300;
-}
-
-footer p {
-    line-height: 25px;
-    font-weight: 300;
-}
-
-footer h1 {
-    font-size: large;
-    padding-bottom: 7px;
-    font-weight: bolder;
-    /* font-weight: bolder; */
-}
-
-footer .two {
-    text-align: center;
-}
-
-footer .two .developer ul li {
-    margin-bottom: 7px;
-}
-
-footer .two .social-media ul li {
-    display: inline;
-    /* padding-right: 10px; */
-}
-
-footer .two .social-media ul li a {
-    display: inline;
-    color: white;
-    padding-right: 10px;
-}
-
-footer .two .developer {
-    margin-bottom: 20px;
-}
-
-footer .three {
-    text-align: end;
+.content .enam{
+    background-image: url("img/hor-3.jpg");
+    grid-area: gambar-6;
 }
 
 /* responsive */
-@media (max-width: 991px) {
-    body {
-        height: fit-content;
+@media (max-width:762px) {
+    .gallery .content{
+        grid-template-areas: 'gambar-1 gambar-4 gambar-3'
+        'gambar-1 gambar-4 gambar-3' 
+        'gambar-5 gambar-2 gambar-6'
     }
 
-    .header {
-        padding-top: 10px;
+    .gallery{
+        display: grid;
+        margin: 0 auto;
+        width: 100%;
     }
-    .header .nav-menu {
-        position: fixed;
-        right: -280px;
-        visibility: hidden;
-        height: 100%;
-        overflow-y: auto;
-        width: 280px;
-        top: 0;
-        background-color: #222;
-        z-index: 1000;
-        padding: 15px 0;
-        transition: all 0.5s ease;
-    }
+}   
 
-    .header .logo {
-        width: 60%;
-    }
-
-    .header .nav-menu.open {
-        visibility: visible;
-        right: 0;
-    }
-
-    .header .menu > .menu-item {
-        display: block;
-        margin: 0;
-    }
-
-    .header .menu > .menu-item a {
-        color: #fff;
-        padding: 12px 15px;
-        border-bottom: 1px solid #333;
-    }
-
-    .header .menu > .menu-item:first-child > a {
-        border-top: 1px solid #333;
-    }
-
-    .header .close-nav-menu,
-    .header .open-nav-menu {
-        display: flex;
-    }
+/* faq */
+.faq{
+    margin: 50px auto;
+    text-align: center;
+    width: 80%;
 }
 
-@media (max-width: 768px) {
-    body {
-        height: fit-content;
-    }
-
-    .home-section::before {
-        background-image: url("navImg/bg1.JPG");
-    }
-
-    .about-us {
-        height: max-content;
-        padding: 20px 0;
-    }
-
-    .gallery .hobby {
-        padding: 20px;
-        font-size: 25px;
-        background-color: #df0347;
-    }
-
-    .gallery .content {
-        margin: 20px;
-        grid-template-columns: 1fr;
-    }
-
-    .gallery .gambar-gallery .satu {
-        background-position: bottom;
-    }
-
-    .gallery .gambar-gallery {
-        min-height: 250px;
-        width: 550px;
-        margin-bottom: 30px;
-        background-position: center;
-    }
-
-    .content {
-
-        display: flex;
-        justify-items: center;
-    }
-
-    /* footer */
-    footer {
-        grid-template-columns: 1fr;
-        font-size: 14px;
-    }
-
-    footer .one img {
-        padding-bottom: 0;
-        margin-bottom: 0;
-    }
-
-    footer .three {
-        text-align: center;
-    }
-
+.faq h1{
+    font-size: larger;
+    font-weight: bolder;
+    padding-bottom: 10px;
 }
+
+.faq .input ul{
+    text-align: left;
+}
+
+.faq .input .warna{
+    font-weight: bolder;
+}
+
+.faq button{
+    border: none;
+}
+
