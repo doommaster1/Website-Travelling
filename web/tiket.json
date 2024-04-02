@@ -16,7 +16,7 @@
         "image": "img/dubai,UAE.jpg"
     }, {
         "id": 4,
-        "name": " Singapura, Singapura",
+        "name": " Singapore, Singapore",
         "price": 200,
         "image": "img/singapura1.jpg"
     }, {
@@ -36,9 +36,49 @@
         "image": "img/newyork.jpg"
     }, {
         "id": 8,
-        "name": " Madrid, Spanyol",
+        "name": " Madrid, Spain",
         "price": 200,
         "image": "img/madrid.jpg"
+    }, {
+        "id": 9,
+        "name": "Paris, France ",
+        "price": 300,
+        "image": "img/paris1.jpg"
+    }, {
+        "id": 10,
+        "name": "Rome, Italia ",
+        "price": 250,
+        "image": "img/roma.jpg"
+    }, {
+        "id": 11,
+        "name": "Barcelona, Spain",
+        "price": 200,
+        "image": "img/barcelona.webp"
+    }, {
+        "id": 12,
+        "name": "Istanbul, Turkey ",
+        "price": 220,
+        "image": "img/istanbul.jpg"
+    }, {
+        "id": 13,
+        "name": "Hallstatt, Austria",
+        "price": 300,
+        "image": "img/hallstatt.jpg"
+    }, {
+        "id": 14,
+        "name": "Amsterdam, Netherlands ",
+        "price": 250,
+        "image": "img/amssterdam.jpg"
+    }, {
+        "id": 15,
+        "name": "Angkor Wat, Cambodia",
+        "price": 150,
+        "image": "img/angkorwat.jpg"
+    }, {
+        "id": 16,
+        "name": "Seoul, South Korea",
+        "price": 250,
+        "image": "img/seoul.webp"
     }
 
 ]

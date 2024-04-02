@@ -167,11 +167,15 @@ document.addEventListener('DOMContentLoaded', function () {
     const checkoutButton = document.querySelector('.checkOut');
 
     checkoutButton.addEventListener('click', function () {
-        // Mengosongkan keranjang belanja
-        cart = [];
-        // Memanggil fungsi untuk menampilkan keranjang belanja
-        addCartToHTML();
-        // Menampilkan pesan alert bahwa pesanan diterima
-        alert('Pesanan diterima');
+        if (cart.length === 0) {
+            alert('Cart kosong. Silakan tambahkan barang ke keranjang sebelum checkout.');
+        } else {
+            // Mengosongkan keranjang belanja
+            cart = [];
+            // Memanggil fungsi untuk menampilkan keranjang belanja
+            addCartToHTML();
+            // Menampilkan pesan alert bahwa pesanan diterima
+            window.location.href = "/payment";
+        }
     });
 });

@@ -1,0 +1,241 @@
+.header {
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    margin-top: -1.5%;
+    font-family: "Raleway", sans-serif;
+}
+
+header ul {
+    list-style: none;
+    float: right;
+    padding: 0;
+    line-height: 1.5;
+}
+
+a {
+    text-decoration: none;
+}
+.logo {
+    display: flex;
+    align-items: center;
+    margin-left: 1%;
+    /* width: 10px; */
+    padding: 1% 1% 0;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-top: -1%;
+    color: white;
+}
+
+.logo-destinasi img {
+    width: 70px;
+}
+
+.logo-destinasi a{
+    color: black;
+}
+
+.header .nav-menu {
+    padding-right: 1%;
+}
+
+.sub-menu-wrap{
+    position: absolute;
+    top: 88%;
+    margin-left: -2%;
+    width: 300px;
+    max-height: 0px;
+    overflow: hidden;
+    transition: max-height 0.5s;
+}
+
+.sub-menu-wrap.open-menu{
+    max-height: 400px;
+}
+
+.sub-menu{
+    background: #fff;
+    padding: 20px;
+    margin: 10px;
+}
+
+.user-info{
+    display: flex;
+    align-items: center;
+}
+
+.user-info h3{
+    font-weight: 500;
+}
+
+.user-info img{
+    width: 60px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.header .nav-menu {
+    padding: 0 25px;
+}
+
+.sub-menu hr{
+    border: 0;
+    height: 1px;
+    width: 100%;
+    background: black;
+    margin-bottom: 15px;
+    margin-top: 10px;
+}
+
+.sub-menu-link{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #525252;
+    margin: 12px 0;
+}
+
+.sub-menu-link p{
+    width: 100%;
+}
+
+/* .sub-menu-link i{
+    width: 40px;
+    background-color: #e5e5e5;
+    border-radius: 50%;
+    padding: 8px;
+    margin-right: 15px;
+} */
+
+.sub-menu-link span {
+    font-size: 22px;
+    transition: transform 0.5s;
+}
+
+.sub-menu-link:hover span {
+    transform: translateX(5px);
+}
+
+.sub-menu-link:hover p{
+    font-weight: 600;            
+}
+
+.header-main {
+    background-color: #a01626;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+}
+
+.header .menu > .menu-item {
+    display: inline-block;
+    margin-left: 15px;
+    position: relative;
+}
+
+.header .menu {
+    position: static;
+    margin-left: 58rem;
+}
+
+.header .menu > .menu-item > a {
+    display: inline-block;
+    font-size: 19px;
+    color: #fff;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    /* margin-left: 200px; */
+}
+
+.header .open-nav-menu {
+    height: 34px;
+    width: 40px;
+    margin-right: 15px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    cursor: pointer;
+}
+
+.header .open-nav-menu span {
+    position: relative;
+    display: block;
+    height: 3px;
+    width: 24px;
+    background-color: #fff;
+}
+
+.header .open-nav-menu span:after,
+.header .open-nav-menu span:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    box-sizing: border-box;
+}
+
+.header .open-nav-menu span:before {
+    top: -7px;
+}
+
+.header .open-nav-menu span:after {
+    top: 7px;
+}
+
+.header .close-nav-menu {
+    height: 40px;
+    width: 40px;
+    background-color: #fff;
+    margin: 0 0 15px 15px;
+    color: #000;
+    cursor: pointer;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.header .close-nav-menu i {
+    font-size: 30px;
+    color: #000;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    transition: transform 0.5s ease;
+}
+
+header .icon-cart {
+    position: relative;
+    width: 25px;
+    color: #fff;
+    height: 25px;
+    padding-right: 10px;
+}
+
+header .icon-cart img {
+    width: 30px;
+}
+
+header .icon-cart span {
+    position: absolute;
+    background-color: red;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color: #fff;
+    top: 50%;
+    right: -15px;
+    margin-right: 10px;
+}

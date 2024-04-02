@@ -158,29 +158,6 @@ nav {
     right: 0;
     justify-content: space-around;
     align-items: center;
-    letter-spacing: 3px;
-    z-index: 9999;
-    transition: 0.3s ease-in-out;
-    /* background-color: #000; */
-}
-
-nav .icon img{
-    width: 6.5em;
-}
-
- nav .menu > .menu-item{
-    display: inline-block;
-    margin-left: 2em;
-    position: relative;
-}
-
-nav .menu > .menu-item > a{
-    display: block;
-    padding: 2em 0;
-    font-size: 16px;
-    color: #000;
-    font-weight: 700;
-    transition: all .3s ease;
 }
 
 .open-nav-menu{
