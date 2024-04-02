@@ -11,7 +11,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #a01626;
+    background-color: #18394c;
 }
 
 .ring {
@@ -190,7 +190,7 @@ body {
     border-radius: 6px;
     border: none;
     letter-spacing: 0.5px;
-    color: #a01626;
+    color: #18394c;
     font-weight: bold;
     cursor: pointer;
 }
