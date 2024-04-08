@@ -28,7 +28,7 @@
                                 <i data-feather="mail"></i>
                             </span>
                             <input type="text" name="userlogin" required="required">
-                            <label>username</label>
+                            <label>Username</label>
                         </div>
                         <div class="form">
                             <span class="icon">
@@ -117,5 +117,30 @@
             <script>
                 feather.replace();
             </script>
+            <!-- <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    document.querySelector('form').addEventListener('submit', function (event) {
+                        event.preventDefault(); // Mencegah formulir untuk dikirimkan
+            
+                        // Mengambil nilai input username dan password
+                        var username = document.querySelector('input[name="userlogin"]').value;
+                        var password = document.querySelector('input[name="passwordlogin"]').value;
+            
+                        // Misalkan username dan password yang benar adalah "admin" dan "admin"
+                        var correctUsername = "admin";
+                        var correctPassword = "admin";
+            
+                        // Memeriksa apakah username dan password yang dimasukkan benar
+                        if (username === correctUsername && password === correctPassword) {
+                            // Jika benar, redirect atau lakukan tindakan lainnya
+                            window.location.href = "https://www.example.com/dashboard"; // Ubah URL dengan URL dashboard Anda
+                        } else {
+                            // Jika salah, tampilkan alert
+                            alert("Username or password is incorrect. Please try again.");
+                        }
+                    });
+                });
+                
+            </script>  -->
         </body>
     </html>
