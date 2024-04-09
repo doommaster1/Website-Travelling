@@ -9,7 +9,7 @@ footer{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     margin-top: 100px;
-    background-color: #000;
+    background-color: #171717;
     padding: 1.8em;
     color: #fff;
     gap: 10px;
