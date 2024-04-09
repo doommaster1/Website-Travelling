@@ -24,17 +24,57 @@ const addDataToHTML = () => {
         products.forEach(product => {
             let newProduct = document.createElement('div');
             newProduct.dataset.id = product.id;
-            newProduct
-                .classList
-                .add('item');
-            newProduct.innerHTML = `<img src="${product.image}" alt="">
-                <h2>${product.name}</h2>
-                <div class="price">$${product.price}</div>
-                <button class="addCart">Add To Cart</button>`;
+            newProduct.classList.add('item');
+
+            // Create div 1 for image
+            let imageDiv = document.createElement('div');
+            imageDiv.classList.add('image');
+            let image = document.createElement('img');
+            image.src = product.image;
+            image.alt = product.name;
+            imageDiv.appendChild(image);
+            newProduct.appendChild(imageDiv);
+
+            // Create div 2 for name, price, and button
+            let infoDiv = document.createElement('div');
+            infoDiv.classList.add('info');
+            let name = document.createElement('h2');
+            name.textContent = product.name;
+            let price = document.createElement('div');
+            price.classList.add('price');
+            price.textContent = `$${product.price}`;
+            let addButton = document.createElement('button');
+            addButton.classList.add('addCart');
+            addButton.textContent = 'Add To Cart';
+            infoDiv.appendChild(name);
+            infoDiv.appendChild(price);
+            infoDiv.appendChild(addButton);
+            newProduct.appendChild(infoDiv);
+
             listProductHTML.appendChild(newProduct);
         });
     }
 }
+
+// const addDataToHTML = () => {
+//     // remove datas default from HTML add new datas
+//     if (products.length > 0) { // if has data
+//         products.forEach(product => {
+//             let newProduct = document.createElement('div');
+//             newProduct.dataset.id = product.id;
+//             newProduct
+//                 .classList
+//                 .add('item');
+//             newProduct.innerHTML = `<img src="${product.image}" alt="">
+//                 <h2>${product.name}</h2>
+//                 <div class="price">$${product.price}</div>
+//                 <button class="addCart">Add To Cart</button>`;
+//             listProductHTML.appendChild(newProduct);
+//         });
+//     }
+// }
+
+
 listProductHTML.addEventListener('click', (event) => {
     let positionClick = event.target;
     if (positionClick.classList.contains('addCart')) {
