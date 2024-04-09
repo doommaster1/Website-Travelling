@@ -25,7 +25,8 @@
                             <div class="info">
                                 <div class="rating">
                                     <div class="city">
-                                        <h1>Bali</h1>
+                                        <a href=""></a>
+                                        <button onclick="togglePopup()"><h1>Bali</h1></button>
                                     </div>    
                                     <div class="rate"><i class="bi bi-star-fill"></i> 4.3</div>
                                 </div>
@@ -37,7 +38,7 @@
                             <div class="info">
                                 <div class="rating">
                                     <div class="city">
-                                        <h1>London</h1>
+                                        <button onclick="togglePopup2()"><h1>London</h1></button>
                                     </div>    
                                     <div class="rate"><i class="bi bi-star-fill"></i> 4.3</div>
                                 </div>
@@ -49,7 +50,7 @@
                             <div class="info">
                                 <div class="rating">
                                     <div class="city">
-                                        <h1>Paris</h1>
+                                        <button onclick="togglePopup3()"><h1>Perancis</h1></button>
                                     </div>    
                                     <div class="rate"><i class="bi bi-star-fill"></i> 4.3</div>
                                 </div>
@@ -61,7 +62,7 @@
                             <div class="info">
                                 <div class="rating">
                                     <div class="city">
-                                        <h1>Tokyo</h1>
+                                        <button onclick="togglePopup4()"><h1>Tokyo</h1></button>
                                     </div>    
                                     <div class="rate"><i class="bi bi-star-fill"></i> 4.3</div>
                                 </div>
@@ -73,7 +74,7 @@
                             <div class="info">
                                 <div class="rating">
                                     <div class="city">
-                                        <h1>New York</h1>
+                                        <button onclick="togglePopup5()"><h1>New York</h1></button>
                                     </div>    
                                     <div class="rate"><i class="bi bi-star-fill"></i> 4.3</div>
                                 </div>
@@ -85,7 +86,7 @@
                             <div class="info">
                                 <div class="rating">
                                     <div class="city">
-                                        <h1>Singapura</h1>
+                                        <button onclick="togglePopup6()"><h1>Singapura</h1></button>
                                     </div>    
                                     <div class="rate"><i class="bi bi-star-fill"></i> 4.3</div>
                                 </div>
@@ -93,7 +94,128 @@
                             </div>
                         </li>
                     </ul>
-                
+
+                    <!-- destination 1 -->
+                    <div class="popup" id="popup-destination1">
+                        <div class="overlay"></div>
+                        <div class="content">
+                            <div class="close-btn" onclick="togglePopup()">&times;</div>
+                            <div class="popup-destinasi">
+                                <div class="destinasi-hotel">
+                                    <div class="gambar">
+                                        <img src="img/bali.jpg" alt="">
+                                    </div>
+                                    <div class="penjelasan">
+                                        <h2>Bali, Indonesia </h2>
+                                        <p>   
+                                            Bali adalah sebuah provinsi di Indonesia yang terletak di 
+                                            Kepulauan Nusa Tenggara. Pulau ini terkenal dengan keindahan alamnya yang luar biasa, 
+                                            seperti pantai berpasir putih dan gunung berapi yang menjulang tinggi.
+                                        </p>
+                                    </div>
+                                </div>
+                 <%- include('layouts/popup.ejs') %>
+
+                 <!-- destination 2 -->
+                 <div class="popup" id="popup-destination2">
+                    <div class="overlay"></div>
+                    <div class="content">
+                        <div class="close-btn" onclick="togglePopup2()">&times;</div>
+                        <div class="popup-destinasi">
+                            <div class="destinasi-hotel">
+                                <div class="gambar">
+                                    <img src="img/london,england.jpg" alt="">
+                                </div>
+                                <div class="penjelasan">
+                                    <h2>London, England</h2>
+                                    <p>   
+                                        London merupakan kota yang paling besar di Inggris Raya. Salah satu landmark yang 
+                                        terkenal di kota ini adalah BIG BEN yang merupakan objek wisata yang berada di sebelah utara Istana Westminster
+                                    </p>
+                                </div>
+                            </div>
+
+                            <%- include('layouts/popup.ejs') %>        
+
+                 <!-- destination 3 -->
+                 <div class="popup" id="popup-destination3">
+                    <div class="overlay"></div>
+                    <div class="content">
+                        <div class="close-btn" onclick="togglePopup3()">&times;</div>
+                        <div class="popup-destinasi">
+                            <div class="destinasi-hotel">
+                                <div class="gambar">
+                                    <img src="img/paris.jpg" alt="">
+                                </div>
+                                <div class="penjelasan">
+                                    <h2>Paris, Perancis</h2>
+                                    <p>   
+                                        Paris adalah ibu kota Perancis dan salah satu kota paling terkenal di dunia. Terletak di bagian utara Perancis, kota ini dikenal karena keindahan arsitekturnya, seni, budaya, dan warisan sejarahnya yang kaya. Paris dijuluki "Kota Cahaya" (Ville Lumière) karena peran pentingnya dalam Pencerahan pada abad ke-18.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <%- include('layouts/popup.ejs') %>      
+
+                 <!-- destination 4 -->
+                 <div class="popup" id="popup-destination4">
+                    <div class="overlay"></div>
+                    <div class="content">
+                        <div class="close-btn" onclick="togglePopup4()">&times;</div>
+                        <div class="popup-destinasi">
+                            <div class="destinasi-hotel">
+                                <div class="gambar">
+                                    <img src="img/tokyo,japan.jpg" alt="">
+                                </div>
+                                <div class="penjelasan">
+                                    <h2>Tokyo, Japan</h2>
+                                    <p>   
+                                        Tokyo adalah kota yang penuh dengan kontras, di mana modernitas dan tradisi berpadu dengan sempurna. Kota ini menjadi tujuan wisata populer bagi wisatawan dari seluruh dunia yang ingin merasakan budaya Jepang yang unik.
+                                    </p>
+                                </div>
+                            </div>
+                            <%- include('layouts/popup.ejs') %>    
+                            
+                            
+                <!-- destination 5 -->
+                <div class="popup" id="popup-destination5">
+                    <div class="overlay"></div>
+                    <div class="content">
+                        <div class="close-btn" onclick="togglePopup5()">&times;</div>
+                        <div class="popup-destinasi">
+                            <div class="destinasi-hotel">
+                                <div class="gambar">
+                                    <img src="img/newyorkgelap.jpg" alt="">
+                                </div>
+                                <div class="penjelasan">
+                                    <h2>New York, United States</h2>
+                                    <p>   
+                                        New York adalah kota yang dijuluki "The City That Never Sleeps". Diamna setiap kota di huni dengan gedung-gedung yang menjulang tinggi. New York juga memiliki landmark yang sangat terkenal yaitu Patung Liberty.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <%- include('layouts/popup.ejs') %>    
+                                       
+                <!-- destination 6 -->
+                <div class="popup" id="popup-destination6">
+                    <div class="overlay"></div>
+                    <div class="content">
+                        <div class="close-btn" onclick="togglePopup6()">&times;</div>
+                        <div class="popup-destinasi">
+                            <div class="destinasi-hotel">
+                                <div class="gambar">
+                                    <img src="img/singapura.jpg" alt="">
+                                </div>
+                                <div class="penjelasan">
+                                    <h2>Singapure, Singapure</h2>
+                                    <p>   
+                                        Singapura merupakan negara yang modern dan maju, dengan infrastruktur yang baik dan standar hidup yang tinggi. Singapura menjadi objek wisata yang menarik karena merupakan negara terbersih yang berada di Asia Tenggara.
+                                    </p>
+                                </div>
+                            </div>
+                            <%- include('layouts/popup.ejs') %>      
+
                 <div class="explore">
                     <div class="explore-img">
                         <img src="img/travel-removebg-preview.png" alt="">

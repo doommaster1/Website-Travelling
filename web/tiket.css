@@ -95,6 +95,10 @@ body {
     background-color: #f5f5f5;
 }
 
+body ul li{
+    list-style: none;
+}
+
 .container {
     position: relative;
     width: 100%;
@@ -107,15 +111,13 @@ body {
 
 
 .header {
-    /* position: absolute; */
+    position: fixed;
     width: 100%;
     top: 0;
     left: 0;
     z-index: 9999;
-    margin-top: -1.5%;
-    /* padding: 15px 0 15px 15px; */
+    margin-top: -1.6%;
     font-family: "Raleway", sans-serif;
-    position: fixed;
 }
 
 header ul {
@@ -129,15 +131,10 @@ header ul {
 a {
     text-decoration: none;
 }
-.back{
-    margin: 0;
-    padding-right: 0;
-    
-}
+
 .logo {
     display: flex;
     align-items: center;
-    margin-left: 0%;
     width: 60%;
     padding: 0 25px;
 }
@@ -157,7 +154,6 @@ a {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: -5px;
     padding: 0;
 }
 
@@ -368,7 +364,9 @@ header .icon-cart span {
 /* cart */
 .cartTab {
     width: 400px;
-    background-color: white;
+    font-family: "Poppins", sans-serif;
+    background-color: #171717;
+    color: #fff;
     /* color: #eee; */
     position: fixed;
     top: 0;
@@ -378,7 +376,6 @@ header .icon-cart span {
     grid-template-rows: 70px 1fr 70px;
     transition: 0.5s;
     z-index:  999;
-    color: #a01626;
 }
 body.showCart .cartTab {
     right: 0;
@@ -402,7 +399,7 @@ body.showCart .listProduct {
     grid-template-columns: repeat(2, 1fr);
 }
 .cartTab button {
-    background-color: #a01626;
+    background-color: #f08d47;
     border: none;
     font-family: Poppins;
     font-weight: 500;
@@ -412,7 +409,7 @@ body.showCart .listProduct {
 }
 .cartTab .close {
     background-color: #eee;
-    color: #a01626;;
+    color: #f08d47;
 }
 
 .listCart .item img {
@@ -437,7 +434,7 @@ body.showCart .listProduct {
 }
 .listCart .quantity span:nth-child(2) {
     background-color: transparent;
-    color:#a01626;
+    color:#f08d47;
     cursor: auto;
 }
 .listCart .item:nth-child(even) {
