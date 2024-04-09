@@ -11,7 +11,7 @@ const collection = require('./config');
 
 // Setup session middleware
 app.use(session({
-    secret: 'your-secret-key',
+    secret: 'SESSION_SECRET',
     resave: false,
     saveUninitialized: true
 }));

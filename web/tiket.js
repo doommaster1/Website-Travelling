@@ -18,70 +18,38 @@ closeCart.addEventListener('click', () => {
         .toggle('showCart');
 })
 
+// }
+
 const addDataToHTML = () => {
     // remove datas default from HTML add new datas
     if (products.length > 0) { // if has data
         products.forEach(product => {
             let newProduct = document.createElement('div');
             newProduct.dataset.id = product.id;
-            newProduct.classList.add('item');
-
-            // Create div 1 for image
-            let imageDiv = document.createElement('div');
-            imageDiv.classList.add('image');
-            let image = document.createElement('img');
-            image.src = product.image;
-            image.alt = product.name;
-            imageDiv.appendChild(image);
-            newProduct.appendChild(imageDiv);
-
-            // Create div 2 for name, price, and button
-            let infoDiv = document.createElement('div');
-            infoDiv.classList.add('info');
-            let name = document.createElement('h2');
-            name.textContent = product.name;
-            let price = document.createElement('div');
-            price.classList.add('price');
-            price.textContent = `$${product.price}`;
-            let addButton = document.createElement('button');
-            addButton.classList.add('addCart');
-            addButton.textContent = 'Add To Cart';
-            infoDiv.appendChild(name);
-            infoDiv.appendChild(price);
-            infoDiv.appendChild(addButton);
-            newProduct.appendChild(infoDiv);
-
+            newProduct
+                .classList
+                .add('item');
+            newProduct.innerHTML = `<div class="image">
+            <img src="${product.image}" alt="${product.name}">
+        </div>
+        <div class="info">
+            <h2>${product.name}</h2>
+            <div class="price">$${product.price}</div>
+            <button class="addCart">Add To Cart</button>
+        </div>`;
             listProductHTML.appendChild(newProduct);
         });
     }
 }
 
-// const addDataToHTML = () => {
-//     // remove datas default from HTML add new datas
-//     if (products.length > 0) { // if has data
-//         products.forEach(product => {
-//             let newProduct = document.createElement('div');
-//             newProduct.dataset.id = product.id;
-//             newProduct
-//                 .classList
-//                 .add('item');
-//             newProduct.innerHTML = `<img src="${product.image}" alt="">
-//                 <h2>${product.name}</h2>
-//                 <div class="price">$${product.price}</div>
-//                 <button class="addCart">Add To Cart</button>`;
-//             listProductHTML.appendChild(newProduct);
-//         });
-//     }
-// }
-
-
 listProductHTML.addEventListener('click', (event) => {
     let positionClick = event.target;
     if (positionClick.classList.contains('addCart')) {
-        let id_product = positionClick.parentElement.dataset.id;
+        let id_product = positionClick.closest('.item').dataset.id; // Get the closest parent with the 'item' class
         addToCart(id_product);
     }
-})
+});
+
 const addToCart = (product_id) => {
     let positionThisProductInCart = cart.findIndex(
         (value) => value.product_id == product_id
@@ -210,11 +178,11 @@ document.addEventListener('DOMContentLoaded', function () {
         if (cart.length === 0) {
             alert('Cart kosong. Silakan tambahkan barang ke keranjang sebelum checkout.');
         } else {
-            // Mengosongkan keranjang belanja
+            // Empty the shopping cart
             cart = [];
-            // Memanggil fungsi untuk menampilkan keranjang belanja
+            // Update the HTML representation of the cart
             addCartToHTML();
-            // Menampilkan pesan alert bahwa pesanan diterima
+            // Redirect to the payment page
             window.location.href = "/payment";
         }
     });
