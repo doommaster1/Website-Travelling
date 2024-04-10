@@ -79,6 +79,16 @@
         "name": "Seoul, South Korea",
         "price": 250,
         "image": "img/seoul.webp"
+    }, {
+        "id": 17,
+        "name": "Santorini, Greece",
+        "price": 280,
+        "image": "img/santorini.webp"
+    }, {
+        "id": 18,
+        "name": "Praha, Czech Republic",
+        "price": 300,
+        "image": "img/praha.jpg"
     }
 
 ]

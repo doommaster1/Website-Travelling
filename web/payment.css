@@ -207,6 +207,10 @@ body {
 
 }
 
+.OkButt{
+    cursor: pointer;
+}
+
 @media (max-width: 991px) {
     body {
         height: fit-content;
