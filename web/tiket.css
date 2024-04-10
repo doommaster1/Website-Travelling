@@ -243,6 +243,7 @@ header .icon-cart i{
     color: #fff;
     /* font-size: 20px; */
     padding-right: 10px;
+    cursor: pointer;
 }
 
 header .icon-cart span {
@@ -317,6 +318,16 @@ header .icon-cart span {
     padding: 5px 15px;
     margin-top: 10px;
     border-radius: 20px;
+    cursor: pointer;
+    transition: transform 0.3s ease; 
+}
+
+.listProduct .item button:hover {
+    transform: scale(1.05); 
+}
+
+.listProduct .item button:active {
+    transform: scale(0.95); 
 }
 
 /* penjelasan */
@@ -376,6 +387,7 @@ header .icon-cart span {
     grid-template-rows: 70px 1fr 70px;
     transition: 0.5s;
     z-index:  999;
+    /* cursor: pointer; */
 }
 body.showCart .cartTab {
     right: 0;
@@ -406,6 +418,7 @@ body.showCart .listProduct {
     cursor: pointer;
     color: white;
     font-size: 20px;
+    /* cursor: pointer; */
 }
 .cartTab .close {
     background-color: #eee;
