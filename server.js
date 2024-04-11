@@ -103,8 +103,51 @@ app.get('/login', loginRedirect, (req, res) => {
 
 // Tiket route
 app.get('/tiket', isAuthenticated, (req, res) => {
-    res.render('tiket');
+    const user = req.session.user; // Dapatkan objek pengguna dari sesi
+    res.render('tiket', { user: user }); // Lewatkan objek pengguna ke halaman tiket.ejs saat merendernya
 });
+
+
+// Checkout route
+app.post('/checkout', isAuthenticated, async (req, res) => {
+    const userEmail = req.body.email;
+    const purchasedTickets = req.body.tickets;
+
+    // Process checkout, save order to database, etc.
+    // Here you can call the function to send confirmation email
+    sendCheckoutConfirmation(userEmail, purchasedTickets)
+        .then(() => {
+            res.send('Checkout berhasil! Email konfirmasi telah dikirim.');
+        })
+        .catch((error) => {
+            res.status(500).send('Gagal melakukan checkout: ' + error);
+        });
+});
+
+// Function to send checkout confirmation email
+async function sendCheckoutConfirmation(toEmail, purchasedTickets) {
+    let message = 'Terima kasih telah melakukan pembelian tiket. Berikut adalah daftar tiket yang Anda beli:\n';
+    purchasedTickets.forEach(ticket => {
+        message += `- ${ticket.name}: ${ticket.quantity} tiket\n`;
+    });
+
+    let transporter = nodemailer.createTransport({
+        service: 'Gmail',
+        auth: {
+            user: 'hansnathanael2004@gmail.com', // Change this to your email address
+            pass: 'xkte kpnw wtym ccnf' // Change this to your email password
+        }
+    });
+
+    let info = await transporter.sendMail({
+        from: '"Website Travel" <hansnathanael2004@gmail.com>', // Change this to your email address
+        to: toEmail,
+        subject: 'Konfirmasi Pembelian Tiket',
+        text: message
+    });
+
+    console.log('Email konfirmasi checkout berhasil dikirim: ', info.messageId);
+}
 
 // Payment route
 app.get('/payment', isAuthenticated, (req, res) => {
