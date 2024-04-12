@@ -43,39 +43,36 @@
         </ul>
     </div>
     <div class="login">
-        <a href="/setting"><i class="bi bi-person-circle" ></i></a> 
-         <!-- <div class="sub-menu-wrap" id="subMenu">
-            <div class="sub-menu">
-                <div class="user-info">
-                    <img src="img/logonbg.png">
-                    <h2>Hans Nathanael</h2>
-                </div> -->
-                <!--<hr>
-
-                <a href="/setting" class="sub-menu-link">
-                    <i data-feather="user"></i>
-                    <p>Profile</p>
-                    <span>></span>
-                </a>
-                </a>
-                <a href="/index#footer" class="sub-menu-link">
-                    <i data-feather="help-circle"></i>
-                    <p>Help & Support</p>
-                    <span>></span>
-                </a>
-                <a href="/logout" class="sub-menu-link">
-                    <i data-feather="log-out"></i>
-                    <p>Logout</p>
-                    <span>></span>
-                </a>
-            </div>
-        </div> -->
+        <a href="#"><i class="bi bi-person-circle user-pic" onclick="toggleMenu()"></i></a> 
     </div>
-    <script>
-        let subMenu = document.getElementById("subMenu");
 
-        function toggleMenu(){
-            subMenu.classList.toggle("open-menu");
-        }
-    </script>
+    <div class="submenus-wrap" id="subMenu">
+        <div class="sub-menus">
+            <div class="user-info">
+                <img src="img/logonbg.png">
+                <h3>User</h3>
+            </div>
+            <hr>
+            <a href="/#account-change-password" class="sub-menu-link">
+                <img src="img/img_profile/profile.png" alt="">
+                <p>Edit Profile</p>
+                <span><i class="bi bi-chevron-right"></i></span>
+            </a>
+            <a href="#" class="sub-menu-link">
+                <img src="img/img_profile/setting.png" alt="">
+                <p>Settings & Privacy</p>
+                <span><i class="bi bi-chevron-right"></i></span>
+            </a>
+            <a href="#" class="sub-menu-link">
+                <img src="img/img_profile/help.png" alt="">
+                <p>Help & Support</p>
+                <span><i class="bi bi-chevron-right"></i></span>
+            </a>
+            <a href="#" class="sub-menu-link">
+                <img src="img/img_profile/logout.png" alt="">
+                <p>Logout</p>
+                <span><i class="bi bi-chevron-right"></i></span>
+            </a>
+        </div>
+    </div>
     </nav>
