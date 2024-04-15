@@ -1,5 +1,5 @@
 body {
-    background: #f5f5f5;
+    background-color: #eecb5b;
     margin-top: 20px;
 }
 
@@ -21,6 +21,8 @@ label.btn {
 
 .btn-btn-primary1{
     border-color: red;
+    color: red;
+    background: transparent;
 }
 
 .btn-outline-primary {
@@ -28,13 +30,6 @@ label.btn {
     background  : transparent;
     color       : #26B4FF;
 }
-
-/* .btn-btn-primary1{
-    border-color: red;
-    background-color  : red;
-    color       : white;
-    border-radius: 10%;
-} */
 
 .btn {
     cursor: pointer;
