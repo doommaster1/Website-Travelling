@@ -63,6 +63,31 @@
             </div>
         </div>
 
+         <!-- Search Bar -->
+         <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search for tickets...">
+            <button id="searchBtn">Search</button>
+        </div>
+
+        <!-- Filter Continent -->
+        <div class="filter">
+            <label for="continent">Select Continent:</label>
+            <select id="continent">
+                <option value="all">All</option>
+                <option value="asia">Asia</option>
+                <option value="europe">Europe</option>
+                <option value="australia">Australia</option>
+                <option value="amerika">America</option>
+                <!-- Add options for other continents if needed -->
+            </select>
+            <label for="priceOrder">Price Order:</label>
+            <select id="priceOrder">
+                <option value="all">All</option>
+                <option value="lowToHigh">Low to High</option>
+                <option value="highToLow">High to Low</option>
+            </select>
+        </div>
+
         <!-- mulai tiket -->
         <div class="listProduct"></div>
     </div>
@@ -121,6 +146,27 @@
                         alert('Terjadi kesalahan saat melakukan checkout');
                     });
                 });
+            }
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            const searchBtn = document.getElementById('searchBtn');
+            const continentSelect = document.getElementById('continent');
+            const priceOrderSelect = document.getElementById('priceOrder');
+
+            searchBtn.addEventListener('click', filterTickets);
+            continentSelect.addEventListener('change', filterTickets);
+            priceOrderSelect.addEventListener('change', filterTickets);
+
+            function filterTickets() {
+                const searchTerm = searchInput.value.toLowerCase();
+                const selectedContinent = continentSelect.value;
+                const priceOrder = priceOrderSelect.value;
+
+                // Perform filtering based on searchTerm, selectedContinent, and priceOrder
+                // Implement filtering according to your needs
             }
         });
     </script>    
