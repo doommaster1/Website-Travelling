@@ -7,7 +7,36 @@
             <title>Travel with Us</title>
         <body>
             <div class="home">
-                <%- include('layouts/nav.ejs') %>
+                
+                <div class="login">
+                    <a href="#"><i class="bi bi-person-circle user-pic" onclick="toggleMenu()"></i></a> 
+                </div>
+            
+                <div class="submenus-wrap" id="subMenu">
+                    <div class="sub-menus">
+                        <div class="user-info">
+                            <img src="img/logonbg.png">
+                            <h3>User</h3>
+                        </div>
+                        <hr>
+                        <a href="/setting" class="sub-menu-link">
+                            <img src="img/img_profile/profile.png" alt="">
+                            <p>Edit Profile</p>
+                            <span><i class="bi bi-chevron-right"></i></span>
+                        </a>
+                        <a href="/#footer" class="sub-menu-link">
+                            <img src="img/img_profile/help.png" alt="">
+                            <p>Help & Support</p>
+                            <span><i class="bi bi-chevron-right"></i></span>
+                        </a>
+                        <a href="/logout" class="sub-menu-link">
+                            <img src="img/img_profile/logout.png" alt="">
+                            <p>Logout</p>
+                            <span><i class="bi bi-chevron-right"></i></span>
+                        </a>
+                    </div>
+                </div>
+                </nav>
                     <div class="penjelasan">
                         <div class="travel-judul">
                             <h1>Explore Beautiful World</h1>

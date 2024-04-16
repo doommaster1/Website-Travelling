@@ -99,145 +99,11 @@ body ul li{
     list-style: none;
 }
 
-.container {
-    position: relative;
-    width: 100%;
-    margin: auto;
-    /* max-width: 90vw; */
-    text-align: center;
-    /* padding-top: 10px; */
-    transition: transform 0.5s;
-}
-
-
-.header {
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-    z-index: 9999;
-    margin-top: -1.6%;
-    font-family: "Raleway", sans-serif;
-}
-
-header ul {
-    list-style: none;
-    margin-left: -3;
-    float : right;
-    padding: 0;
-    line-height: 1.5;
-}
-
-a {
-    text-decoration: none;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    width: 60%;
-    padding: 0 25px;
-}
-
-.logo-destinasi img {
-    width: 100px;
-    /* padding-right: 50px; */
-}
-
-.header .nav-menu {
-    padding: 0 25px;
-}
-
-.header-main {
-    transition: all .3s ease;
-    background-color: transparent;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0;
-}
-
-.header .menu > .menu-item {
-    display: inline-block;
-    margin-left: 15px;
+nav .icon-cart{
     position: relative;
 }
 
-.header .menu > .menu-item > a {
-    display: inline-block;
-    padding: 15px 0;
-    font-size: 15px;
-    color: #fff;
-    font-weight: bolder;
-    transition: all 0.3s ease;
-}
-
-.header .open-nav-menu {
-    height: 34px;
-    width: 40px;
-    margin-right: 15px;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    cursor: pointer;
-}
-
-.header .open-nav-menu span {
-    position: relative;
-    display: block;
-    height: 3px;
-    width: 24px;
-    background-color: #fff;
-}
-
-.header .open-nav-menu span:after,
-.header .open-nav-menu span:before {
-    content: "";
-    position: absolute;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #fff;
-    box-sizing: border-box;
-}
-
-.header .open-nav-menu span:before {
-    top: -7px;
-}
-
-.header .open-nav-menu span:after {
-    top: 7px;
-}
-
-.header .close-nav-menu {
-    height: 40px;
-    width: 40px;
-    background-color: #fff;
-    margin: 0 0 15px 15px;
-    color: #000;
-    cursor: pointer;
-    display: none;
-    justify-content: center;
-    align-items: center;
-}
-
-.header .close-nav-menu i {
-    font-size: 30px;
-    color: #000;
-    /* width: 16px; */
-}
-/* svg {
-    width: 30px;
-} */
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 0;
-    transition: transform 0.5s ease;
-}
-header .icon-cart i{
+nav .icon-cart i{
     position: relative;
     font-size: 30px;
     color: #fff;
@@ -246,7 +112,7 @@ header .icon-cart i{
     cursor: pointer;
 }
 
-header .icon-cart span {
+nav .icon-cart span{
     position: absolute;
     background-color: red;
     width: 20px;
@@ -261,13 +127,7 @@ header .icon-cart span {
     margin-right: 10px;
 }
 
-.header-main.scrolled{
-    background-color: #fff;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-}
-
-.header-main.scrolled .menu-item a,
-.header-main.scrolled .menu-item i{
+nav.scrolled .icon-cart i{
     color: #000;
 }
 
@@ -283,18 +143,30 @@ header .icon-cart span {
     /* filter: drop-shadow(0 50px 20px rgba(48, 41, 41, 0.6)); */
     border-radius: 15px;
 }
+
+.judul-tiket{
+    padding: 50px 10px 0px;
+    font-weight: bolder;
+    font-size: 35px;
+    display: flex;
+    justify-content: center;
+    margin: 10px auto;
+}
+
 .listProduct {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     transition: transform 0.5s ease-in ;
-    margin-top: 100px;
+    margin-top: 20px;
+    padding: 0 10px;
 }
 .listProduct .item {
     background-color: #fff;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     padding: 10px;
+    gap: 10px;
     border-radius: 20px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
@@ -340,7 +212,7 @@ header .icon-cart span {
     padding: 60px;
     color: #000;
     background-image: url(img/bg_home.jpg);
-    background-position: bottom;
+    background-position: center;
     background-size: cover;
 }
 
@@ -506,7 +378,10 @@ body.showCart .listProduct {
 
 /* CSS untuk Filter */
 .filter {
-    margin: 10px;
+    margin: 20px auto 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .filter label {

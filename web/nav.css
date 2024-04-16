@@ -10,7 +10,7 @@ nav {
     letter-spacing: 3px;
     z-index: 8888;
     transition: 0.3s ease-in-out;
-    background-color: #fff;
+    background-color: transparent;
 }
 
 nav .icon img{
@@ -148,8 +148,10 @@ nav .menu-overlay.active{
 }
 
 nav.scrolled {
-    display: none;
+    /* display: none; */
     /* transform: translateY(-30px); */
+    background-color: #fff;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 nav .login a i{

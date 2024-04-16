@@ -9,51 +9,17 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <title>Get Your Ticket</title>
     <link rel="icon" type="image/png" href="img/logonbg.png">
+    <link rel="stylesheet" href="nav.css">
 </head>
 <body>
-    <div class="container">
-        <header class="header">
-            <div class="container">
-                <div class="header-main">
-                    <div class="logo">
-                        <a href="#">
-                            <div class="logo-destinasi">
-                                <img src="img/logonbg.png" alt="logo" width="50px">
-                            </div>
-                        </a>
-                    </div>
-                    <div class="open-nav-menu">
-                        <span></span>
-                    </div>
-                    <div class="menu-overlay"></div>
-                    <!-- nav start -->
-                    <nav class="nav-menu">
-                        <div class="close-nav-menu">
-                            <i class='bx bx-x'></i>
-                        </div>
-                        <ul class="menu">
-                            <li class="menu-item">
-                                <a href="/#">Home</a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="tiket.html">Ticket</a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="index.html#kereta">Destination</a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="index.html#gallery">Transportation</a>
-                            </li>
-                            <li class="menu-item icon-cart">
-                                <i class="bi bi-cart-fill"></i>
-                                <span>0</span>
-                            </li>
-                        </ul>
-                    </nav>
-                    <!-- nav end -->
-                </div>
-            </div>
-        </header>
+    <!-- nav start -->
+    <%- include('layouts/nav.ejs') %>
+        <div class="icon-cart">
+            <i class="bi bi-cart-fill"></i>
+            <span>0</span>
+        </div>
+    </nav>
+    <!-- nav end -->
 
         <!-- penjelasan -->
         <div class="penjelasan">
@@ -89,8 +55,11 @@
         </div>
 
         <!-- mulai tiket -->
+        <div class="judul-tiket">
+            <h1>Destinasi</h1>
+        </div>
         <div class="listProduct"></div>
-    </div>
+    
     <!-- <div class="listProduct"></div> -->
     <div class="cartTab">
         <h1>Shopping Cart</h1>
@@ -109,13 +78,18 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             document.addEventListener('scroll', () => {
-                const nav = document.querySelector('.header-main');
-                if (window.scrollY > 0) {
-                    nav.classList.add('scrolled');
-                } else {
-                    nav.classList.remove('scrolled');
-                }
-            });
+                        const nav = document.querySelector('nav');
+        
+                        if (window.scrollY > 0) {
+                            nav
+                                .classList
+                                .add('scrolled');
+                        } else {
+                            nav
+                                .classList
+                                .remove('scrolled')
+                        }
+                    })
     
             // Tambahkan event listener untuk tombol checkout
             const checkoutBtn = document.getElementById('checkoutBtn');
