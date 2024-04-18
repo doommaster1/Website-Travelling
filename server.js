@@ -10,6 +10,12 @@ const bcrypt = require('bcrypt');
 const collection = require('./config');
 const nodemailer = require('nodemailer');
 const bodyParser = require('body-parser');
+const cors = require("cors");
+const tiketRoutes = require("./routes/tickets");
+
+app.use(cors());
+
+app.use("/api", tiketRoutes)
 
 // Setup session middleware
 app.use(session({
