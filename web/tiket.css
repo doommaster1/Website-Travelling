@@ -268,7 +268,8 @@ body.showCart .container {
     transform: translateX(-200px);
 }
 body.showCart .listProduct {
-    transform: translateX(200px);
+    transform: translateX(-200px);
+    /* transition: .5s ease-in-out; */
     width: 80%;
 }
 .cartTab h1 {
