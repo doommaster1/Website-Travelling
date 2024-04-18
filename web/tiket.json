@@ -3,92 +3,128 @@
         "id": 1,
         "name": " Bali, Indonesia",
         "price": 200,
-        "image": "img/bali,indonesia.jpg.crdownload"
+        "image": "img/bali,indonesia.jpg.crdownload",
+        "benua": "Asia",
+        "fasilitas": ["Pesawat", "Kapal", "Bus"]
     }, {
         "id": 2,
         "name": " London, England",
         "price": 250,
-        "image": "img/london,england.jpg"
+        "image": "img/london,england.jpg",
+        "benua": "Eropa",
+        "fasilitas": ["Pesawat", "Kapal", "Kereta"]
     }, {
         "id": 3,
         "name": " Dubai, UAE",
         "price": 290,
-        "image": "img/dubai,UAE.jpg"
+        "image": "img/dubai,UAE.jpg",
+        "benua": "Asia",
+        "fasilitas": ["Pesawat", "Kereta"]
     }, {
         "id": 4,
         "name": " Singapore, Singapore",
         "price": 200,
-        "image": "img/singapura1.jpg"
+        "image": "img/singapura1.jpg",
+        "benua": "Asia",
+        "fasilitas": ["Pesawat", "Kapal", "Kereta"]
     }, {
         "id": 5,
         "name": " Tokyo, Japan",
         "price": 300,
-        "image": "img/tokyo,japan.jpg"
+        "image": "img/tokyo,japan.jpg",
+        "benua": "Asia",
+        "fasilitas": ["Pesawat", "Kapal", "Kereta"]
     }, {
         "id": 6,
         "name": " Kuala Lumpur, Malaysia",
         "price": 200,
-        "image": "img/kuala lumpur.jpg"
+        "image": "img/kuala lumpur.jpg",
+        "benua": "Asia",
+        "fasilitas": ["Kapal", "Kereta", "Bus"]
     }, {
         "id": 7,
         "name": " New York City, USA",
         "price": 200,
-        "image": "img/newyork.jpg"
+        "image": "img/newyork.jpg",
+        "benua": "Amerika",
+        "fasilitas": ["Pesawat", "Kapal", "Kereta"]
     }, {
         "id": 8,
         "name": " Madrid, Spain",
         "price": 200,
-        "image": "img/madrid.jpg"
+        "image": "img/madrid.jpg",
+        "benua": "Eropa",
+        "fasilitas": ["Pesawat", "Kapal", "Kereta"]
     }, {
         "id": 9,
         "name": "Paris, France ",
         "price": 300,
-        "image": "img/paris1.jpg"
+        "image": "img/paris1.jpg",
+        "benua": "Eropa",
+        "fasilitas": ["Pesawat", "Kereta"]
     }, {
         "id": 10,
         "name": "Rome, Italia ",
         "price": 250,
-        "image": "img/roma.jpg"
+        "image": "img/roma.jpg",
+        "benua": "Eropa",
+        "fasilitas": ["Pesawat", "Kereta"]
     }, {
         "id": 11,
         "name": "Barcelona, Spain",
         "price": 200,
-        "image": "img/barcelona.webp"
+        "image": "img/barcelona.webp",
+        "benua": "Eropa",
+        "fasilitas": ["Pesawat", "Bus"]
     }, {
         "id": 12,
         "name": "Istanbul, Turkey ",
         "price": 220,
-        "image": "img/istanbul.jpg"
+        "image": "img/istanbul.jpg",
+        "benua": "Eropa",
+        "fasilitas": ["Pesawat", "Kereta"]
     }, {
         "id": 13,
         "name": "Hallstatt, Austria",
         "price": 300,
-        "image": "img/hallstatt.jpg"
+        "image": "img/hallstatt.jpg",
+        "benua": "Eropa",
+        "fasilitas": ["Pesawat"]
     }, {
         "id": 14,
         "name": "Amsterdam, Netherlands ",
         "price": 250,
-        "image": "img/amssterdam.jpg"
+        "image": "img/amssterdam.jpg",
+        "benua": "Eropa",
+        "fasilitas": ["Pesawat"]
     }, {
         "id": 15,
         "name": "Angkor Wat, Cambodia",
         "price": 150,
-        "image": "img/angkorwat.jpg"
+        "image": "img/angkorwat.jpg",
+        "benua": "Asia",
+        "fasilitas": ["Pesawat", "Kapal", "Bus"]
     }, {
         "id": 16,
         "name": "Seoul, South Korea",
         "price": 250,
-        "image": "img/seoul.webp"
+        "image": "img/seoul.webp",
+        "benua": "Asia",
+        "fasilitas": ["Pesawat", "Kapal"]
     }, {
         "id": 17,
         "name": "Santorini, Greece",
         "price": 280,
-        "image": "img/santorini.webp"
+        "image": "img/santorini.webp",
+        "benua": "Eropa",
+        "fasilitas": ["Pesawat", "Kapal"]
     }, {
         "id": 18,
         "name": "Praha, Czech Republic",
         "price": 300,
-        "image": "img/praha.jpg"
+        "image": "img/praha.jpg",
+        "benua": "Eropa",
+        "fasilitas": ["Pesawat"]
     }
 
 ]
