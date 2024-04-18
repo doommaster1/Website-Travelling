@@ -13,26 +13,26 @@ nav {
     background-color: transparent;
 }
 
-nav .icon img{
+nav .icon img {
     width: 6.5em;
 }
 
- nav .menu > .menu-item{
+nav .menu > .menu-item {
     display: inline-block;
     margin-left: 2em;
     position: relative;
 }
 
-nav .menu > .menu-item > a{
+nav .menu > .menu-item > a {
     display: block;
     padding: 2em 0;
     font-size: 16px;
     color: #000;
     font-weight: 700;
-    transition: all .3s ease;
+    transition: all 0.3s ease;
 }
 
-.open-nav-menu{
+.open-nav-menu {
     height: 34px;
     width: 40px;
     margin-right: 15px;
@@ -42,7 +42,7 @@ nav .menu > .menu-item > a{
     cursor: pointer;
 }
 
-.open-nav-menu span{
+.open-nav-menu span {
     position: relative;
     display: block;
     height: 3px;
@@ -50,8 +50,8 @@ nav .menu > .menu-item > a{
     background-color: #000;
 }
 
-.open-nav-menu span:before,
-.open-nav-menu span:after{
+.open-nav-menu span:after,
+.open-nav-menu span:before {
     content: "";
     position: absolute;
     left: 0;
@@ -61,15 +61,15 @@ nav .menu > .menu-item > a{
     box-sizing: border-box;
 }
 
-.open-nav-menu span:before{
+.open-nav-menu span:before {
     top: -7px;
 }
 
-.open-nav-menu span:after{
+.open-nav-menu span:after {
     top: 7px;
 }
 
-.close-nav-menu{
+.close-nav-menu {
     height: 40px;
     width: 40px;
     background-color: #fff;
@@ -84,17 +84,17 @@ nav .menu > .menu-item > a{
     padding: 0 25px;
 } */
 
-.close-nav-menu i{
+.close-nav-menu i {
     font-size: 30px;
     color: #000;
 }
 
 nav .menu > .menu-item > .sub-menu > .menu-item > a:hover,
-nav .menu > .menu-item:hover a{
+nav .menu > .menu-item:hover a {
     /* color: #fdcb2c;  */
 }
 
-nav .menu > .menu-item > .sub-menu{
+nav .menu > .menu-item > .sub-menu {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     width: 220px;
     position: absolute;
@@ -104,33 +104,33 @@ nav .menu > .menu-item > .sub-menu{
     padding: 10px 0;
     border-top: 3px solid #fdcb2c;
     transform: translateY(10px);
-    transition: all .3s ease;
+    transition: all 0.3s ease;
     opacity: 0;
     visibility: hidden;
 }
 
-@media(min-width: 992px){
-    nav .menu > .menu-item-has-children:hover > .sub-menu{
+@media(min-width: 992px) {
+    nav .menu > .menu-item-has-children:hover > .sub-menu {
         transform: translateY(0);
         opacity: 1;
         visibility: visible;
     }
 }
 
-nav .menu > .menu-item > .sub-menu > .menu-item{
+nav .menu > .menu-item > .sub-menu > .menu-item {
     display: block;
 }
 
-nav .menu > .menu-item > .sub-menu > .menu-item > a{
+nav .menu > .menu-item > .sub-menu > .menu-item > a {
     display: block;
     padding: 10px 20px;
     font-size: 15px;
     font-weight: 500;
     color: #000;
-    transition: all .3s ease;
+    transition: all 0.3s ease;
 }
 
-nav .menu-overlay{
+nav .menu-overlay {
     position: fixed;
     z-index: 999;
     background-color: rgba(0, 0, 0, 0.5);
@@ -142,7 +142,7 @@ nav .menu-overlay{
     opacity: 0;
 }
 
-nav .menu-overlay.active{
+nav .menu-overlay.active {
     visibility: visible;
     opacity: 1;
 }
@@ -151,17 +151,16 @@ nav.scrolled {
     /* display: none; */
     /* transform: translateY(-30px); */
     background-color: #fff;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-nav .login a i{
+nav .login a i {
     color: #000;
 }
 
-nav.scrolled .login a{
+nav.scrolled .login a {
     color: #000;
 }
-
 
 nav ul a {
     text-decoration: none;
@@ -178,124 +177,121 @@ nav ul a::before {
     height: 2px;
     background-color: #000;
     transition: width 0.3s ease-in-out;
-} 
+}
 
 nav .menu .menu-item a:hover::before {
-    width: 100%; 
-    left: 0; 
-  }
+    width: 100%;
+    left: 0;
+}
 
-  nav .menu > .menu-item > .sub-menu > .menu-item > a:hover::before{
+nav .menu > .menu-item > .sub-menu > .menu-item > a:hover::before {
     width: 90%;
     left: 0;
-  }
+}
 
-
-  .submenus-wrap{
+.submenus-wrap {
     position: absolute;
     top: 100%;
     right: 10%;
     width: 320px;
-    max-height: 0px;
+    max-height: 0;
     overflow: hidden;
     transition: max-height 0.5s;
-  }
+}
 
-  .submenus-wrap.open-menu{
+.submenus-wrap.open-menu {
     max-height: 400px;
-  }
+}
 
-  .sub-menus{
+.sub-menus {
     background-color: #fff;
     padding: 20px;
     margin: 10px;
-  }
+}
 
-  .user-info{
+.user-info {
     display: flex;
     align-items: center;
-  }
+}
 
-  .user-info h2{
+.user-info h2 {
     font-weight: 500;
-  }
+}
 
-  .user-info img{
+.user-info img {
     width: 60px;
     border-radius: 50%;
     margin-right: 15px;
-  }
+}
 
-
-  .sub-menus hr{
+.sub-menus hr {
     border: 0;
     height: 1px;
     width: 100%;
     background-color: #ccc;
     margin: 15px 0 10px;
-  }
+}
 
-  .sub-menus a{
+.sub-menus a {
     font-size: 16px;
-  }
+}
 
-  .sub-menu-link{
+.sub-menu-link {
     display: flex;
     align-items: center;
     text-decoration: none;
     color: #525252;
     margin: 12px 0;
-  }
+}
 
-  .sub-menu-link p{
+.sub-menu-link p {
     width: 100%;
-  }
+}
 
-  .sub-menu-link img{
+.sub-menu-link img {
     width: 30px;
     background-color: #e5e5e5;
     border-radius: 50%;
     padding: 8px;
     margin-right: 15px;
-  }
+}
 
-  .sub-menu-link span{
+.sub-menu-link span {
     font-size: 18px;
     transition: transform 0.5s;
-  }
+}
 
-  .sub-menu-link:hover span{
+.sub-menu-link:hover span {
     transform: translateX(5px);
-  }
+}
 
-  .sub-menu-link:hover p {
+.sub-menu-link:hover p {
     font-weight: 600;
-  }
+}
 
-
-  .login{
+.login {
     cursor: pointer;
     font-size: 2rem;
-  }
+}
 
-  .login button{
+.login button {
     border: none;
-  }
+}
 
-  .login button a{
+.login button a {
     text-decoration: none;
     color: #fff;
-  }
+}
 
-  /* responsive */
-@media(max-width: 991px){
-    nav{
+/* responsive */
+@media(max-width: 991px) {
+    nav {
         display: flex;
         padding: 20px;
         justify-content: space-between;
     }
 
-    nav .nav-menu{
+    nav .nav-menu {
         position: fixed;
         right: -280px;
         visibility: hidden;
@@ -306,42 +302,42 @@ nav .menu .menu-item a:hover::before {
         background-color: #222;
         z-index: 1000;
         padding: 15px 0;
-        transition: all .5s ease;
+        transition: all 0.5s ease;
         /* justify-content: start; */
     }
 
-    nav .nav-menu.open{
+    nav .nav-menu.open {
         visibility: visible;
-        right: 0px;
+        right: 0;
         padding-right: 20px;
     }
 
-    nav .menu > .menu-item{
+    nav .menu > .menu-item {
         display: block;
         margin: 0;
     }
 
-    nav .icon{
+    nav .icon {
         display: none;
     }
 
-    nav .menu >.menu-item-has-children > a{
+    nav .menu > .menu-item-has-children > a {
         display: flex;
         justify-content: space-between;
         align-items: center;
     }
 
-    nav .menu > .menu-item a{
+    nav .menu > .menu-item a {
         color: #fff;
         padding: 12px 15px;
         border-bottom: 1px solid #333;
     }
 
-    nav .menu > .menu-item:first-child > a{
+    nav .menu > .menu-item:first-child > a {
         border-top: 1px solid #333;
     }
 
-    nav .menu > .menu-item > .sub-menu{
+    nav .menu > .menu-item > .sub-menu {
         width: 100%;
         position: relative;
         opacity: 1;
@@ -357,7 +353,7 @@ nav .menu .menu-item a:hover::before {
         overflow: hidden;
     }
 
-    nav .menu > .menu-item > .sub-menu > .menu-item > a{
+    nav .menu > .menu-item > .sub-menu > .menu-item > a {
         padding: 12px 45px;
         border-bottom: 1px solid #333;
         color: #fff;
@@ -365,10 +361,10 @@ nav .menu .menu-item a:hover::before {
 
     nav ul a::before {
         display: none;
-    } 
+    }
 
     nav .close-nav-menu,
-    nav .open-nav-menu{
+    nav .open-nav-menu {
         display: flex;
     }
 }

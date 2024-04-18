@@ -138,7 +138,7 @@ body {
     overflow: hidden;
 }
 
-.container p{
+.container p {
     line-height: 23px;
 }
 
@@ -161,7 +161,7 @@ body {
     height: 600px;
     padding: 60px;
     color: #000;
-    background-image: url(img/bg_home.jpg);
+    background-image: url("img/bg_home.jpg");
     background-position: center;
     background-size: cover;
 }
@@ -211,7 +211,7 @@ button {
 
 .penjelasan button:hover::before {
     width: 100%;
-} 
+}
 
 /* popular */
 .popular {
@@ -221,45 +221,45 @@ button {
     margin: 2em;
 }
 
-.popular .judul-popular{
+.popular .judul-popular {
     font-size: 2rem;
     padding-bottom: 15px;
 }
 
-.popular .popular-item{
+.popular .popular-item {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
 }
 
-.popular-card{
+.popular-card {
     border-radius: 10px;
     width: 24em;
     font-size: 16px;
     object-fit: cover;
     overflow: hidden;
     background-color: #fff;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.popular-card:hover button{
+.popular-card:hover button {
     color: #2ec5c1;
 }
 
-.popular-card .info{
+.popular-card .info {
     height: 4em;
     padding: 10px;
     /* box-sizing: border-box; */
 }
 
-.popular-card .rating{
+.popular-card .rating {
     display: flex;
     align-content: center;
     width: 100%;
     justify-content: space-between;
 }
 
-.popular-card button{
+.popular-card button {
     border: none;
     width: fit-content;
     margin: 0;
@@ -268,31 +268,31 @@ button {
     cursor: pointer;
 }
 
-.popular-card .info h1{
+.popular-card .info h1 {
     font-size: larger;
     font-weight: bolder;
     margin-bottom: 8px;
 }
 
-.popular-card img{
+.popular-card img {
     object-fit: cover;
     max-width: 100%;
     border-radius: 10px;
 }
 
 /* popup */
-.popup .overlay{
+.popup .overlay {
     position: fixed;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
     width: 100vw;
     height: 100vh;
     background: rgba(0, 0, 0, 0.7);
     z-index: 1;
     display: none;
-  }
-  
-  .popup .content{
+}
+
+.popup .content {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -304,9 +304,9 @@ button {
     padding: 10px;
     box-sizing: border-box;
     overflow: auto;
-  }
-  
-  .popup .close-btn{
+}
+
+.popup .close-btn {
     cursor: pointer;
     position: absolute;
     right: 20px;
@@ -319,32 +319,32 @@ button {
     line-height: 30px;
     text-align: center;
     border-radius: 50%;
-  }
-  
-  .popup.active .overlay{
+}
+
+.popup.active .overlay {
     display: block;
-  }
-  
-  .popup.active .content{
+}
+
+.popup.active .content {
     position: fixed;
     transition: all 300ms linear;
     transform: translate(-50%, -50%) scale(1);
-  }
-  
-  .popup .destinasi-hotel{
+}
+
+.popup .destinasi-hotel {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     min-height: 400px;
-  }
-  
-  .popup .destinasi-hotel .gambar img{
+}
+
+.popup .destinasi-hotel .gambar img {
     object-fit: cover;
     width: 100%;
     height: 100%;
-    border-radius: 0%;
-  }
-  
-  .popup .destinasi-hotel .penjelasan{
+    border-radius: 0;
+}
+
+.popup .destinasi-hotel .penjelasan {
     background-color: #2e6d99;
     color: #fff;
     display: grid;
@@ -352,106 +352,104 @@ button {
     text-align: left;
     padding: 20px;
     box-sizing: border-box;
-  }
-  
-  .popup .destinasi-hotel .penjelasan h2{
+}
+
+.popup .destinasi-hotel .penjelasan h2 {
     font-size: 32px;
     margin-bottom: 10px;
-  }
-  
-  .popup .destinasi-hotel .penjelasan p{
+}
+
+.popup .destinasi-hotel .penjelasan p {
     font-size: 18px;
     line-height: 20px;
-  }
+}
 
-  .keuntungan{
+.keuntungan {
     font-size: 14px;
     width: 95%;
     padding: 20px;
     margin: 25px auto;
     display: grid;
     align-content: center;
-    grid-template-columns: .8fr 2.2fr;
+    grid-template-columns: 0.8fr 2.2fr;
     grid-template-rows: repeat(2, 1fr);
-    grid-template-areas: 'fasilitas tentang'
-                            'fasilitas lokasi';
-  }
-  
-  .keuntungan .fasilitas{
+    grid-template-areas: 'fasilitas tentang' 'fasilitas lokasi';
+}
+
+.keuntungan .fasilitas {
     grid-area: fasilitas;
-  }
-  
-  .keuntungan .fasilitas ul img{
+}
+
+.keuntungan .fasilitas ul img {
     width: 22px;
-  }
-  
-  .keuntungan .tentang{
+}
+
+.keuntungan .tentang {
     grid-area: tentang;
     display: grid;
     grid-template-columns: 1fr 1fr;
-  }
-  
-  .keuntungan .hotel{
+}
+
+.keuntungan .hotel {
     /* width: 80%; */
     width: 90%;
     height: 150px;
     overflow: auto;
-  }
-  
-  .keuntungan .akomodasi{
+}
+
+.keuntungan .akomodasi {
     /* height: 150px;
     overflow: auto; */
     text-align: end;
-  }
-  
-  .keuntungan .lokasi{
+}
+
+.keuntungan .lokasi {
     grid-area: lokasi;
     display: grid;
     grid-template-columns: 1fr 1fr;
     margin-top: 15px;
-  }
-  
-  .lokasi h5{
+}
+
+.lokasi h5 {
     grid-column-start: 1;
     grid-column-end: 4;
-  }
-  
-  .lokasi ul li i{
+}
+
+.lokasi ul li i {
     color: #c70101;
-  }
-  
-  .keuntungan h5{
+}
+
+.keuntungan h5 {
     padding-bottom: 7px;
     font-weight: 700;
     font-size: 18px;
-  }
-  
-  .keuntungan li{
-    padding-bottom: 10px;
-  }
+}
 
+.keuntungan li {
+    padding-bottom: 10px;
+}
 
 /* responsive */
 @media (max-width:991px) {
-    .popular{
+    .popular {
         display: grid;
         justify-items: center;
     }
 
-    .popular .popular-item{
+    .popular .popular-item {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media (max-width:528px) {
-    .popular .popular-item{
+    .popular .popular-item {
         grid-template-columns: 1fr;
     }
 
 }
 
 /* explore */
-.explore{
+.explore {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     align-items: center;
@@ -461,20 +459,20 @@ button {
     background-color: #fff;
 }
 
-.explore-penjelasan{
+.explore-penjelasan {
     width: 80%;
 }
 
-.explore-judul{
+.explore-judul {
     font-size: 2.6rem;
     margin-bottom: 18px;
 }
 
-.explore-penjelasan p{
+.explore-penjelasan p {
     line-height: 23px;
 }
 
-.explore .fasilitas{
+.explore .fasilitas {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 15px;
@@ -482,29 +480,29 @@ button {
     font-size: 1.1rem;
 }
 
- .explore .fasilitas i{
+.explore .fasilitas i {
     color: #f08d47;
     padding-right: 10px;
     font-size: larger;
- }
+}
 
- @media (max-width:991px) {
+@media (max-width:991px) {
     .explore {
         grid-template-columns: 1fr;
         text-align: center;
         justify-content: center;
     }
 
-    .explore-penjelasan{
+    .explore-penjelasan {
         margin: 0 auto;
         display: flex;
         flex-direction: column;
         justify-content: center;
     }
- }
+}
 
- /* gallery */
- .gallery {
+/* gallery */
+.gallery {
     display: grid;
     background-color: #f5f5f5;
 }
@@ -523,10 +521,7 @@ button {
     gap: 10px;
     display: grid;
     grid-template-rows: repeat(3, 1fr);
-    grid-template-areas: 'gambar-1 gambar-2 gambar-3'
-        'gambar-1 gambar-4 gambar-3' 
-        'gambar-5 gambar-4 gambar-6'
-    
+    grid-template-areas: 'gambar-1 gambar-2 gambar-3' 'gambar-1 gambar-4 gambar-3' 'gambar-5 gambar-4 gambar-6';
 }
 
 .content .gambar {
@@ -539,7 +534,7 @@ button {
     border-radius: 10px;
 }
 
-.content .title-box{
+.content .title-box {
     content: "";
     height: 100px;
     width: 100%;
@@ -553,11 +548,11 @@ button {
 }
 
 .content .gambar:hover .title,
-.content .gambar:hover .title-box{
+.content .gambar:hover .title-box {
     transform: translateY(0);
 }
 
-.content .title{
+.content .title {
     position: absolute;
     width: 100%;
     color: white;
@@ -599,48 +594,45 @@ button {
     grid-area: gambar-5;
 }
 
-.content .enam{
+.content .enam {
     background-image: url("img/hor-3.jpg");
     grid-area: gambar-6;
 }
 
 /* responsive */
 @media (max-width:762px) {
-    .gallery .content{
-        grid-template-areas: 'gambar-1 gambar-4 gambar-3'
-        'gambar-1 gambar-4 gambar-3' 
-        'gambar-5 gambar-2 gambar-6'
+    .gallery .content {
+        grid-template-areas: 'gambar-1 gambar-4 gambar-3' 'gambar-1 gambar-4 gambar-3' 'gambar-5 gambar-2 gambar-6';
     }
 
-    .gallery{
+    .gallery {
         display: grid;
         margin: 0 auto;
         width: 100%;
     }
-}   
+}
 
 /* faq */
-.faq{
+.faq {
     margin: 50px auto;
     text-align: center;
     width: 80%;
 }
 
-.faq h1{
+.faq h1 {
     font-size: larger;
     font-weight: bolder;
     padding-bottom: 10px;
 }
 
-.faq .input ul{
+.faq .input ul {
     text-align: left;
 }
 
-.faq .input .warna{
+.faq .input .warna {
     font-weight: bolder;
 }
 
-.faq button{
+.faq button {
     border: none;
 }
-

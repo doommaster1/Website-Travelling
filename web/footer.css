@@ -5,7 +5,7 @@ body {
     overflow-x: hidden;
 }
 
-footer{
+footer {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     margin-top: 100px;
@@ -15,52 +15,52 @@ footer{
     gap: 10px;
 }
 
-footer .judul{
+footer .judul {
     font-weight: bolder;
     font-size: larger;
     margin-bottom: 18px;
 }
 
-footer ul li{
+footer ul li {
     padding-bottom: 10px;
 }
 
-footer .deskripsi-singkat .judul .logo{
+footer .deskripsi-singkat .judul .logo {
     display: flex;
     align-items: center;
-    
+
 }
 
-footer .deskripsi-singkat .sosmed ul{
+footer .deskripsi-singkat .sosmed ul {
     display: flex;
     margin-top: 10px;
     justify-content: center;
     width: 80%;
     font-size: 18px;
     gap: 2rem;
-}   
+}
 
-footer .contact-us ul li{
+footer .contact-us ul li {
     line-height: 22px;
 }
 
-footer ul li a{
+footer ul li a {
     text-decoration: none;
     color: #fff;
 }
 
-footer i{
-    color: #f08d47
+footer i {
+    color: #f08d47;
 }
 
 /* responsive */
 @media (max-width:762px) {
-    footer{
+    footer {
         grid-template-columns: 1fr;
         text-align: center;
     }
 
-    footer .deskripsi-singkat .judul{
+    footer .deskripsi-singkat .judul {
         text-align: center;
         display: grid;
         place-content: center;

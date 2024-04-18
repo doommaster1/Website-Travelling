@@ -11,7 +11,7 @@
         "name": " London, England",
         "price": 250,
         "image": "img/london,england.jpg",
-        "benua": "Eropa",
+        "benua": "Europe",
         "fasilitas": ["Pesawat", "Kapal", "Kereta"]
     }, {
         "id": 3,
@@ -46,56 +46,56 @@
         "name": " New York City, USA",
         "price": 200,
         "image": "img/newyork.jpg",
-        "benua": "Amerika",
+        "benua": "America",
         "fasilitas": ["Pesawat", "Kapal", "Kereta"]
     }, {
         "id": 8,
         "name": " Madrid, Spain",
         "price": 200,
         "image": "img/madrid.jpg",
-        "benua": "Eropa",
+        "benua": "Europe",
         "fasilitas": ["Pesawat", "Kapal", "Kereta"]
     }, {
         "id": 9,
         "name": "Paris, France ",
         "price": 300,
         "image": "img/paris1.jpg",
-        "benua": "Eropa",
+        "benua": "Europe",
         "fasilitas": ["Pesawat", "Kereta"]
     }, {
         "id": 10,
         "name": "Rome, Italia ",
         "price": 250,
         "image": "img/roma.jpg",
-        "benua": "Eropa",
+        "benua": "Europe",
         "fasilitas": ["Pesawat", "Kereta"]
     }, {
         "id": 11,
         "name": "Barcelona, Spain",
         "price": 200,
         "image": "img/barcelona.webp",
-        "benua": "Eropa",
+        "benua": "Europe",
         "fasilitas": ["Pesawat", "Bus"]
     }, {
         "id": 12,
         "name": "Istanbul, Turkey ",
         "price": 220,
         "image": "img/istanbul.jpg",
-        "benua": "Eropa",
+        "benua": "Europe",
         "fasilitas": ["Pesawat", "Kereta"]
     }, {
         "id": 13,
         "name": "Hallstatt, Austria",
         "price": 300,
         "image": "img/hallstatt.jpg",
-        "benua": "Eropa",
+        "benua": "Europe",
         "fasilitas": ["Pesawat"]
     }, {
         "id": 14,
         "name": "Amsterdam, Netherlands ",
         "price": 250,
         "image": "img/amssterdam.jpg",
-        "benua": "Eropa",
+        "benua": "Europe",
         "fasilitas": ["Pesawat"]
     }, {
         "id": 15,
@@ -116,14 +116,14 @@
         "name": "Santorini, Greece",
         "price": 280,
         "image": "img/santorini.webp",
-        "benua": "Eropa",
+        "benua": "Europe",
         "fasilitas": ["Pesawat", "Kapal"]
     }, {
         "id": 18,
         "name": "Praha, Czech Republic",
         "price": 300,
         "image": "img/praha.jpg",
-        "benua": "Eropa",
+        "benua": "Europe",
         "fasilitas": ["Pesawat"]
     }
 
