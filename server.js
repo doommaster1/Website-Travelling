@@ -18,15 +18,13 @@ app.use(cors());
 app.use("/api", tiketRoutes)
 
 // Setup session middleware
-app.use(session({
-    secret: 'SESSION_SECRET',
-    resave: false,
-    saveUninitialized: true
-}));
+app.use(
+    session({secret: 'SESSION_SECRET', resave: false, saveUninitialized: true})
+);
 
 // convert to json
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({extended: false}));
 
 app.set("view engine", "ejs");
 
@@ -83,7 +81,7 @@ app.post('/login', async (req, res) => {
             email: req.body.emailregis,
             password: req.body.passwordregis,
             name: req.body.name
-        }   
+        }
 
         const existuser = await collection.findOne({username: data.username})
         if (existuser) {
@@ -93,8 +91,7 @@ app.post('/login', async (req, res) => {
             // const hashemail = await bcrypt.hash(data.email, saltround)
             const hashpassword = await bcrypt.hash(data.password, saltround)
 
-            //mengubah data password menjadi enkripsi
-            // data.email = hashemail
+            //mengubah data password menjadi enkripsi data.email = hashemail
             data.password = hashpassword
 
             const userdata = await collection.insertMany(data);
@@ -109,13 +106,15 @@ app.post('/login', async (req, res) => {
 // Logout route
 app.get('/logout', (req, res) => {
     // Clear session
-    req.session.destroy(err => {
-        if (err) {
-            console.log(err);
-        } else {
-            res.redirect('/login');
-        }
-    });
+    req
+        .session
+        .destroy(err => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.redirect('/login');
+            }
+        });
 });
 
 // Login middleware to check if user is already authenticated
@@ -135,29 +134,31 @@ app.get('/login', loginRedirect, (req, res) => {
 // Tiket route
 app.get('/tiket', isAuthenticated, (req, res) => {
     const user = req.session.user; // Dapatkan objek pengguna dari sesi
-    res.render('tiket', { user: user }); // Lewatkan objek pengguna ke halaman tiket.ejs saat merendernya
+    res.render('tiket', {user: user}); // Lewatkan objek pengguna ke halaman tiket.ejs saat merendernya
 });
-
 
 // Checkout route
 app.post('/checkout', isAuthenticated, async (req, res) => {
     const userEmail = req.body.email;
     const purchasedTickets = req.body.tickets;
 
-    // Process checkout, save order to database, etc.
-    // Here you can call the function to send confirmation email
+    // Process checkout, save order to database, etc. Here you can call the function
+    // to send confirmation email
     sendCheckoutConfirmation(userEmail, purchasedTickets)
         .then(() => {
             res.send('Checkout berhasil! Email konfirmasi telah dikirim.');
         })
         .catch((error) => {
-            res.status(500).send('Gagal melakukan checkout: ' + error);
+            res
+                .status(500)
+                .send('Gagal melakukan checkout: ' + error);
         });
 });
 
 // Function to send checkout confirmation email
 async function sendCheckoutConfirmation(toEmail, purchasedTickets) {
-    let message = 'Terima kasih telah melakukan pembelian tiket. Berikut adalah daftar tiket yang Anda beli:\n';
+    let message = 'Terima kasih telah melakukan pembelian tiket. Berikut adalah daftar tiket yang' +
+            ' Anda beli:\n';
     purchasedTickets.forEach(ticket => {
         message += `- ${ticket.name}: ${ticket.quantity} tiket\n`;
     });
@@ -188,7 +189,10 @@ app.get('/payment', isAuthenticated, (req, res) => {
 // setting
 app.get('/setting', isAuthenticated, (req, res) => {
     const user = req.session.user;
-    res.render('setting', { user: user, message: null });
+    res.render('setting', {
+        user: user,
+        message: null
+    });
 });
 
 // Handle form submission for updating user information
@@ -199,7 +203,9 @@ app.post('/update', isAuthenticated, async (req, res) => {
         const updatedName = req.body.name;
         const updatedEmail = req.body.email;
 
-        await collection.updateOne({ _id: user._id }, {
+        await collection.updateOne({
+            _id: user._id
+        }, {
             $set: {
                 username: updatedUsername,
                 name: updatedName,
@@ -211,10 +217,12 @@ app.post('/update', isAuthenticated, async (req, res) => {
         req.session.user.name = updatedName;
         req.session.user.email = updatedEmail;
 
-        res.json({ message: 'User information updated successfully.' });
+        res.json({message: 'User information updated successfully.'});
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: 'Failed to update user information. Please try again.' });
+        res
+            .status(500)
+            .json({error: 'Failed to update user information. Please try again.'});
     }
 });
 
@@ -227,23 +235,42 @@ app.post('/changepass', isAuthenticated, async (req, res) => {
         const repeatNewPassword = req.body.repeatNewPassword;
 
         if (newPassword !== repeatNewPassword) {
-            return res.status(400).send('New password and repeat new password do not match');
+            return res
+                .status(400)
+                .send('New password and repeat new password do not match');
         }
 
-        const user = await collection.findOne({ _id: currentUser._id });
+        const user = await collection.findOne({_id: currentUser._id});
         const isPasswordCorrect = await bcrypt.compare(currentPassword, user.password);
         if (!isPasswordCorrect) {
-            return res.status(400).send('Current password is incorrect');
+            return res
+                .status(400)
+                .send('Current password is incorrect');
         }
 
         const hashedNewPassword = await bcrypt.hash(newPassword, 10);
 
-        await collection.updateOne({ _id: currentUser._id }, { $set: { password: hashedNewPassword } });
+        await collection.updateOne({
+            _id: currentUser._id
+        }, {
+            $set: {
+                password: hashedNewPassword
+            }
+        });
 
-        res.status(200).send('<script>alert("Password updated successfully"); window.location="/setting";</script>');
+        res
+            .status(200)
+            .send(
+                '<script>alert("Password updated successfully"); window.location="/setting";</s' +
+                'cript>'
+            );
     } catch (error) {
         console.error(error);
-        res.status(500).send('<script>alert("Internal server error"); window.location="/setting";</script>');
+        res
+            .status(500)
+            .send(
+                '<script>alert("Internal server error"); window.location="/setting";</script>'
+            );
     }
 });
 
@@ -253,29 +280,35 @@ app.post('/delete', isAuthenticated, async (req, res) => {
         const currentUser = req.session.user;
         const confirmPassword = req.body.confirmpassword;
 
-        const user = await collection.findOne({ _id: currentUser._id });
+        const user = await collection.findOne({_id: currentUser._id});
         const isPasswordCorrect = await bcrypt.compare(confirmPassword, user.password);
         if (!isPasswordCorrect) {
-            return res.status(400).send('Password is incorrect. Account deletion failed.');
+            return res
+                .status(400)
+                .send('Password is incorrect. Account deletion failed.');
         }
 
-        await collection.deleteOne({ _id: currentUser._id });
+        await collection.deleteOne({_id: currentUser._id});
 
-        req.session.destroy(err => {
-            if (err) {
-                console.log(err);
-            } else {
-                res.redirect('/login');
-            }
-        });
+        req
+            .session
+            .destroy(err => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    res.redirect('/login');
+                }
+            });
     } catch (error) {
         console.error(error);
-        res.status(500).send('Internal server error');
+        res
+            .status(500)
+            .send('Internal server error');
     }
 });
 
 // Middleware untuk meng-handle body dari request
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({extended: true}));
 
 // Fungsi untuk mengirim email
 async function sendEmail(toEmail) {
@@ -287,12 +320,9 @@ async function sendEmail(toEmail) {
         }
     });
 
-    let info = await transporter.sendMail({
-        from: '"Website Travel" <hansnathanael2004@gmail.com>',
-        to: toEmail,
-        subject: 'Website Travel',
-        text: 'Thank You For Trusting Us !!!'
-    });
+    let info = await transporter.sendMail(
+        {from: '"Website Travel" <hansnathanael2004@gmail.com>', to: toEmail, subject: 'Website Travel', text: 'Thank You For Trusting Us !!!'}
+    );
 
     console.log('Email berhasil dikirim: ', info.messageId);
 };

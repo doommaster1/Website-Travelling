@@ -4,14 +4,14 @@ body {
 }
 
 .ui-w-80 {
-    width : 80px !important;
+    width: 80px !important;
     height: auto;
 }
 
 .btn-default {
     border-color: rgba(24, 28, 33, 0.1);
-    background  : rgba(0, 0, 0, 0);
-    color       : white;
+    background: rgba(0, 0, 0, 0);
+    color: white;
     /* background-color: red; */
 }
 
@@ -19,7 +19,7 @@ label.btn {
     margin-bottom: 0;
 }
 
-.btn-btn-primary1{
+.btn-btn-primary1 {
     border-color: red;
     color: red;
     background: transparent;
@@ -27,8 +27,8 @@ label.btn {
 
 .btn-outline-primary {
     border-color: #26B4FF;
-    background  : transparent;
-    color       : #26B4FF;
+    background: transparent;
+    color: #26B4FF;
 }
 
 .btn {
@@ -41,19 +41,19 @@ label.btn {
 
 .btn-facebook {
     border-color: rgba(0, 0, 0, 0);
-    background  : #3B5998;
-    color       : #fff;
+    background: #3B5998;
+    color: #fff;
 }
 
 .btn-instagram {
     border-color: rgba(0, 0, 0, 0);
-    background  : #000;
-    color       : #fff;
+    background: #000;
+    color: #fff;
 }
 
 .card {
     background-clip: padding-box;
-    box-shadow     : 0 1px 4px rgba(24, 28, 33, 0.012);
+    box-shadow: 0 1px 4px rgba(24, 28, 33, 0.012);
 }
 
 .row-bordered {
@@ -61,11 +61,11 @@ label.btn {
 }
 
 .account-settings-fileinput {
-    position  : absolute;
+    position: absolute;
     visibility: hidden;
-    width     : 1px;
-    height    : 1px;
-    opacity   : 0;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
 }
 
 .account-settings-links .list-group-item.active {
@@ -81,7 +81,7 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
 }
 
 .light-style .account-settings-links .list-group-item {
-    padding     : 0.85rem 1.5rem;
+    padding: 0.85rem 1.5rem;
     border-color: rgba(24, 28, 33, 0.03) !important;
 }
 
@@ -90,7 +90,7 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
 }
 
 .material-style .account-settings-links .list-group-item {
-    padding     : 0.85rem 1.5rem;
+    padding: 0.85rem 1.5rem;
     border-color: rgba(24, 28, 33, 0.03) !important;
 }
 
@@ -99,7 +99,7 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
 }
 
 .dark-style .account-settings-links .list-group-item {
-    padding     : 0.85rem 1.5rem;
+    padding: 0.85rem 1.5rem;
     border-color: rgba(255, 255, 255, 0.03) !important;
 }
 
@@ -112,6 +112,6 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
 }
 
 .light-style .account-settings-links .list-group-item {
-    padding     : 0.85rem 1.5rem;
+    padding: 0.85rem 1.5rem;
     border-color: rgba(24, 28, 33, 0.03) !important;
 }

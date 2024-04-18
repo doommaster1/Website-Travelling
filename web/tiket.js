@@ -45,7 +45,10 @@ const addDataToHTML = () => {
 listProductHTML.addEventListener('click', (event) => {
     let positionClick = event.target;
     if (positionClick.classList.contains('addCart')) {
-        let id_product = positionClick.closest('.item').dataset.id; // Get the closest parent with the 'item' class
+        let id_product = positionClick
+            .closest('.item')
+            .dataset
+            .id; // Get the closest parent with the 'item' class
         addToCart(id_product);
     }
 });
@@ -186,4 +189,56 @@ document.addEventListener('DOMContentLoaded', function () {
             window.location.href = "/payment";
         }
     });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    const searchInput = document.getElementById('searchInput');
+    const searchBtn = document.getElementById('searchBtn');
+    const continentSelect = document.getElementById('continent');
+    const priceOrderSelect = document.getElementById('priceOrder');
+
+    searchBtn.addEventListener('click', filterTickets);
+    continentSelect.addEventListener('change', filterTickets);
+    priceOrderSelect.addEventListener('change', filterTickets);
+
+    function filterTickets() {
+        const searchTerm = searchInput
+            .value
+            .toLowerCase();
+        const selectedContinent = continentSelect.value;
+        const priceOrder = priceOrderSelect.value;
+
+        // Lakukan filter pada array products berdasarkan nama tiket
+        let filteredProducts = products.filter(product => {
+            // Ubah nama tiket menjadi huruf kecil untuk pencocokan yang tidak
+            // case-sensitive
+            const productName = product
+                .name
+                .toLowerCase();
+            // Lakukan pencarian berdasarkan nama tiket
+            return productName.includes(searchTerm);
+        });
+
+        // Hapus semua elemen tiket dari tampilan
+        listProductHTML.innerHTML = '';
+
+        // Tampilkan hasil filter ke dalam HTML
+        filteredProducts.forEach(product => {
+            let newProduct = document.createElement('div');
+            newProduct.dataset.id = product.id;
+            newProduct
+                .classList
+                .add('item');
+            newProduct.innerHTML = `<div class="image">
+                <img src="${product.image}" alt="${product.name}">
+            </div>
+            <div class="info">
+                <h2>${product.name}</h2>
+                <div class="price">$${product.price}</div>
+                <button class="addCart">Add To Cart</button>
+            </div>`;
+            listProductHTML.appendChild(newProduct);
+        });
+    }
+
 });
