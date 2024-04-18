@@ -72,6 +72,31 @@ app.post('/login', async (req, res) => {
         }
     } else {
         // Code untuk proses registrasi
+        const data = {
+            username: req.body.userregis,
+            email: req.body.emailregis,
+            password: req.body.passwordregis,
+            name: req.body.name
+        }   
+
+        const existuser = await collection.findOne({username: data.username})
+        if (existuser) {
+            res.send("username sudah digunakan, tolong ganti username yang lain")
+        } else {
+            const saltround = 10
+            // const hashemail = await bcrypt.hash(data.email, saltround)
+            const hashpassword = await bcrypt.hash(data.password, saltround)
+
+            //mengubah data password menjadi enkripsi
+            // data.email = hashemail
+            data.password = hashpassword
+
+            const userdata = await collection.insertMany(data);
+            if (userdata) {
+                res.render('login')
+            }
+            console.log(userdata);
+        }
     }
 });
 
