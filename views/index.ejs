@@ -1,514 +1,423 @@
-<!DOCTYPE html>
-<html lang="en">
-    <%- include('layouts/header.ejs') %>
-        <link rel="stylesheet" href="index.css">
+<%- include('layouts/header.ejs') %>
+    <link rel="stylesheet" href="index.css">
         <link rel="stylesheet" href="nav.css">
-        <link rel="stylesheet" href="footer.css">
-        <title>Travel with Us</title>
-        <body>
-            <div class="home">
-                <%- include('layouts/nav.ejs') %>
-                    <div class="login">
-                        <a href="#">
-                            <i class="bi bi-person-circle user-pic" onclick="toggleMenu()"></i>
-                        </a>
-                    </div>
+            <link rel="stylesheet" href="footer.css">
+                <title>Travel with Us</title>
+                <body>
+                    <div class="home">
+                        <%- include('layouts/nav.ejs') %>
+                            <div class="login">
+                                <a href="#">
+                                    <i class="bi bi-person-circle user-pic" onclick="toggleMenu()"></i>
+                                </a>
+                            </div>
 
-                    <div class="submenus-wrap" id="subMenu">
-                        <div class="sub-menus">
-                            <div class="user-info">
-                                <img src="img/logonbg.png">
-                                <h3>User</h3>
-                            </div>
-                            <hr>
-                            <a href="/setting" class="sub-menu-link">
-                                <img src="img/img_profile/profile.png" alt="">
-                                <p>Edit Profile</p>
-                                <span>
-                                    <i class="bi bi-chevron-right"></i>
-                                </span>
-                            </a>
-                            <a href="/#footer" class="sub-menu-link">
-                                <img src="img/img_profile/help.png" alt="">
-                                <p>Help & Support</p>
-                                <span>
-                                    <i class="bi bi-chevron-right"></i>
-                                </span>
-                            </a>
-                            <a href="/logout" class="sub-menu-link">
-                                <img src="img/img_profile/logout.png" alt="">
-                                <p>Logout</p>
-                                <span>
-                                    <i class="bi bi-chevron-right"></i>
-                                </span>
-                            </a>
-                        </div>
-                    </div>
-                </nav>
-                <div class="penjelasan">
-                    <div class="travel-judul">
-                        <h1>Explore Beautiful World</h1>
-                        <button>Selengkapnya</button>
-                    </div>
-                </div>
-            </div>
-            <div class="popular">
-                <div class="judul-popular">
-                    <h1>Popular Place</h1>
-                </div>
-                <ul class="popular-item">
-                    <li class="popular-card">
-                        <img src="img/bali.jpg" alt="">
-                        <div class="info">
-                            <div class="rating">
-                                <div class="city">
-                                    <a href=""></a>
-                                    <button onclick="togglePopup()">
-                                        <h1>Bali</h1>
-                                    </button>
-                                </div>
-                                <div class="rate">
-                                    <i class="bi bi-star-fill"></i>
-                                    4.3</div>
-                            </div>
-                            <div class="location">
-                                <i class="bi bi-geo-alt-fill"></i>Indonesia</div>
-                        </div>
-                    </li>
-                    <li class="popular-card">
-                        <img src="img/london.jpg" alt="">
-                        <div class="info">
-                            <div class="rating">
-                                <div class="city">
-                                    <button onclick="togglePopup2()">
-                                        <h1>London</h1>
-                                    </button>
-                                </div>
-                                <div class="rate">
-                                    <i class="bi bi-star-fill"></i>
-                                    4.3</div>
-                            </div>
-                            <div class="location">
-                                <i class="bi bi-geo-alt-fill"></i>Inggris</div>
-                        </div>
-                    </li>
-                    <li class="popular-card">
-                        <img src="img/paris.jpg" alt="">
-                        <div class="info">
-                            <div class="rating">
-                                <div class="city">
-                                    <button onclick="togglePopup3()">
-                                        <h1>Perancis</h1>
-                                    </button>
-                                </div>
-                                <div class="rate">
-                                    <i class="bi bi-star-fill"></i>
-                                    4.3</div>
-                            </div>
-                            <div class="location">
-                                <i class="bi bi-geo-alt-fill"></i>Perancis</div>
-                        </div>
-                    </li>
-                    <li class="popular-card">
-                        <img src="img/tokyo,japan.jpg" alt="">
-                        <div class="info">
-                            <div class="rating">
-                                <div class="city">
-                                    <button onclick="togglePopup4()">
-                                        <h1>Tokyo</h1>
-                                    </button>
-                                </div>
-                                <div class="rate">
-                                    <i class="bi bi-star-fill"></i>
-                                    4.3</div>
-                            </div>
-                            <div class="location">
-                                <i class="bi bi-geo-alt-fill"></i>Japan</div>
-                        </div>
-                    </li>
-                    <li class="popular-card">
-                        <img src="img/newyorkgelap.jpg" alt="">
-                        <div class="info">
-                            <div class="rating">
-                                <div class="city">
-                                    <button onclick="togglePopup5()">
-                                        <h1>New York</h1>
-                                    </button>
-                                </div>
-                                <div class="rate">
-                                    <i class="bi bi-star-fill"></i>
-                                    4.3</div>
-                            </div>
-                            <div class="location">
-                                <i class="bi bi-geo-alt-fill"></i>Amerika</div>
-                        </div>
-                    </li>
-                    <li class="popular-card">
-                        <img src="img/singapura2.jpg" alt="">
-                        <div class="info">
-                            <div class="rating">
-                                <div class="city">
-                                    <button onclick="togglePopup6()">
-                                        <h1>Singapura</h1>
-                                    </button>
-                                </div>
-                                <div class="rate">
-                                    <i class="bi bi-star-fill"></i>
-                                    4.3</div>
-                            </div>
-                            <div class="location">
-                                <i class="bi bi-geo-alt-fill"></i>Singapura</div>
-                        </div>
-                    </li>
-                </ul>
-
-                <!-- destination 1 -->
-                <div class="popup" id="popup-destination1">
-                    <div class="overlay"></div>
-                    <div class="content">
-                        <div class="close-btn" onclick="togglePopup()">&times;</div>
-                        <div class="popup-destinasi">
-                            <div class="destinasi-hotel">
-                                <div class="gambar">
-                                    <img src="img/bali.jpg" alt="">
-                                </div>
-                                <div class="penjelasan">
-                                    <h2>Bali, Indonesia
-                                    </h2>
-                                    <p>
-                                        Bali adalah sebuah provinsi di Indonesia yang terletak di Kepulauan Nusa
-                                        Tenggara. Pulau ini terkenal dengan keindahan alamnya yang luar biasa, seperti
-                                        pantai berpasir putih dan gunung berapi yang menjulang tinggi.
-                                    </p>
-                                </div>
-                            </div>
-                            <%- include('layouts/popup.ejs') %>
-
-                                <!-- destination 2 -->
-                                <div class="popup" id="popup-destination2">
-                                    <div class="overlay"></div>
-                                    <div class="content">
-                                        <div class="close-btn" onclick="togglePopup2()">&times;</div>
-                                        <div class="popup-destinasi">
-                                            <div class="destinasi-hotel">
-                                                <div class="gambar">
-                                                    <img src="img/london,england.jpg" alt="">
+                            <div class="submenus-wrap" id="subMenu">
+                                <div class="sub-menus">
+                                    <div class="user-info">
+                                        <img src="img/logonbg.png">
+                                            <h3>Hello,
+                                                <%= user.username %></h3>
+                                        </div>
+                                        <hr>
+                                            <a href="/setting" class="sub-menu-link">
+                                                <img src="img/img_profile/profile.png" alt="">
+                                                    <p>Edit Profile</p>
+                                                    <span>
+                                                        <i class="bi bi-chevron-right"></i>
+                                                    </span>
+                                                </a>
+                                                <a href="/#footer" class="sub-menu-link">
+                                                    <img src="img/img_profile/help.png" alt="">
+                                                        <p>Help & Support</p>
+                                                        <span>
+                                                            <i class="bi bi-chevron-right"></i>
+                                                        </span>
+                                                    </a>
+                                                    <a href="/logout" class="sub-menu-link">
+                                                        <img src="img/img_profile/logout.png" alt="">
+                                                            <p>Logout</p>
+                                                            <span>
+                                                                <i class="bi bi-chevron-right"></i>
+                                                            </span>
+                                                        </a>
+                                                    </div>
                                                 </div>
-                                                <div class="penjelasan">
-                                                    <h2>London, England</h2>
-                                                    <p>
-                                                        London merupakan kota yang paling besar di Inggris Raya. Salah satu landmark
-                                                        yang terkenal di kota ini adalah BIG BEN yang merupakan objek wisata yang berada
-                                                        di sebelah utara Istana Westminster
-                                                    </p>
+                                            </nav>
+                                            <div class="penjelasan">
+                                                <div class="travel-judul">
+                                                    <h1>Explore Beautiful World</h1>
+                                                    <button>Selengkapnya</button>
                                                 </div>
                                             </div>
-
-                                            <%- include('layouts/popup.ejs') %>
-
-                                                <!-- destination 3 -->
-                                                <div class="popup" id="popup-destination3">
-                                                    <div class="overlay"></div>
-                                                    <div class="content">
-                                                        <div class="close-btn" onclick="togglePopup3()">&times;</div>
-                                                        <div class="popup-destinasi">
-                                                            <div class="destinasi-hotel">
-                                                                <div class="gambar">
-                                                                    <img src="img/paris.jpg" alt="">
+                                        </div>
+                                        <div class="popular">
+                                            <div class="judul-popular">
+                                                <h1>Popular Place</h1>
+                                            </div>
+                                            <ul class="popular-item">
+                                                <li class="popular-card">
+                                                    <img src="img/bali.jpg" alt="">
+                                                        <div class="info">
+                                                            <div class="rating">
+                                                                <div class="city">
+                                                                    <a href=""></a>
+                                                                    <button onclick="togglePopup()">
+                                                                        <h1>Bali</h1>
+                                                                    </button>
                                                                 </div>
-                                                                <div class="penjelasan">
-                                                                    <h2>Paris, Perancis</h2>
-                                                                    <p>
-                                                                        Paris adalah ibu kota Perancis dan salah satu kota paling terkenal di dunia.
-                                                                        Terletak di bagian utara Perancis, kota ini dikenal karena keindahan
-                                                                        arsitekturnya, seni, budaya, dan warisan sejarahnya yang kaya. Paris dijuluki
-                                                                        "Kota Cahaya" (Ville Lumière) karena peran pentingnya dalam Pencerahan pada abad
-                                                                        ke-18.
-                                                                    </p>
-                                                                </div>
+                                                                <div class="rate">
+                                                                    <i class="bi bi-star-fill"></i>
+                                                                    4.3</div>
                                                             </div>
-
-                                                            <%- include('layouts/popup.ejs') %>
-
-                                                                <!-- destination 4 -->
-                                                                <div class="popup" id="popup-destination4">
-                                                                    <div class="overlay"></div>
-                                                                    <div class="content">
-                                                                        <div class="close-btn" onclick="togglePopup4()">&times;</div>
-                                                                        <div class="popup-destinasi">
-                                                                            <div class="destinasi-hotel">
-                                                                                <div class="gambar">
-                                                                                    <img src="img/tokyo,japan.jpg" alt="">
-                                                                                </div>
-                                                                                <div class="penjelasan">
-                                                                                    <h2>Tokyo, Japan</h2>
-                                                                                    <p>
-                                                                                        Tokyo adalah kota yang penuh dengan kontras, di mana modernitas dan tradisi
-                                                                                        berpadu dengan sempurna. Kota ini menjadi tujuan wisata populer bagi wisatawan
-                                                                                        dari seluruh dunia yang ingin merasakan budaya Jepang yang unik.
-                                                                                    </p>
-                                                                                </div>
+                                                            <div class="location">
+                                                                <i class="bi bi-geo-alt-fill"></i>Indonesia</div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="popular-card">
+                                                        <img src="img/london.jpg" alt="">
+                                                            <div class="info">
+                                                                <div class="rating">
+                                                                    <div class="city">
+                                                                        <button onclick="togglePopup2()">
+                                                                            <h1>London</h1>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="rate">
+                                                                        <i class="bi bi-star-fill"></i>
+                                                                        4.3</div>
+                                                                </div>
+                                                                <div class="location">
+                                                                    <i class="bi bi-geo-alt-fill"></i>Inggris</div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="popular-card">
+                                                            <img src="img/paris.jpg" alt="">
+                                                                <div class="info">
+                                                                    <div class="rating">
+                                                                        <div class="city">
+                                                                            <button onclick="togglePopup3()">
+                                                                                <h1>Perancis</h1>
+                                                                            </button>
+                                                                        </div>
+                                                                        <div class="rate">
+                                                                            <i class="bi bi-star-fill"></i>
+                                                                            4.3</div>
+                                                                    </div>
+                                                                    <div class="location">
+                                                                        <i class="bi bi-geo-alt-fill"></i>Perancis</div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="popular-card">
+                                                                <img src="img/tokyo,japan.jpg" alt="">
+                                                                    <div class="info">
+                                                                        <div class="rating">
+                                                                            <div class="city">
+                                                                                <button onclick="togglePopup4()">
+                                                                                    <h1>Tokyo</h1>
+                                                                                </button>
                                                                             </div>
-                                                                            <%- include('layouts/popup.ejs') %>
+                                                                            <div class="rate">
+                                                                                <i class="bi bi-star-fill"></i>
+                                                                                4.3</div>
+                                                                        </div>
+                                                                        <div class="location">
+                                                                            <i class="bi bi-geo-alt-fill"></i>Japan</div>
+                                                                    </div>
+                                                                </li>
+                                                                <li class="popular-card">
+                                                                    <img src="img/newyorkgelap.jpg" alt="">
+                                                                        <div class="info">
+                                                                            <div class="rating">
+                                                                                <div class="city">
+                                                                                    <button onclick="togglePopup5()">
+                                                                                        <h1>New York</h1>
+                                                                                    </button>
+                                                                                </div>
+                                                                                <div class="rate">
+                                                                                    <i class="bi bi-star-fill"></i>
+                                                                                    4.3</div>
+                                                                            </div>
+                                                                            <div class="location">
+                                                                                <i class="bi bi-geo-alt-fill"></i>Amerika</div>
+                                                                        </div>
+                                                                    </li>
+                                                                    <li class="popular-card">
+                                                                        <img src="img/singapura2.jpg" alt="">
+                                                                            <div class="info">
+                                                                                <div class="rating">
+                                                                                    <div class="city">
+                                                                                        <button onclick="togglePopup6()">
+                                                                                            <h1>Singapura</h1>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                    <div class="rate">
+                                                                                        <i class="bi bi-star-fill"></i>
+                                                                                        4.3</div>
+                                                                                </div>
+                                                                                <div class="location">
+                                                                                    <i class="bi bi-geo-alt-fill"></i>Singapura</div>
+                                                                            </div>
+                                                                        </li>
+                                                                    </ul>
 
-                                                                                <!-- destination 5 -->
-                                                                                <div class="popup" id="popup-destination5">
-                                                                                    <div class="overlay"></div>
-                                                                                    <div class="content">
-                                                                                        <div class="close-btn" onclick="togglePopup5()">&times;</div>
-                                                                                        <div class="popup-destinasi">
-                                                                                            <div class="destinasi-hotel">
-                                                                                                <div class="gambar">
-                                                                                                    <img src="img/newyorkgelap.jpg" alt="">
-                                                                                                </div>
-                                                                                                <div class="penjelasan">
-                                                                                                    <h2>New York, United States</h2>
-                                                                                                    <p>
-                                                                                                        New York adalah kota yang dijuluki "The City That Never Sleeps". Diamna setiap
-                                                                                                        kota di huni dengan gedung-gedung yang menjulang tinggi. New York juga memiliki
-                                                                                                        landmark yang sangat terkenal yaitu Patung Liberty.
-                                                                                                    </p>
-                                                                                                </div>
-                                                                                            </div>
+                                                                    <!-- destination 1 -->
+                                                                    <div class="popup" id="popup-destination1">
+                                                                        <div class="overlay"></div>
+                                                                        <div class="content">
+                                                                            <div class="close-btn" onclick="togglePopup()">&times;</div>
+                                                                            <div class="popup-destinasi">
+                                                                                <div class="destinasi-hotel">
+                                                                                    <div class="gambar">
+                                                                                        <img src="img/bali.jpg" alt=""></div>
+                                                                                        <div class="penjelasan">
+                                                                                            <h2>Bali, Indonesia
+                                                                                            </h2>
+                                                                                            <p>
+                                                                                                Bali adalah sebuah provinsi di Indonesia yang terletak di Kepulauan Nusa
+                                                                                                Tenggara. Pulau ini terkenal dengan keindahan alamnya yang luar biasa, seperti
+                                                                                                pantai berpasir putih dan gunung berapi yang menjulang tinggi.
+                                                                                            </p>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <%- include('layouts/popup.ejs') %>
 
-                                                                                            <%- include('layouts/popup.ejs') %>
-
-                                                                                                <!-- destination 6 -->
-                                                                                                <div class="popup" id="popup-destination6">
-                                                                                                    <div class="overlay"></div>
-                                                                                                    <div class="content">
-                                                                                                        <div class="close-btn" onclick="togglePopup6()">&times;</div>
-                                                                                                        <div class="popup-destinasi">
-                                                                                                            <div class="destinasi-hotel">
-                                                                                                                <div class="gambar">
-                                                                                                                    <img src="img/singapura.jpg" alt="">
-                                                                                                                </div>
-                                                                                                                <div class="penjelasan">
-                                                                                                                    <h2>Singapure, Singapure</h2>
-                                                                                                                    <p>
-                                                                                                                        Singapura merupakan negara yang modern dan maju, dengan infrastruktur yang baik
-                                                                                                                        dan standar hidup yang tinggi. Singapura menjadi objek wisata yang menarik
-                                                                                                                        karena merupakan negara terbersih yang berada di Asia Tenggara.
-                                                                                                                    </p>
-                                                                                                                </div>
+                                                                                        <!-- destination 2 -->
+                                                                                        <div class="popup" id="popup-destination2">
+                                                                                            <div class="overlay"></div>
+                                                                                            <div class="content">
+                                                                                                <div class="close-btn" onclick="togglePopup2()">&times;</div>
+                                                                                                <div class="popup-destinasi">
+                                                                                                    <div class="destinasi-hotel">
+                                                                                                        <div class="gambar">
+                                                                                                            <img src="img/london,england.jpg" alt=""></div>
+                                                                                                            <div class="penjelasan">
+                                                                                                                <h2>London, England</h2>
+                                                                                                                <p>
+                                                                                                                    London merupakan kota yang paling besar di Inggris Raya. Salah satu landmark
+                                                                                                                    yang terkenal di kota ini adalah BIG BEN yang merupakan objek wisata yang berada
+                                                                                                                    di sebelah utara Istana Westminster
+                                                                                                                </p>
                                                                                                             </div>
-                                                                                                            <%- include('layouts/popup.ejs') %>
+                                                                                                        </div>
 
-                                                                                                                <div class="explore">
-                                                                                                                    <div class="explore-img">
-                                                                                                                        <img src="img/travel-removebg-preview.png" alt="">
-                                                                                                                    </div>
-                                                                                                                    <div class="explore-penjelasan">
-                                                                                                                        <div class="explore-judul">
-                                                                                                                            <h1>Explore all corners of the world with us</h1>
-                                                                                                                        </div>
-                                                                                                                        <p>Travel is fatal to prejudice, and narrow mindedness, And many of our people
-                                                                                                                            need it sorely on these accounts. And many of our people need it sorely</p>
-                                                                                                                        <div class="fasilitas">
-                                                                                                                            <p>
-                                                                                                                                <i class='bx bx-wifi'></i>
-                                                                                                                                Wifi</p>
-                                                                                                                            <p>
-                                                                                                                                <i class='bx bxs-bowl-hot'></i>
-                                                                                                                                Food</p>
-                                                                                                                            <p>
-                                                                                                                                <i class='bx bxs-hotel'></i>
-                                                                                                                                Hotel</p>
-                                                                                                                            <p>
-                                                                                                                                <i class='bx bxs-plane'></i>
-                                                                                                                                Plane</p>
-                                                                                                                        </div>
-                                                                                                                    </div>
-                                                                                                                </div>
-                                                                                                            </div>
-                                                                                                            <div id="gallery"></div>
-                                                                                                            <div class="gallery">
-                                                                                                                <div class="gallery-judul">
-                                                                                                                    Our Gallery
-                                                                                                                </div>
+                                                                                                        <%- include('layouts/popup.ejs') %>
+
+                                                                                                            <!-- destination 3 -->
+                                                                                                            <div class="popup" id="popup-destination3">
+                                                                                                                <div class="overlay"></div>
                                                                                                                 <div class="content">
-                                                                                                                    <div class="gambar satu">
-                                                                                                                        <div class="title-box">
-                                                                                                                            <div class="title">Gambar 1</div>
-                                                                                                                        </div>
-                                                                                                                    </div>
-                                                                                                                    <div class="gambar dua">
-                                                                                                                        <div class="title-box">
-                                                                                                                            <div class="title">Gambar 2</div>
-                                                                                                                        </div>
-                                                                                                                    </div>
-                                                                                                                    <div class="gambar tiga">
-                                                                                                                        <div class="title-box">
-                                                                                                                            <div class="title">Gambar 3</div>
-                                                                                                                        </div>
-                                                                                                                    </div>
-                                                                                                                    <div class="gambar empat">
-                                                                                                                        <div class="title-box">
-                                                                                                                            <div class="title">Gambar 4</div>
-                                                                                                                        </div>
-                                                                                                                    </div>
-                                                                                                                    <div class="gambar lima">
-                                                                                                                        <div class="title-box">
-                                                                                                                            <div class="title">Gambar 5</div>
-                                                                                                                        </div>
-                                                                                                                    </div>
-                                                                                                                    <div class="gambar enam">
-                                                                                                                        <div class="title-box">
-                                                                                                                            <div class="title">Gambar 6</div>
-                                                                                                                        </div>
-                                                                                                                    </div>
-                                                                                                                </div>
-                                                                                                            </div>
+                                                                                                                    <div class="close-btn" onclick="togglePopup3()">&times;</div>
+                                                                                                                    <div class="popup-destinasi">
+                                                                                                                        <div class="destinasi-hotel">
+                                                                                                                            <div class="gambar">
+                                                                                                                                <img src="img/paris.jpg" alt=""></div>
+                                                                                                                                <div class="penjelasan">
+                                                                                                                                    <h2>Paris, Perancis</h2>
+                                                                                                                                    <p>
+                                                                                                                                        Paris adalah ibu kota Perancis dan salah satu kota paling terkenal di dunia.
+                                                                                                                                        Terletak di bagian utara Perancis, kota ini dikenal karena keindahan
+                                                                                                                                        arsitekturnya, seni, budaya, dan warisan sejarahnya yang kaya. Paris dijuluki
+                                                                                                                                        "Kota Cahaya" (Ville Lumière) karena peran pentingnya dalam Pencerahan pada abad
+                                                                                                                                        ke-18.
+                                                                                                                                    </p>
+                                                                                                                                </div>
+                                                                                                                            </div>
 
-                                                                                                            <div id="about"></div>
-                                                                                                            <div class="faq">
-                                                                                                                <div class="faq-penjelasan">
-                                                                                                                    <h1>FAQ</h1>
-                                                                                                                    <p>Fitur FAQ kami memungkinkan Anda untuk dengan mudah menemukan jawaban atas
-                                                                                                                        pertanyaan-pertanyaan umum tentang berbagai topik terkait perjalanan. Anda hanya
-                                                                                                                        perlu memasukkan kata kunci seperti destinasi, cuaca, festival, dan lainnya
-                                                                                                                        untuk menemukan informasi yang Anda butuhkan dengan cepat. Dengan fitur ini,
-                                                                                                                        Anda dapat menghemat waktu dan mendapatkan jawaban yang relevan dengan mudah.</p>
-                                                                                                                </div>
+                                                                                                                            <%- include('layouts/popup.ejs') %>
 
-                                                                                                                <div class="input">
-                                                                                                                    <div ng-app="pertanyaan" ng-controller="controller" class="input2">
+                                                                                                                                <!-- destination 4 -->
+                                                                                                                                <div class="popup" id="popup-destination4">
+                                                                                                                                    <div class="overlay"></div>
+                                                                                                                                    <div class="content">
+                                                                                                                                        <div class="close-btn" onclick="togglePopup4()">&times;</div>
+                                                                                                                                        <div class="popup-destinasi">
+                                                                                                                                            <div class="destinasi-hotel">
+                                                                                                                                                <div class="gambar">
+                                                                                                                                                    <img src="img/tokyo,japan.jpg" alt=""></div>
+                                                                                                                                                    <div class="penjelasan">
+                                                                                                                                                        <h2>Tokyo, Japan</h2>
+                                                                                                                                                        <p>
+                                                                                                                                                            Tokyo adalah kota yang penuh dengan kontras, di mana modernitas dan tradisi
+                                                                                                                                                            berpadu dengan sempurna. Kota ini menjadi tujuan wisata populer bagi wisatawan
+                                                                                                                                                            dari seluruh dunia yang ingin merasakan budaya Jepang yang unik.
+                                                                                                                                                        </p>
+                                                                                                                                                    </div>
+                                                                                                                                                </div>
+                                                                                                                                                <%- include('layouts/popup.ejs') %>
 
-                                                                                                                        <div class="search-box">
-                                                                                                                            <input type="text" ng-model="searchName" placeholder="Masukan Pertanyaan">
-                                                                                                                            <button ng-click="search()">
-                                                                                                                                <i class='bx bxs-send'></i>
-                                                                                                                            </button>
-                                                                                                                        </div>
+                                                                                                                                                    <!-- destination 5 -->
+                                                                                                                                                    <div class="popup" id="popup-destination5">
+                                                                                                                                                        <div class="overlay"></div>
+                                                                                                                                                        <div class="content">
+                                                                                                                                                            <div class="close-btn" onclick="togglePopup5()">&times;</div>
+                                                                                                                                                            <div class="popup-destinasi">
+                                                                                                                                                                <div class="destinasi-hotel">
+                                                                                                                                                                    <div class="gambar">
+                                                                                                                                                                        <img src="img/newyorkgelap.jpg" alt=""></div>
+                                                                                                                                                                        <div class="penjelasan">
+                                                                                                                                                                            <h2>New York, United States</h2>
+                                                                                                                                                                            <p>
+                                                                                                                                                                                New York adalah kota yang dijuluki "The City That Never Sleeps". Diamna setiap
+                                                                                                                                                                                kota di huni dengan gedung-gedung yang menjulang tinggi. New York juga memiliki
+                                                                                                                                                                                landmark yang sangat terkenal yaitu Patung Liberty.
+                                                                                                                                                                            </p>
+                                                                                                                                                                        </div>
+                                                                                                                                                                    </div>
 
-                                                                                                                        <ul>
-                                                                                                                            <li ng-repeat="pertanyaan in hasil">
-                                                                                                                                <p>
-                                                                                                                                    <span class="warna">Question :
-                                                                                                                                    </span>
-                                                                                                                                    {{ pertanyaan.question}}
-                                                                                                                                </p>
-                                                                                                                                <p>
-                                                                                                                                    <span class="warna">Answer :</span>
-                                                                                                                                    <br>
-                                                                                                                                    {{ pertanyaan.answer }}</p>
-                                                                                                                                <br>
-                                                                                                                            </li>
-                                                                                                                            <li ng-if="showNoResultsMessage" style="color: red;">Tidak ada hasil pencarian</li>
-                                                                                                                        </ul>
-                                                                                                                    </div>
-                                                                                                                </div>
-                                                                                                            </div>
-                                                                                                            <!-- footer -->
-                                                                                                            <div id="footer"></div>
-                                                                                                            <%- include('layouts/footer.ejs') %>
-                                                                                                                <script>
-                                                                                                                    var app = angular.module('pertanyaan', []);
-                                                                                                                    app.controller('controller', function ($scope) {
-                                                                                                                        $scope.trains = [
-                                                                                                                            {
-                                                                                                                                question: 'Apa saja destinasi yang disediakan?',
-                                                                                                                                answer: 'Untuk destinasi yang disediakan dapat dilihat di bagian destination di homepag' +
-                                                                                                                                        'e'
-                                                                                                                            }, {
-                                                                                                                                question: 'Apakah ada restoran atau makanan khas yang harus saya coba di Tokyo?',
-                                                                                                                                answer: 'Salah satu restoran yang wajib di coba di Tokyo adalah Narisawa, sebuah restor' +
-                                                                                                                                        'an populer milik koki terkenal Yoshihiro Narisawa. Menu disajikan dengan gaya ' +
-                                                                                                                                        'omakase (yang berarti “sesuka hati Anda”) sehingga membuat anda mendapatkan pe' +
-                                                                                                                                        'ngalaman khas Jepang.'
-                                                                                                                            }, {
-                                                                                                                                question: 'Bagaimana kondisi cuaca di destinasi London saat ini atau dalam beberapa hari ' +
-                                                                                                                                        'ke depan?',
-                                                                                                                                answer: 'Menurut update cuaca di Website google weather untuk Kondisi cuaca saat ini da' +
-                                                                                                                                        'n prakiraan untuk beberapa hari mendatang di London adalah cerah.'
-                                                                                                                            }, {
-                                                                                                                                question: 'Bagaimana dengan keamanan dan keselamatan di destinasi ini, apakah ada hal-hal' +
-                                                                                                                                        ' yang perlu diperhatikan?',
-                                                                                                                                answer: 'Beberapa hal penting yang harus diperhatikan pada saat traveling diantaranya y' +
-                                                                                                                                        'aitu pahami peraturan dan budaya lokal disana, selalu awasi barang-barang Anda' +
-                                                                                                                                        ', terutama di tempat-tempat ramai, simpan barang berharga seperti paspor, uang' +
-                                                                                                                                        ', dan kartu kredit di tempat yang aman dan lain sebagainya.'
-                                                                                                                            }, {
-                                                                                                                                question: 'Apakah ada saran transportasi lokal yang efisien untuk menjelajahi destinasi i' +
-                                                                                                                                        'ni?',
-                                                                                                                                answer: 'Prancis'
-                                                                                                                            }, {
-                                                                                                                                question: 'Bagaimana dengan kebijakan pembatalan atau pengembalian uang untuk reservasi a' +
-                                                                                                                                        'komodasi atau tur?',
-                                                                                                                                answer: 'Pada saat ini, kami tidak menyediakan layanan pembatalan atau pengembalian uan' +
-                                                                                                                                        'g untuk reservasi akomodasi atau tur. Kami mohon maaf atas ketidaknyamanannya ' +
-                                                                                                                                        'dan kami senantiasa berusaha memberikan pengalaman yang memuaskan kepada pelan' +
-                                                                                                                                        'ggan kami.'
-                                                                                                                            }, {
-                                                                                                                                question: 'Apakah bulan ini ada festival atau acara khusus yang akan berlangsung di Madri' +
-                                                                                                                                        'd, Spanyol',
-                                                                                                                                answer: 'Di bulan ini, Madrid memiliki beberapa festival dan acara yang menarik. Salah ' +
-                                                                                                                                        'satunya adalah Madrid Carnival biasanya diadakan pada akhir Februari atau awal' +
-                                                                                                                                        ' Maret. Untuk informasi lebih lanjut tentang acara-acara yang berlangsung sela' +
-                                                                                                                                        'ma bulan ini, disarankan untuk memeriksa situs web resmi pariwisata Madrid ata' +
-                                                                                                                                        'u kalender acara lokal.'
-                                                                                                                            }
-                                                                                                                        ];
+                                                                                                                                                                    <%- include('layouts/popup.ejs') %>
 
-                                                                                                                        // Initialize showing all FAQs
-                                                                                                                        $scope.hasil = $scope.trains;
-                                                                                                                        $scope.showNoResultsMessage = false;
+                                                                                                                                                                        <!-- destination 6 -->
+                                                                                                                                                                        <div class="popup" id="popup-destination6">
+                                                                                                                                                                            <div class="overlay"></div>
+                                                                                                                                                                            <div class="content">
+                                                                                                                                                                                <div class="close-btn" onclick="togglePopup6()">&times;</div>
+                                                                                                                                                                                <div class="popup-destinasi">
+                                                                                                                                                                                    <div class="destinasi-hotel">
+                                                                                                                                                                                        <div class="gambar">
+                                                                                                                                                                                            <img src="img/singapura.jpg" alt=""></div>
+                                                                                                                                                                                            <div class="penjelasan">
+                                                                                                                                                                                                <h2>Singapure, Singapure</h2>
+                                                                                                                                                                                                <p>
+                                                                                                                                                                                                    Singapura merupakan negara yang modern dan maju, dengan infrastruktur yang baik
+                                                                                                                                                                                                    dan standar hidup yang tinggi. Singapura menjadi objek wisata yang menarik
+                                                                                                                                                                                                    karena merupakan negara terbersih yang berada di Asia Tenggara.
+                                                                                                                                                                                                </p>
+                                                                                                                                                                                            </div>
+                                                                                                                                                                                        </div>
+                                                                                                                                                                                        <%- include('layouts/popup.ejs') %>
 
-                                                                                                                        $scope.search = function () {
-                                                                                                                            var searchTerms = $scope
-                                                                                                                                .searchName
-                                                                                                                                .toLowerCase()
-                                                                                                                                .split(' ');
+                                                                                                                                                                                            <div class="explore">
+                                                                                                                                                                                                <div class="explore-img">
+                                                                                                                                                                                                    <img src="img/travel-removebg-preview.png" alt=""></div>
+                                                                                                                                                                                                    <div class="explore-penjelasan">
+                                                                                                                                                                                                        <div class="explore-judul">
+                                                                                                                                                                                                            <h1>Explore all corners of the world with us</h1>
+                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                        <p>Travel is fatal to prejudice, and narrow mindedness, And many of our people
+                                                                                                                                                                                                            need it sorely on these accounts. And many of our people need it sorely</p>
+                                                                                                                                                                                                        <div class="fasilitas">
+                                                                                                                                                                                                            <p>
+                                                                                                                                                                                                                <i class='bx bx-wifi'></i>
+                                                                                                                                                                                                                Wifi</p>
+                                                                                                                                                                                                            <p>
+                                                                                                                                                                                                                <i class='bx bxs-bowl-hot'></i>
+                                                                                                                                                                                                                Food</p>
+                                                                                                                                                                                                            <p>
+                                                                                                                                                                                                                <i class='bx bxs-hotel'></i>
+                                                                                                                                                                                                                Hotel</p>
+                                                                                                                                                                                                            <p>
+                                                                                                                                                                                                                <i class='bx bxs-plane'></i>
+                                                                                                                                                                                                                Plane</p>
+                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                </div>
+                                                                                                                                                                                            </div>
+                                                                                                                                                                                            <div id="gallery"></div>
+                                                                                                                                                                                            <div class="gallery">
+                                                                                                                                                                                                <div class="gallery-judul">
+                                                                                                                                                                                                    Our Gallery
+                                                                                                                                                                                                </div>
+                                                                                                                                                                                                <div class="content">
+                                                                                                                                                                                                    <div class="gambar satu">
+                                                                                                                                                                                                        <div class="title-box">
+                                                                                                                                                                                                            <div class="title">Gambar 1</div>
+                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                    <div class="gambar dua">
+                                                                                                                                                                                                        <div class="title-box">
+                                                                                                                                                                                                            <div class="title">Gambar 2</div>
+                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                    <div class="gambar tiga">
+                                                                                                                                                                                                        <div class="title-box">
+                                                                                                                                                                                                            <div class="title">Gambar 3</div>
+                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                    <div class="gambar empat">
+                                                                                                                                                                                                        <div class="title-box">
+                                                                                                                                                                                                            <div class="title">Gambar 4</div>
+                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                    <div class="gambar lima">
+                                                                                                                                                                                                        <div class="title-box">
+                                                                                                                                                                                                            <div class="title">Gambar 5</div>
+                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                    <div class="gambar enam">
+                                                                                                                                                                                                        <div class="title-box">
+                                                                                                                                                                                                            <div class="title">Gambar 6</div>
+                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                </div>
+                                                                                                                                                                                            </div>
+                                                                                                                                                                                            <div id="about"></div>
+                                                                                                                                                                                            <div class="faq">
+                                                                                                                                                                                                <div class="faq-penjelasan">
+                                                                                                                                                                                                    <h1>FAQ</h1>
+                                                                                                                                                                                                    <p>Fitur FAQ kami memungkinkan Anda untuk dengan mudah menemukan jawaban atas
+                                                                                                                                                                                                        pertanyaan-pertanyaan umum tentang berbagai topik terkait perjalanan. Anda hanya
+                                                                                                                                                                                                        perlu memasukkan kata kunci seperti destinasi, cuaca, festival, dan lainnya
+                                                                                                                                                                                                        untuk menemukan informasi yang Anda butuhkan dengan cepat. Dengan fitur ini,
+                                                                                                                                                                                                        Anda dapat menghemat waktu dan mendapatkan jawaban yang relevan dengan mudah.</p>
+                                                                                                                                                                                                </div>
 
-                                                                                                                            var isWhitespaceSearch = searchTerms.every(function (term) {
-                                                                                                                                return term.trim() === '';
-                                                                                                                            });
+                                                                                                                                                                                                <div class="input">
+                                                                                                                                                                                                    <div ng-app="pertanyaan" ng-controller="controller" class="input2">
 
-                                                                                                                            if (isWhitespaceSearch) {
-                                                                                                                                $scope.hasil = $scope.trains;
-                                                                                                                            } else {
-                                                                                                                                $scope.hasil = $scope
-                                                                                                                                    .trains
-                                                                                                                                    .filter(function (pertanyaan) {
-                                                                                                                                        var namaLowerCase = pertanyaan
-                                                                                                                                            .question
-                                                                                                                                            .toLowerCase();
-                                                                                                                                        return searchTerms.some(function (term) {
-                                                                                                                                            return namaLowerCase.includes(term);
-                                                                                                                                        });
-                                                                                                                                    });
-                                                                                                                            }
+                                                                                                                                                                                                        <div class="search-box">
+                                                                                                                                                                                                            <input type="text" ng-model="searchName" placeholder="Masukan Pertanyaan">
+                                                                                                                                                                                                                <button ng-click="search()">
+                                                                                                                                                                                                                    <i class='bx bxs-send'></i>
+                                                                                                                                                                                                                </button>
+                                                                                                                                                                                                            </div>
 
-                                                                                                                            $scope.showNoResultsMessage = $scope.hasil.length === 0 && !isWhitespaceSearch;
-                                                                                                                        };
-                                                                                                                    });
-                                                                                                                </script>
-                                                                                                                <script>
-                                                                                                                    document.addEventListener('scroll', () => {
-                                                                                                                        const nav = document.querySelector('nav');
+                                                                                                                                                                                                            <ul>
+                                                                                                                                                                                                                <li ng-repeat="pertanyaan in hasil">
+                                                                                                                                                                                                                    <p>
+                                                                                                                                                                                                                        <span class="warna">Question :
+                                                                                                                                                                                                                        </span>
+                                                                                                                                                                                                                        {{ pertanyaan.question}}
+                                                                                                                                                                                                                    </p>
+                                                                                                                                                                                                                    <p>
+                                                                                                                                                                                                                        <span class="warna">Answer :</span>
+                                                                                                                                                                                                                        <br>
+                                                                                                                                                                                                                            {{ pertanyaan.answer }}</p>
+                                                                                                                                                                                                                        <br></li>
+                                                                                                                                                                                                                        <li ng-if="showNoResultsMessage" style="color: red;">Tidak ada hasil pencarian</li>
+                                                                                                                                                                                                                    </ul>
+                                                                                                                                                                                                                </div>
+                                                                                                                                                                                                            </div>
+                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                        <!-- footer -->
+                                                                                                                                                                                                        <div id="footer"></div>
+                                                                                                                                                                                                        <%- include('layouts/footer.ejs') %>
+                                                                                                                                                                                                            <script src="faq.js"></script>
+                                                                                                                                                                                                            <script>
+                                                                                                                                                                                                                document.addEventListener('scroll', () => {
+                                                                                                                                                                                                                    const nav = document.querySelector('nav');
 
-                                                                                                                        if (window.scrollY > 0) {
-                                                                                                                            nav
-                                                                                                                                .classList
-                                                                                                                                .add('scrolled');
-                                                                                                                        } else {
-                                                                                                                            nav
-                                                                                                                                .classList
-                                                                                                                                .remove('scrolled')
-                                                                                                                        }
-                                                                                                                    })
+                                                                                                                                                                                                                    if (window.scrollY > 0) {
+                                                                                                                                                                                                                        nav
+                                                                                                                                                                                                                            .classList
+                                                                                                                                                                                                                            .add('scrolled');
+                                                                                                                                                                                                                    } else {
+                                                                                                                                                                                                                        nav
+                                                                                                                                                                                                                            .classList
+                                                                                                                                                                                                                            .remove('scrolled')
+                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                })
 
-                                                                                                                    let subMenu = document.getElementById("subMenu");
+                                                                                                                                                                                                                let subMenu = document.getElementById("subMenu");
 
-                                                                                                                    function toggleMenu() {
-                                                                                                                        subMenu
-                                                                                                                            .classList
-                                                                                                                            .toggle("open-menu")
-                                                                                                                    }
-                                                                                                                </script>
-                                                                                                                <script src="index.js"></script>
-                                                                                                                <script>
-                                                                                                                    feather.replace();
-                                                                                                                </script>
-                                                                                                            </body>
-                                                                                                        </html>
+                                                                                                                                                                                                                function toggleMenu() {
+                                                                                                                                                                                                                    subMenu
+                                                                                                                                                                                                                        .classList
+                                                                                                                                                                                                                        .toggle("open-menu")
+                                                                                                                                                                                                                }
+                                                                                                                                                                                                            </script>
+                                                                                                                                                                                                            <script src="index.js"></script>
+                                                                                                                                                                                                            <script>
+                                                                                                                                                                                                                feather.replace();
+                                                                                                                                                                                                            </script>
+                                                                                                                                                                                                        </body>

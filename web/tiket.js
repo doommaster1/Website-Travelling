@@ -185,10 +185,13 @@ document.addEventListener('DOMContentLoaded', function () {
             cart = [];
             // Update the HTML representation of the cart
             addCartToHTML();
+            // Update local storage
+            addCartToMemory();
             // Redirect to the payment page
             window.location.href = "/payment";
         }
     });
+
 });
 
 document.addEventListener('DOMContentLoaded', function () {

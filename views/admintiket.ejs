@@ -11,15 +11,13 @@
                         <link rel="icon" type="image/png" href="img/logonbg.png">
                             <link rel="stylesheet" href="nav.css"></head>
                             <body>
-                                <div class="container">
-                                    <!-- nav start -->
-                                    <%- include('layouts/nav.ejs') %>
-                                        <div class="icon-cart">
-                                            <i class="bi bi-cart-fill"></i>
-                                            <span>0</span>
-                                        </div>
-                                    </nav>
-                                </div>
+                                <!-- nav start -->
+                                <%- include('layouts/nav.ejs') %>
+                                    <div class="icon-cart">
+                                        <i class="bi bi-cart-fill"></i>
+                                        <span>0</span>
+                                    </div>
+                                </nav>
                                 <!-- nav end -->
 
                                 <!-- penjelasan -->
@@ -29,7 +27,9 @@
                                         <button>Selengkapnya</button>
                                     </div>
                                 </div>
-
+                                <div class="newtiket">
+                                    <button name="newtiket">Tiket baru</button>
+                                </div>
                                 <!-- Search Bar -->
                                 <div class="search-bar">
                                     <input type="text" id="searchInput" placeholder="Search for tickets...">
@@ -73,9 +73,7 @@
                                     </div>
 
                                     <!-- footer -->
-                                    <div class="container">
-                                        <%- include('layouts/footer.ejs') %>
-                                        </div>
+                                    <%- include('layouts/footer.ejs') %>
 
                                         <script src="tiket.js"></script>
                                         <script>

@@ -172,6 +172,11 @@ body {
     font-size: 40px;
     color: #000;
 }
+.popup-box h2 {
+    margin: 10px auto 20px;
+    font-size: 25px;
+    color: #000;
+}
 
 .popup-box p {
     margin-bottom: 20px;

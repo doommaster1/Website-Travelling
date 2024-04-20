@@ -40,60 +40,54 @@ const isAuthenticated = (req, res, next) => {
 
 // Index route
 app.get('/', isAuthenticated, (req, res) => {
-    res.render('index');
+    const user = req.session.user;
+    res.render('index', {user: user});
 });
-
 // Login route
 app.post('/login', async (req, res) => {
+    const user = req.session.user;
+    //untuk login
     if (req.body.userlogin && req.body.passwordlogin) {
         try {
             const check = await collection.findOne({username: req.body.userlogin})
             if (!check) {
-                res.send('user tidak ditemukan')
+                res.send('User tidak ditemukan')
             }
-
             const cekpassword = await bcrypt.compare(
                 req.body.passwordlogin,
                 check.password
             )
             if (cekpassword) {
-                // Kirim email saat pengguna berhasil login
                 sendEmail(check.email)
                     .then(() => {
-                        // Set session user
                         req.session.user = check;
-                        res.render('index');
+                        res.render('index', {user: check});
                     })
                     .catch((error) => {
                         console.error('Gagal mengirim email: ' + error);
-                        res.render('index'); // Render halaman index meskipun gagal mengirim email
+                        res.render('index', {user: user});
                     });
             } else {
-                res.send('Password Salah!')
+                res.send('Password salah!')
             }
         } catch (error) {
             res.send('Username/Password salah')
         }
     } else {
-        // Code untuk proses registrasi
+        //untuk registrasi
         const data = {
             username: req.body.userregis,
             email: req.body.emailregis,
             password: req.body.passwordregis,
             name: req.body.name
         }
-
         const existuser = await collection.findOne({username: data.username})
         if (existuser) {
-            res.send("username sudah digunakan, tolong ganti username yang lain")
+            res.send("Username sudah digunakan, tolong ganti username yang lain")
         } else {
             const saltround = 10
-            // const hashemail = await bcrypt.hash(data.email, saltround)
             const hashpassword = await bcrypt.hash(data.password, saltround)
-
-            //mengubah data password menjadi enkripsi data.email = hashemail
             data.password = hashpassword
-
             const userdata = await collection.insertMany(data);
             if (userdata) {
                 res.render('login')
@@ -131,10 +125,27 @@ app.get('/login', loginRedirect, (req, res) => {
     res.render('login');
 });
 
-// Tiket route
+// Middleware untuk cek admin
+function isAdmin(req, res, next) {
+    const user = req.session.user;
+    if (user.name === 'admin') {
+        next();
+    } else {
+        res
+            .status(403)
+            .send("Forbidden");
+    }
+}
+
+//Tiket route
 app.get('/tiket', isAuthenticated, (req, res) => {
-    const user = req.session.user; // Dapatkan objek pengguna dari sesi
-    res.render('tiket', {user: user}); // Lewatkan objek pengguna ke halaman tiket.ejs saat merendernya
+    const user = req.session.user;
+    // Jika pengguna adalah admin, render 'admintiket'
+    if (user.name === 'admin') {
+        res.render('admintiket', {user: user});
+    } else {
+        res.render('tiket', {user: user});
+    }
 });
 
 // Checkout route
@@ -183,10 +194,11 @@ async function sendCheckoutConfirmation(toEmail, purchasedTickets) {
 
 // Payment route
 app.get('/payment', isAuthenticated, (req, res) => {
-    res.render('payment');
+    const user = req.session.user;
+    res.render('payment', {user: user});
 });
 
-// setting
+// setting route
 app.get('/setting', isAuthenticated, (req, res) => {
     const user = req.session.user;
     res.render('setting', {
