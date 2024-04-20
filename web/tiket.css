@@ -99,6 +99,16 @@ body ul li {
     list-style: none;
 }
 
+.container {
+    position: relative;
+    width: 100%;
+    margin: auto;
+    /* max-width: 90vw; */
+    text-align: center;
+    /* padding-top: 10px; */
+    transition: transform 0.5s;
+}
+
 nav .icon-cart {
     position: relative;
 }
@@ -264,11 +274,12 @@ body.showCart .cartTab {
 }
 body.showCart .container {
     transform: translateX(-200px);
+    width: 80%;
 }
 body.showCart .listProduct {
-    transform: translateX(-200px);
+    transform: translateX(20px);
     /* transition: .5s ease-in-out; */
-    width: 80%;
+    width: 75%;
 }
 .cartTab h1 {
     padding: 20px;
