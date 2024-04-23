@@ -19,6 +19,14 @@ closeCart.addEventListener('click', () => {
 })
 
 // }
+function togglePopup() {
+    document
+        .getElementById("popup-ticket")
+        .classList
+        .toggle("active");
+    } 
+
+
 
 const addDataToHTML = () => {
     // remove datas default from HTML add new datas
@@ -42,6 +50,7 @@ const addDataToHTML = () => {
     }
 }
 
+// new ticket
 listProductHTML.addEventListener('click', (event) => {
     let positionClick = event.target;
     if (positionClick.classList.contains('addCart')) {

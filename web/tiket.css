@@ -252,6 +252,115 @@ nav.scrolled .icon-cart i {
     z-index: 1;
 }
 
+ /* .newTiket{
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+} */
+
+.addTickets{
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+}
+
+
+.popup .overlay {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+    display: none;
+}
+
+.popup .content{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    background: #fff;
+    width: 60vw;
+    height: 60vh;
+    z-index: 2;
+    text-align: start;
+    padding: 20px;
+    box-sizing: border-box;
+    align-items: center;
+    display: grid;
+    grid-template-columns: .4fr .6fr;
+}
+
+.upload{
+    margin-top: 10px;
+    text-align: left;
+}
+
+.upload input{
+    padding: 5px;
+}
+
+.popup .content .form{
+    display: grid;
+    gap: 7px;
+}
+
+
+.popup .content .form label{
+    font-weight: bolder;
+    margin-bottom: 10px;
+}
+
+
+.popup .content .preview{
+    width: 100%;
+}
+
+.popup .content .preview img{
+    width: 100%;
+    object-fit: cover;
+    height: 100%;
+}
+
+
+.popup .close-btn{
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 30px;
+    height: 30px;
+    background: #222;
+    color: #fff;
+    font-size: 25px;
+    font-weight: 600;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.fasilitas-checkbox h4{
+    font-weight: bolder;
+}
+
+#popup-ticket .fasilitas-checkbox label{
+    font-weight: normal;
+}
+
+.popup.active .overlay{
+    display: block;
+}
+
+.popup.active .content{
+    position: fixed;
+    transition: all 300ms ease-in-out;
+    transform: translate(-50%, -50%) scale(1);
+}
+
 /* cart */
 .cartTab {
     width: 400px;
