@@ -85,14 +85,15 @@ app.post('/login', async (req, res) => {
         if (existuser) {
             res.send("Username sudah digunakan, tolong ganti username yang lain")
         } else {
-            const saltround = 10
-            const hashpassword = await bcrypt.hash(data.password, saltround)
-            data.password = hashpassword
-            const userdata = await collection.insertMany(data);
-            if (userdata) {
-                res.render('login')
-            }
-            console.log(userdata);
+            // const saltround = 10
+            // const hashpassword = await bcrypt.hash(data.password, saltround)
+            // data.password = hashpassword
+            // const userdata = await collection.insertMany(data);
+            // if (userdata) {
+            //     res.render('login')
+            // }
+            // console.log(userdata);
+            return res.redirect('/verification');
         }
     }
 });
@@ -338,6 +339,103 @@ async function sendEmail(toEmail) {
 
     console.log('Email berhasil dikirim: ', info.messageId);
 };
+
+// Nodemailer configuration
+const transporter = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+        user: 'hansnathanael2004@gmail.com',
+        pass: 'xkte kpnw wtym ccnf'
+    }
+  });
+  
+  // Generate random verification code
+  function generateVerificationCode() {
+    return Math.floor(100000 + Math.random() * 900000);
+  }
+  
+  // Send verification email function
+async function sendVerificationEmail(email, verificationCode) {
+    try {
+      await transporter.sendMail({
+        from: 'Website Travel', // Ganti dengan nama pengirim yang Anda inginkan
+        to: email, // Menggunakan parameter email
+        subject: 'Verification Code',
+        text: `Your verification code is: ${verificationCode}`
+      });
+      console.log('Verification email sent successfully');
+    } catch (error) {
+      console.error('Failed to send verification email:', error);
+      throw error;
+    }
+  }
+  
+  
+  // Store verification codes
+  const verificationCodes = {};
+  
+  // POST endpoint for sending verification code
+  app.post('/verification', async (req, res) => {
+    const { email } = req.body;
+    if (!email) {
+      return res.status(400).send('Email is required.');
+    }
+  
+    // Generate verification code
+    const verificationCode = generateVerificationCode();
+    verificationCodes[email] = verificationCode;
+  
+    // Send verification email
+    try {
+      await sendVerificationEmail(email, verificationCode);
+      res.status(200).send('Verification code sent successfully');
+    } catch (error) {
+      console.error('Failed to send verification code:', error);
+      res.status(500).send('Failed to send verification code');
+    }
+  });
+  
+  // Halaman untuk memasukkan kode verifikasi
+  app.get('/verification', (req, res) => {
+    res.render('verification');
+  });
+  
+  // Endpoint untuk verifikasi kode
+  app.post('/verification/verify', async (req, res) => {
+    const { email, verificationCode } = req.body;
+    if (!email || !verificationCode) {
+      return res.status(400).send('Email dan verification code diperlukan.');
+    }
+  
+    // Bandingkan kode verifikasi yang dimasukkan dengan kode verifikasi yang disimpan
+    if (verificationCodes[email] && verificationCodes[email] == verificationCode) {
+      // Simpan data pengguna, contoh menggunakan MongoDB
+      const data = {
+        email: email,
+        password: req.body.password // Anda perlu menambahkan input password di form verification.ejs
+      };
+  
+      // Hash password sebelum disimpan ke database
+      const saltround = 10;
+      const hashpassword = await bcrypt.hash(data.password, saltround);
+      data.password = hashpassword;
+  
+      // Simpan data pengguna ke database Anda, contoh menggunakan MongoDB
+      // Ganti bagian ini sesuai dengan database yang Anda gunakan
+      // const userdata = await collection.insertMany(data);
+  
+      // Menggunakan contoh response untuk menyimpan data pengguna ke database dan merender halaman login
+      // Silakan ganti dengan kode untuk menyimpan data ke database Anda
+      const userdata = { insertedId: 1 }; // Contoh response dari MongoDB, ganti dengan response dari database Anda
+      if (userdata.insertedId) {
+        res.render('login');
+      } else {
+        res.status(500).send('Gagal menyimpan data pengguna.');
+      }
+    } else {
+      return res.status(401).send('Kode verifikasi salah.');
+    }
+  });
 
 //static
 app.use(express.static('Web'))
