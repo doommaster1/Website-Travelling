@@ -24,9 +24,7 @@ function togglePopup() {
         .getElementById("popup-ticket")
         .classList
         .toggle("active");
-    } 
-
-
+}
 
 const addDataToHTML = () => {
     // remove datas default from HTML add new datas
@@ -184,6 +182,26 @@ const initApp = () => {
 initApp();
 
 document.addEventListener('DOMContentLoaded', function () {
+    const checkoutButton = document.querySelector('.checkOut');
+
+    checkoutButton.addEventListener('click', function () {
+        if (cart.length === 0) {
+            alert('Cart kosong. Silakan tambahkan barang ke keranjang sebelum checkout.');
+        } else {
+            // Empty the shopping cart
+            cart = [];
+            // Update the HTML representation of the cart
+            addCartToHTML();
+            // Update local storage
+            addCartToMemory();
+            // Redirect to the payment page
+            window.location.href = "/payment";
+        }
+    });
+
+});
+
+document.addEventListener('DOMContentLoaded', function () {
     const searchInput = document.getElementById('searchInput');
     const searchBtn = document.getElementById('searchBtn');
     const continentSelect = document.getElementById('continent');
@@ -213,7 +231,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Filter berdasarkan benua
         if (selectedContinent !== 'all') {
-            filteredProducts = filteredProducts.filter(product => product.benua === selectedContinent);
+            filteredProducts = filteredProducts.filter(
+                product => product.benua === selectedContinent
+            );
         }
 
         // Urutkan berdasarkan harga
@@ -245,39 +265,4 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-});
-
-document.addEventListener('DOMContentLoaded', function () {
-    const checkoutButton = document.querySelector('.checkOut');
-
-    checkoutButton.addEventListener('click', function () {
-        if (cart.length === 0) {
-            alert('Cart kosong. Silakan tambahkan barang ke keranjang sebelum checkout.');
-        } else {
-            // Empty the shopping cart
-            cart = [];
-            // Update the HTML representation of the cart
-            addCartToHTML();
-            // Update local storage
-            addCartToMemory();
-            // Redirect to the payment page
-            window.location.href = "/payment";
-        }
-    });
-});
-
-
-document.addEventListener('DOMContentLoaded', function () {
-    const checkoutButton = document.querySelector('.checkOut');
-
-    checkoutButton.addEventListener('click', function () {
-        if (cart.length === 0) {
-            alert('Cart kosong. Silakan tambahkan barang ke keranjang sebelum checkout.');
-        } else {
-            cart = [];
-            addCartToHTML();
-            addCartToMemory();
-            window.location.href = "/payment";
-        }
-    });
 });

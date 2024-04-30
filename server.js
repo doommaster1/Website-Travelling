@@ -11,7 +11,8 @@ const collection = require('./config');
 const nodemailer = require('nodemailer');
 const bodyParser = require('body-parser');
 const cors = require("cors");
-const tiketRoutes = require("./routes/tickets");
+const tiketRoutes = require("./Routes/tickets");
+const fs = require('fs');
 
 app.use(cors());
 
@@ -28,7 +29,7 @@ app.use(express.urlencoded({extended: false}));
 
 app.set("view engine", "ejs");
 
-app.use(favicon(path.join(__dirname, 'web/img', 'logonbg.png')));
+app.use(favicon(path.join(__dirname, 'files/img', 'logonbg.png')));
 
 // Middleware to check if user is authenticated
 const isAuthenticated = (req, res, next) => {
@@ -51,7 +52,10 @@ app.post('/login', async (req, res) => {
         try {
             const check = await collection.findOne({username: req.body.userlogin})
             if (!check) {
-                res.send('User tidak ditemukan')
+                res.send(
+                    `<script>alert('User tidak ditemukan'); window.location="/setting";</s' +
+                'cript>`
+                )
             }
             const cekpassword = await bcrypt.compare(
                 req.body.passwordlogin,
@@ -68,10 +72,16 @@ app.post('/login', async (req, res) => {
                         res.render('index', {user: user});
                     });
             } else {
-                res.send('Password salah!')
+                res.send(
+                    `<script>alert('Password salah!'); window.location="/setting";</s' +
+                'cript>`
+                )
             }
         } catch (error) {
-            res.send('Username/Password salah')
+            res.send(
+                `<script>alert('Username/Password salah'); window.location="/setting";</s' +
+            'cript>`
+            )
         }
     } else {
         //untuk registrasi
@@ -81,19 +91,160 @@ app.post('/login', async (req, res) => {
             password: req.body.passwordregis,
             name: req.body.name
         }
+        req.session.userregis = {
+            username: data.username,
+            email: data.email,
+            password: data.password,
+            name: data.name
+        }
+        console.log(data);
         const existuser = await collection.findOne({username: data.username})
         if (existuser) {
-            res.send("Username sudah digunakan, tolong ganti username yang lain")
-        } else {
-            const saltround = 10
-            const hashpassword = await bcrypt.hash(data.password, saltround)
-            data.password = hashpassword
-            const userdata = await collection.insertMany(data);
-            if (userdata) {
-                res.render('login')
-            }
-            console.log(userdata);
+            res.send(
+                `<script>alert("Username sudah digunakan, tolong ganti username yang lain"); window.location="/setting";</s' +
+            'cript>`
+            )
         }
+        // Generate verification code
+        const verificationCode = generateVerificationCode();
+        // Save verification code and user email to session
+        req.session.verification = {
+            email: data.email,
+            code: verificationCode
+        };
+        console.log(verificationCode);
+        try {
+            // Send verification email
+            await sendVerificationEmail(data.email, verificationCode);
+            res.render('verification', {user: null}); // Render verification page
+        } catch (error) {
+            console.error('Failed to send verification email:', error);
+            res.send(
+                `<script>alert("Failed to send verification email. Please try again later."); window.location="/setting";</s' +
+            'cript>`
+            );
+        }
+    }
+});
+
+// Nodemailer configuration
+const transporter = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+        user: 'hansnathanael2004@gmail.com',
+        pass: 'xkte kpnw wtym ccnf'
+    }
+});
+
+// Generate random verification code
+function generateVerificationCode() {
+    return Math.floor(100000 + Math.random() * 900000);
+}
+
+// Send verification email function
+async function sendVerificationEmail(email, verificationCode) {
+    try {
+        await transporter.sendMail({
+            from: '"Website Travel" <hansnathanael2004@gmail.com>', // Ganti dengan nama pengirim yang Anda inginkan
+            to: email, // Menggunakan parameter email
+            subject: 'Verification Code',
+            text: `Your verification code is: ${verificationCode}`
+        });
+        console.log('Verification email sent successfully');
+    } catch (error) {
+        console.error('Failed to send verification email:', error);
+        throw error;
+    }
+    console.log('Berhasil');
+}
+
+// Render verification page
+app.get('/verification', (req, res) => {
+    console.log('Session verification data:', req.session.verification); // Log session data
+    res.render('verification', {user: null});
+});
+
+// Handle verification form submission
+app.post('/verification', async (req, res) => {
+    const {email, code} = req.session.verification;
+    let {verificationCode} = req.body;
+
+    // Trim whitespace from verificationCode
+    verificationCode = verificationCode.trim();
+
+    console.log('Session verification data:', req.session.verification); // Log session data
+    console.log('Form submission data:', req.body); // Log form submission data
+
+    console.log('Kode yang dimasukkan:', verificationCode);
+    console.log('Kode yang disimpan:', code);
+
+    // Ensure both codes are of the same data type
+    if (verificationCode.toString() !== code.toString()) {
+        console.log('Kode verifikasi tidak cocok');
+        return res.render('verification', {
+            user: null,
+            error: 'Incorrect verification code. Please try again.'
+        });
+    }
+
+    try {
+        console.log('Verifikasi berhasil');
+
+        // Periksa apakah req.session.user terdefinisi dan ada
+        if (req.session && req.session.userregis) {
+            // Lakukan operasi verifikasi di sini
+            const data = {
+                username: req.session.userregis.username,
+                email: email,
+                password: req.session.userregis.password,
+                name: req.session.userregis.name
+            }
+
+            const existuser = await collection.findOne({username: data.username})
+            if (existuser) {
+                res.send(
+                    `<script>alert("Username sudah digunakan, tolong ganti username yang lain"); window.location="/setting";</s' +
+                'cript>`
+                )
+            } else {
+                const saltround = 10;
+                const hashpassword = await bcrypt.hash(data.password, saltround);
+                data.password = hashpassword;
+                try {
+                    const userdata = await collection.insertMany(data);
+                    console.log(userdata);
+                    if (userdata) {
+                        return res.redirect('/login');
+                    }
+
+                } catch (error) {
+                    console.error('Gagal menyimpan data pengguna:', error);
+                    return res
+                        .status(500)
+                        .send(
+                            `<script>alert("Gagal menyimpan data pengguna"); window.location="/setting";</s' +
+                        'cript>`
+                        );
+                }
+            }
+
+        } else {
+            // Jika req.session.user tidak terdefinisi atau tidak ada
+            console.error(
+                'Failed to update verification status: req.session.user is not defined'
+            );
+            return res.render('verification', {
+                user: null,
+                error: 'Failed to verify. Please try again later.'
+            });
+        }
+
+    } catch (error) {
+        console.error('Failed to update verification status:', error);
+        return res.render('verification', {
+            user: null,
+            error: 'Failed to verify. Please try again later.'
+        });
     }
 });
 
@@ -133,7 +284,10 @@ function isAdmin(req, res, next) {
     } else {
         res
             .status(403)
-            .send("Forbidden");
+            .send(
+                `<script>alert("Forbidden"); window.location="/setting";</s' +
+            'cript>`
+            );
     }
 }
 
@@ -141,14 +295,12 @@ function isAdmin(req, res, next) {
 app.get('/tiket', isAuthenticated, (req, res) => {
     const user = req.session.user;
     // Jika pengguna adalah admin, render 'admintiket'
-    if (user.name === 'admin') {
+    if (user.username === 'admin') {
         res.render('admintiket', {user: user});
     } else {
         res.render('tiket', {user: user});
     }
 });
-
-const fs = require('fs');
 
 function sendCheckoutConfirmation() {
     // Menggunakan path.join untuk menggabungkan direktori dengan nama file
@@ -249,24 +401,18 @@ async function sendCheckoutConfirmation(userEmail, purchasedTickets) {
 app.post('/checkout', isAuthenticated, async (req, res) => {
     const userEmail = req.body.email;
     const purchasedTickets = req.body.tickets;
+
     // Process checkout, save order to database, etc. Here you can call the function
     // to send confirmation email
     try {
         await sendCheckoutConfirmation(userEmail, purchasedTickets);
         res.send('Checkout berhasil! Email konfirmasi telah dikirim.');
     } catch (error) {
-        res.status(500).send('Gagal melakukan checkout: ' + error);
+        res
+            .status(500)
+            .send('Gagal melakukan checkout: ' + error);
     }
 });
-
-// const pesananUser = [
-//     { id: 1, quantity: 2 }, // Contoh pesanan user: memesan 2 tiket dengan ID 1
-//     { id: 3, quantity: 1 }  // Contoh pesanan user: memesan 1 tiket dengan ID 3
-// ];
-
-// sendCheckoutConfirmation('contoh@email.com', pesananUser)
-//     .then(() => console.log('Email konfirmasi checkout berhasil dikirim'))
-//     .catch(err => console.error('Gagal mengirim email konfirmasi checkout:', err));
 
 // Payment route
 app.get('/payment', isAuthenticated, (req, res) => {
@@ -325,7 +471,10 @@ app.post('/changepass', isAuthenticated, async (req, res) => {
         if (newPassword !== repeatNewPassword) {
             return res
                 .status(400)
-                .send('New password and repeat new password do not match');
+                .send(
+                    '<script>alert("New password and repeat new password do not match"); window.loc' +
+                    'ation="/setting";</script>'
+                );
         }
 
         const user = await collection.findOne({_id: currentUser._id});
@@ -333,7 +482,10 @@ app.post('/changepass', isAuthenticated, async (req, res) => {
         if (!isPasswordCorrect) {
             return res
                 .status(400)
-                .send('Current password is incorrect');
+                .send(
+                    `<script>alert('Current password is incorrect'); window.location="/setting";</s' +
+                'cript>`
+                );
         }
 
         const hashedNewPassword = await bcrypt.hash(newPassword, 10);
@@ -373,7 +525,10 @@ app.post('/delete', isAuthenticated, async (req, res) => {
         if (!isPasswordCorrect) {
             return res
                 .status(400)
-                .send('Password is incorrect. Account deletion failed.');
+                .send(
+                    `<script>alert('Password is incorrect. Account deletion failed.'); window.location="/setting";</s' +
+                'cript>`
+                );
         }
 
         await collection.deleteOne({_id: currentUser._id});
@@ -391,7 +546,10 @@ app.post('/delete', isAuthenticated, async (req, res) => {
         console.error(error);
         res
             .status(500)
-            .send('Internal server error');
+            .send(
+                `<script>alert('Internal server error'); window.location="/setting";</s' +
+            'cript>`
+            );
     }
 });
 
@@ -416,7 +574,7 @@ async function sendEmail(toEmail) {
 };
 
 //static
-app.use(express.static('Web'))
+app.use(express.static('files'))
 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);

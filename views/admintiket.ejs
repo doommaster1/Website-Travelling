@@ -27,169 +27,174 @@
                                         <button>Selengkapnya</button>
                                     </div>
                                 </div>
-                                <!-- <div class="newtiket">
-                                    <button name="newtiket" onclick="toggleMenu()">Tiket baru</button>
-                                </div> -->
+                                <!-- <div class="newtiket"> <button name="newtiket" onclick="toggleMenu()">Tiket
+                                baru</button> </div> -->
                                 <div class="popup" id="popup-ticket">
                                     <div class="overlay"></div>
                                     <div class="content">
                                         <div class="form">
-                                                <div class="lokasi">
-                                                    <label for=”negara”>Negara : <br></label>
-                                                    <input type=”text” id=”negara”><br>
-                                                    <label for=”kota”>Kota : <br></label>
-                                                    <input type=”text” id=”kota”>
-                                                </div>
-                                                <div class="fasilitas-checkbox">
-                                                    <h4>Fasilitas</h4>
-                                                    <input type="checkbox" id="transportasi1" name="vehicle1" value="Pesawat">
-                                                    <label for="vehicle1">Pesawat</label><br>
-                                                    <input type="checkbox" id="transportasi2" name="vehicle2" value="Kereta">
-                                                    <label for="vehicle2">Kereta</label><br>
-                                                    <input type="checkbox" id="transportasi3" name="vehicle3" value="Kapal">
-                                                    <label for="vehicle3">Kapal</label><br>
-                                                    <input type="checkbox" id="transportasi4" name="vehicle4" value="Bus">
-                                                    <label for="vehicle3">Bus</label><br>
-                                                </div>    
-                                                <div class="benua">
-                                                    <label for="continent">Pilih Benua: <br></label>
-                                                    <select id="continent">
-                                                        <option value="all">All</option>
-                                                        <option value="asia">Asia</option>
-                                                        <option value="europe">Europe</option>
-                                                        <option value="australia">Australia</option>
-                                                        <option value="america">America</option>
-                                                        <!-- Add options for other continents if needed -->
-                                                    </select>
-                                                </div>                         
-                                                <div class="harga">
-                                                    <label for="priceOrder">Urutan Harga <br></label> 
-                                                <select id="priceOrder">
-                                                    <option value="all">All</option>
-                                                    <option value="lowToHigh">Low to High</option>
-                                                    <option value="highToLow">High to Low</option>
-                                                </select>
-                                                </div>        
-                                                <div class="upload">
-                                                    <form action="/upload" method="post" enctype="multipart/form-data">
-                                                        <input type="file" name="gambar" id="gambar">
-                                                        <input type="submit" value="Unggah Gambar">
-                                                      </form>         
-                                                </div>
-                                                                
-                                        </div>
-                                        <div class="preview">
-                                            <div class="close-btn"onclick="togglePopup()">&times;</div>
-                                            <img src="img/bali.jpg" alt="">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="addTickets">
-                                    <button onclick="togglePopup()">Add Tickets <i class="bi bi-plus-circle-fill"></i></button>
-                                </div>
-                                
+                                            <div class="lokasi">
+                                                <label for="”negara”">Negara :
+                                                    <br></label>
+                                                    <input type="”text”" id="”negara”">
+                                                        <br>
+                                                            <label for="”kota”">Kota :
+                                                                <br></label>
+                                                                <input type="”text”" id="”kota”"></div>
+                                                                <div class="fasilitas-checkbox">
+                                                                    <h4>Fasilitas</h4>
+                                                                    <input type="checkbox" id="transportasi1" name="vehicle1" value="Pesawat">
+                                                                        <label for="vehicle1">Pesawat</label>
+                                                                        <br>
+                                                                            <input type="checkbox" id="transportasi2" name="vehicle2" value="Kereta">
+                                                                                <label for="vehicle2">Kereta</label>
+                                                                                <br>
+                                                                                    <input type="checkbox" id="transportasi3" name="vehicle3" value="Kapal">
+                                                                                        <label for="vehicle3">Kapal</label>
+                                                                                        <br>
+                                                                                            <input type="checkbox" id="transportasi4" name="vehicle4" value="Bus">
+                                                                                                <label for="vehicle3">Bus</label>
+                                                                                                <br></div>
+                                                                                                <div class="benua">
+                                                                                                    <label for="continent">Pilih Benua:
+                                                                                                        <br></label>
+                                                                                                        <select id="continent">
+                                                                                                            <option value="all">All</option>
+                                                                                                            <option value="asia">Asia</option>
+                                                                                                            <option value="europe">Europe</option>
+                                                                                                            <option value="australia">Australia</option>
+                                                                                                            <option value="america">America</option>
+                                                                                                            <!-- Add options for other continents if needed -->
+                                                                                                        </select>
+                                                                                                    </div>
+                                                                                                    <div class="harga">
+                                                                                                        <label for="priceOrder">Urutan Harga
+                                                                                                            <br></label>
+                                                                                                            <select id="priceOrder">
+                                                                                                                <option value="all">All</option>
+                                                                                                                <option value="lowToHigh">Low to High</option>
+                                                                                                                <option value="highToLow">High to Low</option>
+                                                                                                            </select>
+                                                                                                        </div>
+                                                                                                        <div class="upload">
+                                                                                                            <form action="/upload" method="post" enctype="multipart/form-data">
+                                                                                                                <input type="file" name="gambar" id="gambar">
+                                                                                                                    <input type="submit" value="Unggah Gambar"></form>
+                                                                                                                </div>
 
-                                <!-- Search Bar -->
-                                <div class="search-bar">
-                                    <input type="text" id="searchInput" placeholder="Search for tickets...">
-                                        <button id="searchBtn">Search</button>
-                                    </div>
+                                                                                                            </div>
+                                                                                                            <div class="preview">
+                                                                                                                <div class="close-btn" onclick="togglePopup()">&times;</div>
+                                                                                                                <img src="img/bali.jpg" alt=""></div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        <div class="addTickets">
+                                                                                                            <button onclick="togglePopup()">Add Tickets
+                                                                                                                <i class="bi bi-plus-circle-fill"></i>
+                                                                                                            </button>
+                                                                                                        </div>
 
-                                    <!-- Filter Continent -->
-                                    <div class="filter">
-                                        <label for="continent">Select Continent:</label>
-                                        <select id="continent">
-                                            <option value="all">All</option>
-                                            <option value="asia">Asia</option>
-                                            <option value="europe">Europe</option>
-                                            <option value="australia">Australia</option>
-                                            <option value="america">America</option>
-                                            <!-- Add options for other continents if needed -->
-                                        </select>
-                                        <label for="priceOrder">Price Order:</label>
-                                        <select id="priceOrder">
-                                            <option value="all">All</option>
-                                            <option value="lowToHigh">Low to High</option>
-                                            <option value="highToLow">High to Low</option>
-                                        </select>
-                                    </div>
+                                                                                                        <!-- Search Bar -->
+                                                                                                        <div class="search-bar">
+                                                                                                            <input type="text" id="searchInput" placeholder="Search for tickets...">
+                                                                                                                <button id="searchBtn">Search</button>
+                                                                                                            </div>
 
-                                    <!-- mulai tiket -->
-                                    <div class="judul-tiket">
-                                        <h1>Destinasi</h1>
-                                    </div>
-                                    <div class="listProduct"></div>
+                                                                                                            <!-- Filter Continent -->
+                                                                                                            <div class="filter">
+                                                                                                                <label for="continent">Select Continent:</label>
+                                                                                                                <select id="continent">
+                                                                                                                    <option value="all">All</option>
+                                                                                                                    <option value="asia">Asia</option>
+                                                                                                                    <option value="europe">Europe</option>
+                                                                                                                    <option value="australia">Australia</option>
+                                                                                                                    <option value="america">America</option>
+                                                                                                                    <!-- Add options for other continents if needed -->
+                                                                                                                </select>
+                                                                                                                <label for="priceOrder">Price Order:</label>
+                                                                                                                <select id="priceOrder">
+                                                                                                                    <option value="all">All</option>
+                                                                                                                    <option value="lowToHigh">Low to High</option>
+                                                                                                                    <option value="highToLow">High to Low</option>
+                                                                                                                </select>
+                                                                                                            </div>
 
-                                    <!-- <div class="listProduct"></div> -->
-                                    <div class="cartTab">
-                                        <h1>Shopping Cart</h1>
-                                        <div class="listCart"></div>
-                                        <h1 class="total"></h1>
-                                        <div class="btn">
-                                            <button class="close">CLOSE</button>
-                                            <button id="checkoutBtn" class="checkOut">CHECK OUT</button>
-                                        </div>
-                                    </div>
+                                                                                                            <!-- mulai tiket -->
+                                                                                                            <div class="judul-tiket">
+                                                                                                                <h1>Destinasi</h1>
+                                                                                                            </div>
+                                                                                                            <div class="listProduct"></div>
 
-                                    <!-- footer -->
-                                    <%- include('layouts/footer.ejs') %>
+                                                                                                            <!-- <div class="listProduct"></div> -->
+                                                                                                            <div class="cartTab">
+                                                                                                                <h1>Shopping Cart</h1>
+                                                                                                                <div class="listCart"></div>
+                                                                                                                <h1 class="total"></h1>
+                                                                                                                <div class="btn">
+                                                                                                                    <button class="close">CLOSE</button>
+                                                                                                                    <button id="checkoutBtn" class="checkOut">CHECK OUT</button>
+                                                                                                                </div>
+                                                                                                            </div>
 
-                                        <script src="tiket.js"></script>
-                                        <script>  
+                                                                                                            <!-- footer -->
+                                                                                                            <%- include('layouts/footer.ejs') %>
 
-                                            document.addEventListener('DOMContentLoaded', function () {
-                                                document.addEventListener('scroll', () => {
-                                                    const nav = document.querySelector('nav');
+                                                                                                                <script src="tiket.js"></script>
+                                                                                                                <script>
 
-                                                    if (window.scrollY > 0) {
-                                                        nav
-                                                            .classList
-                                                            .add('scrolled');
-                                                    } else {
-                                                        nav
-                                                            .classList
-                                                            .remove('scrolled')
-                                                    }
-                                                })
+                                                                                                                    document.addEventListener('DOMContentLoaded', function () {
+                                                                                                                        document.addEventListener('scroll', () => {
+                                                                                                                            const nav = document.querySelector('nav');
 
-                                                // Tambahkan event listener untuk tombol checkout
-                                                const checkoutBtn = document.getElementById('checkoutBtn');
-                                                if (checkoutBtn) {
-                                                    checkoutBtn.addEventListener('click', function () {
-                                                        // Dapatkan alamat email pengguna dari sesi
-                                                        const userEmail = '<%= user.email %>'; // Ganti dengan sintaks EJS yang sesuai
+                                                                                                                            if (window.scrollY > 0) {
+                                                                                                                                nav
+                                                                                                                                    .classList
+                                                                                                                                    .add('scrolled');
+                                                                                                                            } else {
+                                                                                                                                nav
+                                                                                                                                    .classList
+                                                                                                                                    .remove('scrolled')
+                                                                                                                            }
+                                                                                                                        })
 
-                                                        // Kirim permintaan POST ke '/checkout' dengan alamat email pengguna
-                                                        fetch('/checkout', {
-                                                            method: 'POST',
-                                                            headers: {
-                                                                'Content-Type': 'application/json'
-                                                            },
-                                                            body: JSON.stringify({
-                                                                email: userEmail,
-                                                                tickets: [
-                                                                    {
-                                                                        name: 'Ticket Travel',
-                                                                        quantity: 2
-                                                                    }
-                                                                ]
-                                                            }) // Ganti dengan data yang sesuai
-                                                        })
-                                                            .then(response => {
-                                                                if (!response.ok) {
-                                                                    throw new Error('Terjadi kesalahan saat melakukan checkout');
-                                                                }
-                                                                return response.text();
-                                                            })
-                                                            .then(message => {
-                                                                alert(message); // Tampilkan pesan dari server
-                                                            })
-                                                            .catch(error => {
-                                                                console.error('Error:', error);
-                                                                alert('Terjadi kesalahan saat melakukan checkout');
-                                                            });
-                                                    });
-                                                }
-                                            });
-                                        </script>
-                                    </body>
+                                                                                                                        // Tambahkan event listener untuk tombol checkout
+                                                                                                                        const checkoutBtn = document.getElementById('checkoutBtn');
+                                                                                                                        if (checkoutBtn) {
+                                                                                                                            checkoutBtn.addEventListener('click', function () {
+                                                                                                                                // Dapatkan alamat email pengguna dari sesi
+                                                                                                                                const userEmail = '<%= user.email %>'; // Ganti dengan sintaks EJS yang sesuai
+
+                                                                                                                                // Kirim permintaan POST ke '/checkout' dengan alamat email pengguna
+                                                                                                                                fetch('/checkout', {
+                                                                                                                                    method: 'POST',
+                                                                                                                                    headers: {
+                                                                                                                                        'Content-Type': 'application/json'
+                                                                                                                                    },
+                                                                                                                                    body: JSON.stringify({
+                                                                                                                                        email: userEmail,
+                                                                                                                                        tickets: [
+                                                                                                                                            {
+                                                                                                                                                name: 'Ticket Travel',
+                                                                                                                                                quantity: 2
+                                                                                                                                            }
+                                                                                                                                        ]
+                                                                                                                                    }) // Ganti dengan data yang sesuai
+                                                                                                                                })
+                                                                                                                                    .then(response => {
+                                                                                                                                        if (!response.ok) {
+                                                                                                                                            throw new Error('Terjadi kesalahan saat melakukan checkout');
+                                                                                                                                        }
+                                                                                                                                        return response.text();
+                                                                                                                                    })
+                                                                                                                                    .then(message => {
+                                                                                                                                        alert(message); // Tampilkan pesan dari server
+                                                                                                                                    })
+                                                                                                                                    .catch(error => {
+                                                                                                                                        console.error('Error:', error);
+                                                                                                                                        alert('Terjadi kesalahan saat melakukan checkout');
+                                                                                                                                    });
+                                                                                                                            });
+                                                                                                                        }
+                                                                                                                    });
+                                                                                                                </script>
+                                                                                                            </body>
