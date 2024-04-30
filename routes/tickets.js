@@ -74,10 +74,15 @@ router.get("/tiket", async (req, res) => {
 const insertTickets = async () => {
     try {
         // Ambil semua kode tiket yang sudah ada di database
-        const existingTicketCodes = (await Ticket.find({}, { _id: 0, code: 1 })).map(ticket => ticket.code);
-        
+        const existingTicketCodes = (await Ticket.find({}, {
+            _id: 0,
+            code: 1
+        })).map(ticket => ticket.code);
+
         // Filter data tiket yang belum ada di database
-        const newTickets = tickets.filter(ticket => !existingTicketCodes.includes(ticket.code));
+        const newTickets = tickets.filter(
+            ticket => !existingTicketCodes.includes(ticket.code)
+        );
 
         // Jika ada tiket baru, masukkan ke database
         if (newTickets.length > 0) {
@@ -91,7 +96,6 @@ const insertTickets = async () => {
         return Promise.reject(err);
     }
 };
-
 
 insertTickets()
     .then((docs) => console.log(docs))

@@ -80,7 +80,48 @@
                                                             </div>
                                                             <div class="rememberforgot">
                                                                 <label>
-                                                                    <input type="checkbox" required="required">I agree to the terms & conditions</label>
+                                                                    <input
+                                                                        type="checkbox"
+                                                                        id="agreeCheckbox"
+                                                                        required="required"
+                                                                        onchange="showPopup()">I agree to the terms & conditions</label>
+                                                                </div>
+                                                                <div id="popupOverlay" class="popup-overlay">
+                                                                    <div id="popupContent" class="popup-content">
+                                                                        <h2>Terms & Conditions</h2>
+                                                                        <p>
+                                                                            Selamat datang di website perjalanan kami. Harap baca dengan seksama syarat dan
+                                                                            ketentuan penggunaan berikut sebelum menggunakan layanan kami. Penerimaan Syarat
+                                                                            dan Ketentuan Dengan mengakses atau menggunakan layanan kami, Anda menyetujui
+                                                                            untuk terikat dengan syarat dan ketentuan penggunaan ini. Jika Anda tidak setuju
+                                                                            dengan semua syarat dan ketentuan ini, maka Anda tidak boleh menggunakan layanan
+                                                                            kami. Deskripsi Layanan Layanan yang disediakan oleh website kami meliputi
+                                                                            pemesanan tiket yang terkait dengan perjalanan yang ingin anda tuju. Pemesanan
+                                                                            dan Pembayaran a. Untuk melakukan pemesanan, Anda harus memberikan informasi
+                                                                            pribadi yang akurat, termasuk nama lengkap, nomor telepon, alamat email, dan
+                                                                            informasi pembayaran yang valid. b. Pembayaran untuk layanan harus dilakukan
+                                                                            sesuai dengan ketentuan yang tercantum pada website kami. c. Pembatalan atau
+                                                                            perubahan pesanan dapat dikenakan biaya tambahan sesuai dengan kebijakan
+                                                                            pembatalan yang berlaku. Batasan Tanggung Jawab a. Kami tidak bertanggung jawab
+                                                                            atas kerugian atau kerusakan yang disebabkan oleh informasi yang tidak akurat
+                                                                            atau tidak lengkap yang diberikan oleh pengguna. b. Kami tidak bertanggung jawab
+                                                                            atas keterlambatan, pembatalan, atau perubahan jadwal yang dilakukan oleh pihak
+                                                                            ketiga seperti maskapai penerbangan, hotel, atau penyedia layanan lainnya.
+                                                                            Kebijakan Privasi Kami menghargai privasi pengguna kami. Informasi pribadi yang
+                                                                            Anda berikan kepada kami akan ditangani sesuai dengan kebijakan privasi kami.
+                                                                            Penggunaan Cookies Kami menggunakan cookies untuk meningkatkan pengalaman
+                                                                            pengguna. Dengan menggunakan layanan kami, Anda menyetujui penggunaan cookies
+                                                                            sesuai dengan kebijakan cookies kami. Perubahan pada Syarat dan Ketentuan Kami
+                                                                            berhak untuk mengubah syarat dan ketentuan penggunaan ini setiap saat tanpa
+                                                                            pemberitahuan terlebih dahulu. Perubahan akan berlaku segera setelah
+                                                                            dipublikasikan di website kami. Dengan menggunakan layanan kami, Anda menyetujui
+                                                                            untuk terikat dengan syarat dan ketentuan penggunaan ini. Terima kasih telah
+                                                                            menggunakan layanan kami.</p>
+                                                                        <div class="popup-buttons">
+                                                                            <button onclick="closePopup()">Tidak Setuju</button>
+                                                                            <button onclick="closePopup()">Setuju</button>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                                 <button type="submit" class="btn">Register</button>
                                                                 <div class="log-register">
@@ -94,5 +135,20 @@
                                                     <script src="login.js"></script>
                                                     <script>
                                                         feather.replace();
+                                                    </script>
+                                                    <script>
+                                                        function showPopup() {
+                                                            var popupOverlay = document.getElementById("popupOverlay");
+                                                            var popupContent = document.getElementById("popupContent");
+                                                            popupOverlay.style.display = "block";
+                                                            popupContent.style.display = "block";
+                                                        }
+
+                                                        function closePopup() {
+                                                            var popupOverlay = document.getElementById("popupOverlay");
+                                                            var popupContent = document.getElementById("popupContent");
+                                                            popupOverlay.style.display = "none";
+                                                            popupContent.style.display = "none";
+                                                        }
                                                     </script>
                                                 </body>

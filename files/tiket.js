@@ -24,9 +24,7 @@ function togglePopup() {
         .getElementById("popup-ticket")
         .classList
         .toggle("active");
-    } 
-
-
+}
 
 const addDataToHTML = () => {
     // remove datas default from HTML add new datas
@@ -230,6 +228,20 @@ document.addEventListener('DOMContentLoaded', function () {
             // Lakukan pencarian berdasarkan nama tiket
             return productName.includes(searchTerm);
         });
+
+        // Filter berdasarkan benua
+        if (selectedContinent !== 'all') {
+            filteredProducts = filteredProducts.filter(
+                product => product.benua === selectedContinent
+            );
+        }
+
+        // Urutkan berdasarkan harga
+        if (priceOrder === 'lowToHigh') {
+            filteredProducts.sort((a, b) => a.price - b.price);
+        } else if (priceOrder === 'highToLow') {
+            filteredProducts.sort((a, b) => b.price - a.price);
+        }
 
         // Hapus semua elemen tiket dari tampilan
         listProductHTML.innerHTML = '';
