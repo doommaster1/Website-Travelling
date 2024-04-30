@@ -148,49 +148,125 @@ app.get('/tiket', isAuthenticated, (req, res) => {
     }
 });
 
+const fs = require('fs');
+
+function sendCheckoutConfirmation() {
+    // Menggunakan path.join untuk menggabungkan direktori dengan nama file
+    const filePath = path.join(__dirname, 'web', 'tiket.json');
+
+    fs.readFile(filePath, 'utf8', (err, data) => {
+        if (err) {
+            console.error('Error membaca file tiket.json:', err);
+            return;
+        }
+        console.log('Isi file tiket.json:', data);
+    });
+}
+
+// Fungsi untuk mengirim email konfirmasi
+async function sendCheckoutConfirmation(userEmail, purchasedTickets) {
+    try {
+        // Menggunakan path.join untuk menggabungkan direktori dengan nama file
+        const filePath = path.join(__dirname, 'web', 'tiket.json');
+
+        // Baca file tiket.JSON secara sinkron
+        const data = fs.readFileSync(filePath, 'utf8');
+
+        // Parse data JSON
+        const tiket = JSON.parse(data);
+
+        // Buat pesan email
+        let message = `
+        <div style="font-family: Arial, sans-serif; margin: auto; width: 80%;">
+            <h2 style="text-align: center;">Surat Invoice Pembelian Tiket</h2>
+            <p>Kepada Yth,</p>
+            <p><strong>${userEmail}</strong></p>
+            <p>Terima kasih telah melakukan pembelian tiket. Berikut adalah detail pembayaran Anda:</p>
+            <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+                <thead>
+                    <tr style="background-color: #f2f2f2;">
+                        <th style="padding: 8px; border: 1px solid #dddddd; text-align: left;">Destinasi</th>
+                        <th style="padding: 8px; border: 1px solid #dddddd; text-align: left;">Jumlah Tiket</th>
+                        <th style="padding: 8px; border: 1px solid #dddddd; text-align: left;">Harga Satuan</th>
+                        <th style="padding: 8px; border: 1px solid #dddddd; text-align: left;">Total</th>
+                    </tr>
+                </thead>
+                <tbody>`;
+        let total = 0;
+        purchasedTickets.forEach(pesanan => {
+            const tiketDipesan = tiket.find(item => item.id === pesanan.id);
+            if (tiketDipesan) {
+                const subtotal = parseFloat(pesanan.quantity) * parseFloat(tiketDipesan.price); // Mengonversi string ke tipe data numerik
+                total += subtotal;
+                message += `
+                    <tr>
+                        <td style="padding: 8px; border: 1px solid #dddddd;">${tiketDipesan.name}</td>
+                        <td style="padding: 8px; border: 1px solid #dddddd;">${pesanan.quantity}</td>
+                        <td style="padding: 8px; border: 1px solid #dddddd;">${tiketDipesan.price}</td>
+                        <td style="padding: 8px; border: 1px solid #dddddd;">${subtotal}</td>
+                    </tr>`;
+            }
+        });
+        message += `
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3" style="padding: 8px; border: 1px solid #dddddd; text-align: right;"><strong>Total Pembayaran:</strong></td>
+                        <td style="padding: 8px; border: 1px solid #dddddd;"><strong>${total}</strong></td>
+                    </tr>
+                </tfoot>
+            </table>
+            <p>Mohon segera melakukan pembayaran. Tiket akan dikirim setelah pembayaran Anda kami terima.</p>
+            <p>Terima kasih.</p>
+            <p>Hormat kami,</p>
+            <p>Website Travel</p>
+        </div>`;
+
+        // Konfigurasi transporter email
+        let transporter = nodemailer.createTransport({
+            service: 'Gmail',
+            auth: {
+                user: 'hansnathanael2004@gmail.com', // Ganti dengan alamat email Anda
+                pass: 'xkte kpnw wtym ccnf' // Ganti dengan password email Anda
+            }
+        });
+
+        // Kirim email
+        let info = await transporter.sendMail({
+            from: '"Website Travel" <hansnathanael2004@gmail.com>', // Ganti dengan alamat email Anda
+            to: userEmail,
+            subject: 'Invoice Pembelian Tiket',
+            html: message
+        });
+
+        console.log('Email konfirmasi checkout berhasil dikirim: ', info.messageId);
+    } catch (err) {
+        throw new Error('Gagal mengirim email konfirmasi checkout: ' + err);
+    }
+}
+
 // Checkout route
 app.post('/checkout', isAuthenticated, async (req, res) => {
     const userEmail = req.body.email;
     const purchasedTickets = req.body.tickets;
-
     // Process checkout, save order to database, etc. Here you can call the function
     // to send confirmation email
-    sendCheckoutConfirmation(userEmail, purchasedTickets)
-        .then(() => {
-            res.send('Checkout berhasil! Email konfirmasi telah dikirim.');
-        })
-        .catch((error) => {
-            res
-                .status(500)
-                .send('Gagal melakukan checkout: ' + error);
-        });
+    try {
+        await sendCheckoutConfirmation(userEmail, purchasedTickets);
+        res.send('Checkout berhasil! Email konfirmasi telah dikirim.');
+    } catch (error) {
+        res.status(500).send('Gagal melakukan checkout: ' + error);
+    }
 });
 
-// Function to send checkout confirmation email
-async function sendCheckoutConfirmation(toEmail, purchasedTickets) {
-    let message = 'Terima kasih telah melakukan pembelian tiket. Berikut adalah daftar tiket yang' +
-            ' Anda beli:\n';
-    purchasedTickets.forEach(ticket => {
-        message += `- ${ticket.name}: ${ticket.quantity} tiket\n`;
-    });
+// const pesananUser = [
+//     { id: 1, quantity: 2 }, // Contoh pesanan user: memesan 2 tiket dengan ID 1
+//     { id: 3, quantity: 1 }  // Contoh pesanan user: memesan 1 tiket dengan ID 3
+// ];
 
-    let transporter = nodemailer.createTransport({
-        service: 'Gmail',
-        auth: {
-            user: 'hansnathanael2004@gmail.com', // Change this to your email address
-            pass: 'xkte kpnw wtym ccnf' // Change this to your email password
-        }
-    });
-
-    let info = await transporter.sendMail({
-        from: '"Website Travel" <hansnathanael2004@gmail.com>', // Change this to your email address
-        to: toEmail,
-        subject: 'Konfirmasi Pembelian Tiket',
-        text: message
-    });
-
-    console.log('Email konfirmasi checkout berhasil dikirim: ', info.messageId);
-}
+// sendCheckoutConfirmation('contoh@email.com', pesananUser)
+//     .then(() => console.log('Email konfirmasi checkout berhasil dikirim'))
+//     .catch(err => console.error('Gagal mengirim email konfirmasi checkout:', err));
 
 // Payment route
 app.get('/payment', isAuthenticated, (req, res) => {
