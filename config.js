@@ -27,7 +27,7 @@ connect
     password: {
         type: String,
         require: true
-    }
+    },
 })
 
 //mengambil data  (custom modul)

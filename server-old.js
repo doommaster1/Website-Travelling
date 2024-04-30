@@ -28,7 +28,7 @@ app.use(express.urlencoded({extended: false}));
 
 app.set("view engine", "ejs");
 
-app.use(favicon(path.join(__dirname, 'files/img', 'logonbg.png')));
+app.use(favicon(path.join(__dirname, 'web/img', 'logonbg.png')));
 
 // Middleware to check if user is authenticated
 const isAuthenticated = (req, res, next) => {
@@ -51,8 +51,7 @@ app.post('/login', async (req, res) => {
         try {
             const check = await collection.findOne({username: req.body.userlogin})
             if (!check) {
-                res.send(`<script>alert('User tidak ditemukan'); window.location="/setting";</s' +
-                'cript>`)
+                res.send('User tidak ditemukan')
             }
             const cekpassword = await bcrypt.compare(
                 req.body.passwordlogin,
@@ -69,12 +68,10 @@ app.post('/login', async (req, res) => {
                         res.render('index', {user: user});
                     });
             } else {
-                res.send(`<script>alert('Password salah!'); window.location="/setting";</s' +
-                'cript>`)
+                res.send('Password salah!')
             }
         } catch (error) {
-            res.send(`<script>alert('Username/Password salah'); window.location="/setting";</s' +
-            'cript>`)
+            res.send('Username/Password salah')
         }
     } else {
         //untuk registrasi
@@ -84,152 +81,31 @@ app.post('/login', async (req, res) => {
             password: req.body.passwordregis,
             name: req.body.name
         }
-        req.session.userregis = {
-            username: data.username,
-            email: data.email,
-            password: data.password,
-            name: data.name
-        }
-        console.log(data);
         const existuser = await collection.findOne({username: data.username})
         if (existuser) {
-            res.send(`<script>alert("Username sudah digunakan, tolong ganti username yang lain"); window.location="/setting";</s' +
-            'cript>`)
-        }
-        // Generate verification code
-        const verificationCode = generateVerificationCode();
-        // Save verification code and user email to session
-        req.session.verification = {
-            email: data.email,
-            code: verificationCode
-        };
-        console.log(verificationCode);
-        try {
-            // Send verification email
-            await sendVerificationEmail(data.email, verificationCode);
-            res.render('verification', {user: null}); // Render verification page
-        } catch (error) {
-            console.error('Failed to send verification email:', error);
-            res.send(`<script>alert("Failed to send verification email. Please try again later."); window.location="/setting";</s' +
-            'cript>`);
-        }
-    }
-});
-
-// Nodemailer configuration
-const transporter = nodemailer.createTransport({
-    service: 'Gmail',
-    auth: {
-        user: 'hansnathanael2004@gmail.com',
-        pass: 'xkte kpnw wtym ccnf'
-    }
-});
-
-// Generate random verification code
-function generateVerificationCode() {
-    return Math.floor(100000 + Math.random() * 900000);
-}
-
-// Send verification email function
-async function sendVerificationEmail(email, verificationCode) {
-    try {
-        await transporter.sendMail({
-            from: '"Website Travel" <hansnathanael2004@gmail.com>', // Ganti dengan nama pengirim yang Anda inginkan
-            to: email, // Menggunakan parameter email
-            subject: 'Verification Code',
-            text: `Your verification code is: ${verificationCode}`
-        });
-        console.log('Verification email sent successfully');
-    } catch (error) {
-        console.error('Failed to send verification email:', error);
-        throw error;
-    }
-    console.log('Berhasil');
-}
-
-// Render verification page
-app.get('/verification', (req, res) => {
-    console.log('Session verification data:', req.session.verification); // Log session data
-    res.render('verification', {user: null});
-});
-
-// Handle verification form submission
-app.post('/verification', async (req, res) => {
-    const {email, code} = req.session.verification;
-    let {verificationCode} = req.body;
-
-    // Trim whitespace from verificationCode
-    verificationCode = verificationCode.trim();
-
-    console.log('Session verification data:', req.session.verification); // Log session data
-    console.log('Form submission data:', req.body); // Log form submission data
-
-    console.log('Kode yang dimasukkan:', verificationCode);
-    console.log('Kode yang disimpan:', code);
-
-    // Ensure both codes are of the same data type
-    if (verificationCode.toString() !== code.toString()) {
-        console.log('Kode verifikasi tidak cocok');
-        return res.render('verification', {
-            user: null,
-            error: 'Incorrect verification code. Please try again.'
-        });
-    }
-
-    try {
-        console.log('Verifikasi berhasil');
-
-        // Periksa apakah req.session.user terdefinisi dan ada
-        if (req.session && req.session.userregis) {
-            // Lakukan operasi verifikasi di sini
-            const data = {
-                username: req.session.userregis.username,
-                email: email,
-                password: req.session.userregis.password,
-                name: req.session.userregis.name
-            }
-
-            const existuser = await collection.findOne({username: data.username})
-            if (existuser) {
-                res.send(`<script>alert("Username sudah digunakan, tolong ganti username yang lain"); window.location="/setting";</s' +
-                'cript>`)
-            } else {
-                const saltround = 10;
-                const hashpassword = await bcrypt.hash(data.password, saltround);
-                data.password = hashpassword;
-                try {
-                    const userdata = await collection.insertMany(data);
-                    console.log(userdata);
-                    if (userdata) {
-                        return res.redirect('/login');
-                    }
-
-                } catch (error) {
-                    console.error('Gagal menyimpan data pengguna:', error);
-                    return res
-                        .status(500)
-                        .send(`<script>alert("Gagal menyimpan data pengguna"); window.location="/setting";</s' +
-                        'cript>`);
-                }
-            }
-
+            res.send("Username sudah digunakan, tolong ganti username yang lain")
         } else {
-            // Jika req.session.user tidak terdefinisi atau tidak ada
-            console.error(
-                'Failed to update verification status: req.session.user is not defined'
-            );
-            return res.render('verification', {
-                user: null,
-                error: 'Failed to verify. Please try again later.'
-            });
-        }
+            const saltround = 10
+            const hashpassword = await bcrypt.hash(data.password, saltround)
+            data.password = hashpassword
+            const userdata = await collection.insertMany(data);
+            if (userdata) {
+                const verificationCode = generateVerificationCode();
+                sendVerificationEmail(data.email, verificationCode)
+    .then(() => {
+        req.session.verificationCode = verificationCode;
+        res.redirect('/verification');
+    })
+    .catch((error) => {
+        console.error('Gagal mengirim email verifikasi: ' + error);
+        res.status(500).send('Gagal mengirim email verifikasi. Silakan coba lagi.');
+    });
 
-    } catch (error) {
-        console.error('Failed to update verification status:', error);
-        return res.render('verification', {
-            user: null,
-            error: 'Failed to verify. Please try again later.'
-        });
+
+            }
+            console.log(userdata);
+            return res.redirect('/verification');
+        }
     }
 });
 
@@ -269,8 +145,7 @@ function isAdmin(req, res, next) {
     } else {
         res
             .status(403)
-            .send(`<script>alert("Forbidden"); window.location="/setting";</s' +
-            'cript>`);
+            .send("Forbidden");
     }
 }
 
@@ -278,7 +153,7 @@ function isAdmin(req, res, next) {
 app.get('/tiket', isAuthenticated, (req, res) => {
     const user = req.session.user;
     // Jika pengguna adalah admin, render 'admintiket'
-    if (user.username === 'admin') {
+    if (user.name === 'admin') {
         res.render('admintiket', {user: user});
     } else {
         res.render('tiket', {user: user});
@@ -294,14 +169,12 @@ app.post('/checkout', isAuthenticated, async (req, res) => {
     // to send confirmation email
     sendCheckoutConfirmation(userEmail, purchasedTickets)
         .then(() => {
-            res.send(`<script>alert('Checkout berhasil! Email konfirmasi telah dikirim.'); window.location="/setting";</s' +
-            'cript>`);
+            res.send('Checkout berhasil! Email konfirmasi telah dikirim.');
         })
         .catch((error) => {
             res
                 .status(500)
-                .send(`<script>alert("Gagal melakukan checkout:"+ ${error}); window.location="/setting";</s' +
-                'cript>`);
+                .send('Gagal melakukan checkout: ' + error);
         });
 });
 
@@ -388,8 +261,7 @@ app.post('/changepass', isAuthenticated, async (req, res) => {
         if (newPassword !== repeatNewPassword) {
             return res
                 .status(400)
-                .send('<script>alert("New password and repeat new password do not match"); window.location="/setting";</s' +
-                'cript>');
+                .send('New password and repeat new password do not match');
         }
 
         const user = await collection.findOne({_id: currentUser._id});
@@ -397,8 +269,7 @@ app.post('/changepass', isAuthenticated, async (req, res) => {
         if (!isPasswordCorrect) {
             return res
                 .status(400)
-                .send(`<script>alert('Current password is incorrect'); window.location="/setting";</s' +
-                'cript>`);
+                .send('Current password is incorrect');
         }
 
         const hashedNewPassword = await bcrypt.hash(newPassword, 10);
@@ -438,8 +309,7 @@ app.post('/delete', isAuthenticated, async (req, res) => {
         if (!isPasswordCorrect) {
             return res
                 .status(400)
-                .send(`<script>alert('Password is incorrect. Account deletion failed.'); window.location="/setting";</s' +
-                'cript>`);
+                .send('Password is incorrect. Account deletion failed.');
         }
 
         await collection.deleteOne({_id: currentUser._id});
@@ -457,8 +327,7 @@ app.post('/delete', isAuthenticated, async (req, res) => {
         console.error(error);
         res
             .status(500)
-            .send(`<script>alert('Internal server error'); window.location="/setting";</s' +
-            'cript>`);
+            .send('Internal server error');
     }
 });
 
@@ -482,8 +351,85 @@ async function sendEmail(toEmail) {
     console.log('Email berhasil dikirim: ', info.messageId);
 };
 
+// Nodemailer configuration
+const transporter = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+        user: 'hansnathanael2004@gmail.com',
+        pass: 'xkte kpnw wtym ccnf'
+    }
+});
+
+// Generate random verification code
+function generateVerificationCode() {
+    return Math.floor(100000 + Math.random() * 900000);
+}
+
+// Send verification email function
+async function sendVerificationEmail(email, verificationCode) {
+    try {
+        await transporter.sendMail({
+            from: '"Website Travel" <hansnathanael2004@gmail.com>', // Ganti dengan nama pengirim yang Anda inginkan
+            to: email, // Menggunakan parameter email
+            subject: 'Verification Code',
+            text: `Your verification code is: ${verificationCode}`
+        });
+        console.log('Verification email sent successfully');
+    } catch (error) {
+        console.error('Failed to send verification email:', error);
+        throw error;
+    }
+    console.log('terkirim?');
+}
+
+// POST endpoint for sending verification code
+app.post('/verification', async (req, res) => {
+    // const email = req.session.email
+    const {email} = req.body;
+    if (!email) {
+        return res
+            .status(400)
+            .send('Email is required.');
+    }
+
+    // Generate verification code
+    const verificationCode = generateVerificationCode();
+    verificationCodes[email] = verificationCode;
+
+    // Send verification email
+    try {
+        await sendVerificationEmail(email, verificationCode);
+        res
+            .send('Verification code sent successfully');
+    } catch (error) {
+        console.error('Failed to send verification code:', error);
+        res
+            .status(500)
+            .send('Failed to send verification code');
+    }
+});
+
+// Halaman untuk memasukkan kode verifikasi
+app.get('/verification', (req, res) => {
+    res.render('verification');
+});
+
+// Endpoint untuk verifikasi kode
+app.post('/verification/verify', async (req, res) => {
+    const enteredCode = req.body.verificationCode;
+    const storedCode = req.session.verificationCode;
+
+    if (enteredCode && storedCode && enteredCode === storedCode) {
+        // Kode verifikasi cocok, arahkan ke halaman login
+        res.redirect('/login');
+    } else {
+        // Kode verifikasi tidak cocok, kembali ke halaman verifikasi dengan pesan kesalahan
+        res.render('verification', { error: 'Kode verifikasi salah. Silakan coba lagi.' });
+    }
+});
+
 //static
-app.use(express.static('files'))
+app.use(express.static('Files'))
 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
