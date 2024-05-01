@@ -11,8 +11,10 @@ const collection = require('./config');
 const nodemailer = require('nodemailer');
 const bodyParser = require('body-parser');
 const cors = require("cors");
-const tiketRoutes = require("./Routes/tickets");
+const tiketRoutes = require("./routes/tickets");
+const checkoutRoutes = require("./routes/checkout");
 const fs = require('fs');
+const { MongoClient } = require('mongodb');
 
 app.use(cors());
 
@@ -318,14 +320,17 @@ function sendCheckoutConfirmation() {
 // Fungsi untuk mengirim email konfirmasi
 async function sendCheckoutConfirmation(userEmail, purchasedTickets) {
     try {
-        // Menggunakan path.join untuk menggabungkan direktori dengan nama file
-        const filePath = path.join(__dirname, 'web', 'tiket.json');
+        // Koneksi ke MongoDB
+        const uri = 'mongodb://localhost:27017'; // Ganti dengan URI MongoDB Anda
+        const client = new MongoClient(uri);
 
-        // Baca file tiket.JSON secara sinkron
-        const data = fs.readFileSync(filePath, 'utf8');
+        await client.connect();
 
-        // Parse data JSON
-        const tiket = JSON.parse(data);
+        const database = client.db('User'); // Ganti dengan nama database Anda
+        const collection = database.collection('tikets'); // Ganti dengan nama koleksi tiket Anda
+
+        // Mengambil data tiket dari MongoDB
+        const tiket = await collection.find().toArray();
 
         // Buat pesan email
         let message = `
@@ -392,6 +397,9 @@ async function sendCheckoutConfirmation(userEmail, purchasedTickets) {
         });
 
         console.log('Email konfirmasi checkout berhasil dikirim: ', info.messageId);
+
+        // Tutup koneksi ke MongoDB
+        await client.close();
     } catch (err) {
         throw new Error('Gagal mengirim email konfirmasi checkout: ' + err);
     }
@@ -413,6 +421,15 @@ app.post('/checkout', isAuthenticated, async (req, res) => {
             .send('Gagal melakukan checkout: ' + error);
     }
 });
+
+// const pesananUser = [
+//     { id: 1, quantity: 2 }, // Contoh pesanan user: memesan 2 tiket dengan ID 1
+//     { id: 3, quantity: 1 }  // Contoh pesanan user: memesan 1 tiket dengan ID 3
+// ];
+
+// sendCheckoutConfirmation('contoh@email.com', pesananUser)
+//     .then(() => console.log('Email konfirmasi checkout berhasil dikirim'))
+//     .catch(err => console.error('Gagal mengirim email konfirmasi checkout:', err));
 
 // Payment route
 app.get('/payment', isAuthenticated, (req, res) => {
