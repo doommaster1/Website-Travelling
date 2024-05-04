@@ -15,15 +15,11 @@ const tiketRoutes = require("./routes/tickets");
 const checkoutRoutes = require("./routes/checkout");
 const fs = require('fs');
 const {MongoClient} = require('mongodb');
+const cookieParser = require('cookie-parser');
 
 app.use(cors());
 
 app.use("/api", tiketRoutes)
-
-// Setup session middleware
-app.use(
-    session({secret: 'SESSION_SECRET', resave: false, saveUninitialized: true})
-);
 
 // convert to json
 app.use(express.json());
@@ -33,12 +29,56 @@ app.set("view engine", "ejs");
 
 app.use(favicon(path.join(__dirname, 'files/img', 'logonbg.png')));
 
-// Middleware to check if user is authenticated
-const isAuthenticated = (req, res, next) => {
-    if (req.session && req.session.user) {
-        return next();
+// Setup session middleware
+app.use(
+    session({secret: 'SESSION_SECRET', resave: false, saveUninitialized: true})
+);
+
+// Use cookie-parser middleware to parse cookies
+app.use(cookieParser());
+
+// Use session middleware
+app.use(session({
+    secret: 'valeroy', // Change this to a secure secret key
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false, maxAge: 1000 * 60 * 60 * 24 * 7 } // 1 week expiration
+}));
+
+const checkRememberMe = async (req, res, next) => {
+    if (req.cookies.rememberMe) {
+        const rememberMeToken = req.cookies.rememberMe;
+        // Retrieve user from the database based on the token
+        try {
+            const user = await collection.findOne({ rememberMeToken });
+            if (user) {
+                req.session.user = user; // Authenticate the user
+            }
+        } catch (error) {
+            console.error('Error retrieving user:', error);
+        }
     }
-    res.redirect('/login');
+    next();
+};
+
+
+// Helper function to generate a random remember-me token
+function generateRememberMeToken() {
+    return Math.random().toString(36).slice(2);
+}
+
+// Middleware to check if user is authenticated based on session or remember me cookie
+const isAuthenticated = (req, res, next) => {
+    if (req.session.user) {
+        // User is authenticated via session
+        next();
+    } else if (req.cookies.rememberMe) {
+        // User is authenticated via remember me cookie
+        // Redirect to login or handle authentication using the remember me token
+        checkRememberMe(req, res, next);
+    } else {
+        res.render('login');
+    }
 };
 
 // Index route
@@ -46,9 +86,38 @@ app.get('/', isAuthenticated, (req, res) => {
     const user = req.session.user;
     res.render('index', {user: user});
 });
+
+// Login middleware to check if user is already authenticated
+const loginRedirect = (req, res, next) => {
+    if (req.session && req.session.user) {
+        res.redirect('/');
+    } else {
+        next();
+    }
+};
+
+// Login route - Redirect to index if already logged in
+app.get('/login', loginRedirect, (req, res) => {
+    res.render('login');
+});
+
 // Login route
 app.post('/login', async (req, res) => {
     const user = req.session.user;
+    const { userlogin, passwordlogin, rememberme } = req.body;
+    // For remember me functionality, check if rememberme checkbox is checked
+    if (rememberme) {
+        // Generate remember me token
+        const rememberMeToken = generateRememberMeToken();
+        // Set remember me cookie with the token
+        res.cookie('rememberMe', rememberMeToken, { maxAge: 7 * 24 * 60 * 60 * 1000, httpOnly: true });
+        // Save rememberMeToken to the user document in the database
+        try {
+            await collection.updateOne({ username: userlogin }, { $set: { rememberMeToken } });
+        } catch (error) {
+            console.error('Error updating rememberMeToken:', error);
+        }
+    }
     //untuk login
     if (req.body.userlogin && req.body.passwordlogin) {
         try {
@@ -346,20 +415,6 @@ app.get('/logout', (req, res) => {
                 res.redirect('/login');
             }
         });
-});
-
-// Login middleware to check if user is already authenticated
-const loginRedirect = (req, res, next) => {
-    if (req.session && req.session.user) {
-        res.redirect('/');
-    } else {
-        next();
-    }
-};
-
-// Login route - Redirect to index if already logged in
-app.get('/login', loginRedirect, (req, res) => {
-    res.render('login');
 });
 
 // Middleware untuk cek admin
