@@ -54,10 +54,8 @@ app.post('/login', async (req, res) => {
         try {
             const check = await collection.findOne({username: req.body.userlogin})
             if (!check) {
-                res.send(
-                    `<script>alert('User tidak ditemukan'); window.location="/setting";</s' +
-                'cript>`
-                )
+                res.render('login', { error: 'User Tidak Ditemukan' });
+                return;
             }
             const cekpassword = await bcrypt.compare(
                 req.body.passwordlogin,
@@ -74,16 +72,12 @@ app.post('/login', async (req, res) => {
                         res.render('index', {user: user});
                     });
             } else {
-                res.send(
-                    `<script>alert('Password salah!'); window.location="/setting";</s' +
-                'cript>`
-                )
+                res.render('login', { error: 'Password Salah !' });
+                return;
             }
         } catch (error) {
-            res.send(
-                `<script>alert('Username/Password salah'); window.location="/setting";</s' +
-            'cript>`
-            )
+            res.render('login', { error: 'Username/Password Salah !' });
+                return;
         }
     } else {
         //untuk registrasi

@@ -302,3 +302,18 @@ body {
     border: none;
     cursor: pointer;
 }
+
+/* .alert {
+    color: red;
+    margin-top: 10em;
+} */
+
+.floating-alert {
+    position: absolute;
+    margin-top: 19.3em;
+    z-index: 1000;
+    background-color: black;
+            color: white;
+            padding: 4px;
+            border-radius: 5px;
+}
