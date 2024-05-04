@@ -275,16 +275,28 @@ body {
     z-index: 1001;
     width: 80%;
     max-width: 600px;
-    max-height: 70vh;
+    max-height: 50vh;
+    /*70vh harusnya*/
     overflow-y: auto;
 }
 
 .popup-buttons {
+    display: flex;
+    justify-content: space-between;
     text-align: center;
     margin-top: 20px;
 }
 
-.popup-buttons button {
+.popup-buttons #no {
+    flex: 1;
+    margin: 5px;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.popup-buttons #yes {
+    flex: 1;
     margin: 5px;
     padding: 10px 20px;
     border: none;
