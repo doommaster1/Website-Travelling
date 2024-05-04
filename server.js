@@ -14,7 +14,7 @@ const cors = require("cors");
 const tiketRoutes = require("./routes/tickets");
 const checkoutRoutes = require("./routes/checkout");
 const fs = require('fs');
-const { MongoClient } = require('mongodb');
+const {MongoClient} = require('mongodb');
 
 app.use(cors());
 
@@ -230,6 +230,8 @@ app.post('/verification', async (req, res) => {
                 }
             }
 
+        } else if (req.session && req.session.forgot) {
+            return res.redirect('/reset');
         } else {
             // Jika req.session.user tidak terdefinisi atau tidak ada
             console.error(
@@ -247,6 +249,94 @@ app.post('/verification', async (req, res) => {
             user: null,
             error: 'Failed to verify. Please try again later.'
         });
+    }
+});
+
+//forgot route
+app.get('/forgot', (req, res) => {
+    res.render('forgot');
+});
+
+//forgot route
+app.post('/forgot', async (req, res) => {
+    const data = {
+        username: req.body.username,
+        email: req.body.email
+    }
+
+    console.log(data);
+    const existuser = await collection.findOne({username: data.username})
+    if (existuser) {
+        req.session.forgot = {
+            username: data.username,
+            email: data.email,
+            password: existuser.password,
+            name: existuser.name
+        }
+        console.log(req.session.forgot);
+    } else {
+        res.send(
+            `<script>alert("Username sudah digunakan, tolong ganti username yang lain"); window.location="/setting";</s' +
+        'cript>`
+        )
+    }
+    // Generate verification code
+    const verificationCode = generateVerificationCode();
+    // Save verification code and user email to session
+    req.session.verification = {
+        email: data.email,
+        code: verificationCode
+    };
+    console.log(verificationCode);
+    try {
+        // Send verification email
+        await sendVerificationEmail(data.email, verificationCode);
+        res.render('verification', {user: null}); // Render verification page
+    } catch (error) {
+        console.error('Failed to send verification email:', error);
+        res.send(
+            `<script>alert("Failed to send verification email. Please try again later."); window.location="/setting";</s' +
+        'cript>`
+        );
+    }
+});
+
+//reset route
+app.get('/reset', (req, res) => {
+    res.render('reset');
+});
+
+//reset Post
+app.post('/reset', async (req, res) => {
+    try {
+        const password = req.body.newpassword;
+        const repassword = req.body.repassword;
+        if (password !== repassword) {
+            return res
+                .status(400)
+                .send(
+                    '<script>alert("New password and repeat new password do not match"); window.loc' +
+                    'ation="/setting";</script>'
+                );
+        }
+        const hashedNewPassword = await bcrypt.hash(password, 10);
+
+        await collection.updateOne({
+            username: req.session.forgot.username
+        }, {
+            $set: {
+                password: hashedNewPassword
+            }
+        });
+        console.log(req.session.forgot.password);
+        res.redirect('/login');
+    } catch (error) {
+        console.error(error);
+        res
+            .status(500)
+            .send(
+                '<script>alert("Internal server error"); window.location="/setting";</script>'
+            );
     }
 });
 
@@ -327,17 +417,21 @@ async function sendCheckoutConfirmation(userEmail, purchasedTickets) {
         await client.connect();
 
         const database = client.db('User'); // Ganti dengan nama database Anda
-        const collection = database.collection('tikets'); // Ganti dengan nama koleksi tiket Anda
-
+        const tikets = database.collection('tikets'); // Ganti dengan nama koleksi tiket Anda
+        const check = await collection.findOne({email: userEmail})
+        const username = check.username;
+        console.log(username);
+        console.log(userEmail);
         // Mengambil data tiket dari MongoDB
-        const tiket = await collection.find().toArray();
+        const tiket = await tikets
+            .find()
+            .toArray();
 
         // Buat pesan email
         let message = `
         <div style="font-family: Arial, sans-serif; margin: auto; width: 80%;">
             <h2 style="text-align: center;">Surat Invoice Pembelian Tiket</h2>
-            <p>Kepada Yth,</p>
-            <p><strong>${userEmail}</strong></p>
+            <p>Kepada Yth, <strong>${username}</strong></p>
             <p>Terima kasih telah melakukan pembelian tiket. Berikut adalah detail pembayaran Anda:</p>
             <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
                 <thead>
@@ -422,16 +516,12 @@ app.post('/checkout', isAuthenticated, async (req, res) => {
     }
 });
 
-// const pesananUser = [
-//     { id: 1, quantity: 2 }, // Contoh pesanan user: memesan 2 tiket dengan ID 1
-//     { id: 3, quantity: 1 }  // Contoh pesanan user: memesan 1 tiket dengan ID 3
-// ];
-
-// sendCheckoutConfirmation('contoh@email.com', pesananUser)
-//     .then(() => console.log('Email konfirmasi checkout berhasil dikirim'))
-//     .catch(err => console.error('Gagal mengirim email konfirmasi checkout:', err));
-
-// Payment route
+// const pesananUser = [     { id: 1, quantity: 2 },  Contoh pesanan user:
+// memesan 2 tiket dengan ID 1     { id: 3, quantity: 1 }   Contoh pesanan user:
+// memesan 1 tiket dengan ID 3 ]; sendCheckoutConfirmation('contoh@email.com',
+// pesananUser)     .then(() => console.log('Email konfirmasi checkout berhasil
+// dikirim'))     .catch(err => console.error('Gagal mengirim email konfirmasi
+// checkout:', err)); Payment route
 app.get('/payment', isAuthenticated, (req, res) => {
     const user = req.session.user;
     res.render('payment', {user: user});

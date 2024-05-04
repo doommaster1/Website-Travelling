@@ -37,7 +37,7 @@
                                         <div class="rememberforgot">
                                             <label>
                                                 <input type="checkbox" name="remember">Remember Me</label>
-                                                <a href="#">Forgot Password?</a>
+                                                <a href="/forgot">Forgot Password?</a>
                                             </div>
                                             <button type="submit" class="btn">LOGIN</button>
                                             <div class="log-register">
@@ -118,8 +118,8 @@
                                                                             untuk terikat dengan syarat dan ketentuan penggunaan ini. Terima kasih telah
                                                                             menggunakan layanan kami.</p>
                                                                         <div class="popup-buttons">
-                                                                            <button onclick="closePopup()">Tidak Setuju</button>
-                                                                            <button onclick="closePopup()">Setuju</button>
+                                                                            <button onclick="closePopup()" id="no">Tidak Setuju</button>
+                                                                            <button onclick="closePopup()" id="yes">Setuju</button>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -147,8 +147,18 @@
                                                         function closePopup() {
                                                             var popupOverlay = document.getElementById("popupOverlay");
                                                             var popupContent = document.getElementById("popupContent");
+                                                            var no = document.getElementById("no");
+                                                            var checkbox = document.getElementById("agreeCheckbox");
+
                                                             popupOverlay.style.display = "none";
                                                             popupContent.style.display = "none";
+
+                                                            if (no.clicked) {
+                                                                checkbox.checked = false;
+                                                            } else{
+                                                                
+                                                                checkbox.checked = true;
+                                                            }
                                                         }
                                                     </script>
                                                 </body>
