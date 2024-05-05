@@ -469,15 +469,11 @@ async function sendCheckoutConfirmation(userEmail, purchasedTickets) {
         await client.connect();
 
         const database = client.db('User'); // Ganti dengan nama database Anda
-        const tikets = database.collection('tikets'); // Ganti dengan nama koleksi tiket Anda
+        const ticketsCollection = database.collection('tickets'); // Ganti dengan nama koleksi tiket Anda
         const check = await collection.findOne({email: userEmail})
         const username = check.username;
-        console.log(username);
-        console.log(userEmail);
         // Mengambil data tiket dari MongoDB
-        const tiket = await tikets
-            .find()
-            .toArray();
+        const ticketsData = await ticketsCollection.find().toArray();
 
         // Buat pesan email
         let message = `
@@ -495,27 +491,30 @@ async function sendCheckoutConfirmation(userEmail, purchasedTickets) {
                     </tr>
                 </thead>
                 <tbody>`;
-        let total = 0;
-        purchasedTickets.forEach(pesanan => {
-            const tiketDipesan = tiket.find(item => item.id === pesanan.id);
-            if (tiketDipesan) {
-                const subtotal = parseFloat(pesanan.quantity) * parseFloat(tiketDipesan.price); // Mengonversi string ke tipe data numerik
-                total += subtotal;
+
+        let totalPayment = 0;
+
+        purchasedTickets.forEach(purchasedTicket => {
+            const ticket = ticketsData.find(ticket => ticket.id === purchasedTicket.id);
+            if (ticket) {
+                const subtotal = purchasedTicket.quantity * ticket.price;
+                totalPayment += subtotal;
                 message += `
                     <tr>
-                        <td style="padding: 8px; border: 1px solid #dddddd;">${tiketDipesan.name}</td>
-                        <td style="padding: 8px; border: 1px solid #dddddd;">${pesanan.quantity}</td>
-                        <td style="padding: 8px; border: 1px solid #dddddd;">${tiketDipesan.price}</td>
+                        <td style="padding: 8px; border: 1px solid #dddddd;">${ticket.name}</td>
+                        <td style="padding: 8px; border: 1px solid #dddddd;">${purchasedTicket.quantity}</td>
+                        <td style="padding: 8px; border: 1px solid #dddddd;">${ticket.price}</td>
                         <td style="padding: 8px; border: 1px solid #dddddd;">${subtotal}</td>
                     </tr>`;
             }
         });
+
         message += `
                 </tbody>
                 <tfoot>
                     <tr>
                         <td colspan="3" style="padding: 8px; border: 1px solid #dddddd; text-align: right;"><strong>Total Pembayaran:</strong></td>
-                        <td style="padding: 8px; border: 1px solid #dddddd;"><strong>${total}</strong></td>
+                        <td style="padding: 8px; border: 1px solid #dddddd;"><strong>${totalPayment}</strong></td>
                     </tr>
                 </tfoot>
             </table>
@@ -568,12 +567,8 @@ app.post('/checkout', isAuthenticated, async (req, res) => {
     }
 });
 
-// const pesananUser = [     { id: 1, quantity: 2 },  Contoh pesanan user:
-// memesan 2 tiket dengan ID 1     { id: 3, quantity: 1 }   Contoh pesanan user:
-// memesan 1 tiket dengan ID 3 ]; sendCheckoutConfirmation('contoh@email.com',
-// pesananUser)     .then(() => console.log('Email konfirmasi checkout berhasil
-// dikirim'))     .catch(err => console.error('Gagal mengirim email konfirmasi
-// checkout:', err)); Payment route
+
+// Payment route
 app.get('/payment', isAuthenticated, (req, res) => {
     const user = req.session.user;
     res.render('payment', {user: user});
