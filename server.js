@@ -1,7 +1,7 @@
 const express = require('express');
 const session = require('express-session');
 const app = express();
-const port = 3000;
+const port = 3007;
 const ejs = require('ejs');
 const favicon = require('serve-favicon');
 const path = require('path');
@@ -452,117 +452,136 @@ app.get('/logout', (req, res) => {
 // }
 
 //Tiket route
-app.get('/tiket', isAuthenticated, (req, res) => {
-    const user = req.session.user;
-    // Jika pengguna adalah admin, render 'admintiket'
-    if (user.username === 'admin') {
-        res.render('admintiket', {user: user});
-    } else {
-        res.render('tiket', {user: user});
-    }
-});
+// app.get('/tiket', isAuthenticated, (req, res) => {
+//     const user = req.session.user;
+//     // Jika pengguna adalah admin, render 'admintiket'
+//     if (user.username === 'admin') {
+//         res.render('admintiket', {user: user});
+//     } else {
+//         res.render('tiket', {user: user});
+//     }
+// });
 
-function sendCheckoutConfirmation() {
-    // Menggunakan path.join untuk menggabungkan direktori dengan nama file
-    const filePath = path.join(__dirname, 'web', 'tiket.json');
+// function sendCheckoutConfirmation() {
+//     // Menggunakan path.join untuk menggabungkan direktori dengan nama file
+//     const filePath = path.join(__dirname, 'web', 'tiket.json');
 
-    fs.readFile(filePath, 'utf8', (err, data) => {
-        if (err) {
-            console.error('Error membaca file tiket.json:', err);
-            return;
-        }
-        console.log('Isi file tiket.json:', data);
-    });
-}
+//     fs.readFile(filePath, 'utf8', (err, data) => {
+//         if (err) {
+//             console.error('Error membaca file tiket.json:', err);
+//             return;
+//         }
+//         console.log('Isi file tiket.json:', data);
+//     });
+// }
 
-// Fungsi untuk mengirim email konfirmasi
-async function sendCheckoutConfirmation(userEmail, purchasedTickets) {
+// // Fungsi untuk mengirim email konfirmasi
+// async function sendCheckoutConfirmation(userEmail, purchasedTickets) {
+//     try {
+//         // Koneksi ke MongoDB
+//         const uri = 'mongodb://localhost:27017'; // Ganti dengan URI MongoDB Anda
+//         const client = new MongoClient(uri);
+
+//         await client.connect();
+
+//         const database = client.db('User'); // Ganti dengan nama database Anda
+//         const ticketsCollection = database.collection('tickets'); // Ganti dengan nama koleksi tiket Anda
+//         const check = await collection.findOne({email: userEmail})
+//         const username = check.username;
+//         // Mengambil data tiket dari MongoDB
+//         const ticketsData = await ticketsCollection.find().toArray();
+
+//         // Buat pesan email
+//         let message = `
+//         <div style="font-family: Arial, sans-serif; margin: auto; width: 80%;">
+//             <h2 style="text-align: center;">Surat Invoice Pembelian Tiket</h2>
+//             <p>Kepada Yth, <strong>${username}</strong></p>
+//             <p>Terima kasih telah melakukan pembelian tiket. Berikut adalah detail pembayaran Anda:</p>
+//             <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+//                 <thead>
+//                     <tr style="background-color: #f2f2f2;">
+//                         <th style="padding: 8px; border: 1px solid #dddddd; text-align: left;">Destinasi</th>
+//                         <th style="padding: 8px; border: 1px solid #dddddd; text-align: left;">Jumlah Tiket</th>
+//                         <th style="padding: 8px; border: 1px solid #dddddd; text-align: left;">Harga Satuan</th>
+//                         <th style="padding: 8px; border: 1px solid #dddddd; text-align: left;">Total</th>
+//                     </tr>
+//                 </thead>
+//                 <tbody>`;
+
+//         let totalPayment = 0;
+
+//         purchasedTickets.forEach(purchasedTicket => {
+//             const ticket = ticketsData.find(ticket => ticket.id === purchasedTicket.id);
+//             if (ticket) {
+//                 const subtotal = purchasedTicket.quantity * ticket.price;
+//                 totalPayment += subtotal;
+//                 message += `
+//                     <tr>
+//                         <td style="padding: 8px; border: 1px solid #dddddd;">${ticket.name}</td>
+//                         <td style="padding: 8px; border: 1px solid #dddddd;">${purchasedTicket.quantity}</td>
+//                         <td style="padding: 8px; border: 1px solid #dddddd;">${ticket.price}</td>
+//                         <td style="padding: 8px; border: 1px solid #dddddd;">${subtotal}</td>
+//                     </tr>`;
+//             }
+//         });
+
+//         message += `
+//                 </tbody>
+//                 <tfoot>
+//                     <tr>
+//                         <td colspan="3" style="padding: 8px; border: 1px solid #dddddd; text-align: right;"><strong>Total Pembayaran:</strong></td>
+//                         <td style="padding: 8px; border: 1px solid #dddddd;"><strong>${totalPayment}</strong></td>
+//                     </tr>
+//                 </tfoot>
+//             </table>
+//             <p>Mohon segera melakukan pembayaran. Tiket akan dikirim setelah pembayaran Anda kami terima.</p>
+//             <p>Terima kasih.</p>
+//             <p>Hormat kami,</p>
+//             <p>Website Travel</p>
+//         </div>`;
+
+//         // Konfigurasi transporter email
+//         let transporter = nodemailer.createTransport({
+//             service: 'Gmail',
+//             auth: {
+//                 user: 'hansnathanael2004@gmail.com', // Ganti dengan alamat email Anda
+//                 pass: 'xkte kpnw wtym ccnf' // Ganti dengan password email Anda
+//             }
+//         });
+
+//         // Kirim email
+//         let info = await transporter.sendMail({
+//             from: '"Website Travel" <hansnathanael2004@gmail.com>', // Ganti dengan alamat email Anda
+//             to: userEmail,
+//             subject: 'Invoice Pembelian Tiket',
+//             html: message
+//         });
+
+//         console.log('Email konfirmasi checkout berhasil dikirim: ', info.messageId);
+
+//         // Tutup koneksi ke MongoDB
+//         await client.close();
+//     } catch (err) {
+//         throw new Error('Gagal mengirim email konfirmasi checkout: ' + err);
+//     }
+// }
+
+// Function to send the confirmation email
+async function sendCheckoutConfirmation(userEmail) {
     try {
-        // Koneksi ke MongoDB
-        const uri = 'mongodb://localhost:27017'; // Ganti dengan URI MongoDB Anda
-        const client = new MongoClient(uri);
-
-        await client.connect();
-
-        const database = client.db('User'); // Ganti dengan nama database Anda
-        const ticketsCollection = database.collection('tickets'); // Ganti dengan nama koleksi tiket Anda
-        const check = await collection.findOne({email: userEmail})
-        const username = check.username;
-        // Mengambil data tiket dari MongoDB
-        const ticketsData = await ticketsCollection.find().toArray();
-
-        // Buat pesan email
-        let message = `
-        <div style="font-family: Arial, sans-serif; margin: auto; width: 80%;">
-            <h2 style="text-align: center;">Surat Invoice Pembelian Tiket</h2>
-            <p>Kepada Yth, <strong>${username}</strong></p>
-            <p>Terima kasih telah melakukan pembelian tiket. Berikut adalah detail pembayaran Anda:</p>
-            <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
-                <thead>
-                    <tr style="background-color: #f2f2f2;">
-                        <th style="padding: 8px; border: 1px solid #dddddd; text-align: left;">Destinasi</th>
-                        <th style="padding: 8px; border: 1px solid #dddddd; text-align: left;">Jumlah Tiket</th>
-                        <th style="padding: 8px; border: 1px solid #dddddd; text-align: left;">Harga Satuan</th>
-                        <th style="padding: 8px; border: 1px solid #dddddd; text-align: left;">Total</th>
-                    </tr>
-                </thead>
-                <tbody>`;
-
-        let totalPayment = 0;
-
-        purchasedTickets.forEach(purchasedTicket => {
-            const ticket = ticketsData.find(ticket => ticket.id === purchasedTicket.id);
-            if (ticket) {
-                const subtotal = purchasedTicket.quantity * ticket.price;
-                totalPayment += subtotal;
-                message += `
-                    <tr>
-                        <td style="padding: 8px; border: 1px solid #dddddd;">${ticket.name}</td>
-                        <td style="padding: 8px; border: 1px solid #dddddd;">${purchasedTicket.quantity}</td>
-                        <td style="padding: 8px; border: 1px solid #dddddd;">${ticket.price}</td>
-                        <td style="padding: 8px; border: 1px solid #dddddd;">${subtotal}</td>
-                    </tr>`;
-            }
-        });
-
-        message += `
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan="3" style="padding: 8px; border: 1px solid #dddddd; text-align: right;"><strong>Total Pembayaran:</strong></td>
-                        <td style="padding: 8px; border: 1px solid #dddddd;"><strong>${totalPayment}</strong></td>
-                    </tr>
-                </tfoot>
-            </table>
-            <p>Mohon segera melakukan pembayaran. Tiket akan dikirim setelah pembayaran Anda kami terima.</p>
-            <p>Terima kasih.</p>
-            <p>Hormat kami,</p>
-            <p>Website Travel</p>
-        </div>`;
-
-        // Konfigurasi transporter email
-        let transporter = nodemailer.createTransport({
-            service: 'Gmail',
-            auth: {
-                user: 'hansnathanael2004@gmail.com', // Ganti dengan alamat email Anda
-                pass: 'xkte kpnw wtym ccnf' // Ganti dengan password email Anda
-            }
-        });
-
-        // Kirim email
+        // Send mail with defined transport object
         let info = await transporter.sendMail({
-            from: '"Website Travel" <hansnathanael2004@gmail.com>', // Ganti dengan alamat email Anda
+            from: '"Website Travel" <hansnathanael2004@gmail.com>',
             to: userEmail,
-            subject: 'Invoice Pembelian Tiket',
-            html: message
+            subject: 'Pesanan Anda Berhasil',
+            text: 'Pesanan anda berhasil!',
+            html: '<b>Pesanan anda berhasil!</b>'
         });
 
-        console.log('Email konfirmasi checkout berhasil dikirim: ', info.messageId);
-
-        // Tutup koneksi ke MongoDB
-        await client.close();
-    } catch (err) {
-        throw new Error('Gagal mengirim email konfirmasi checkout: ' + err);
+        console.log('Email sent: %s', info.messageId);
+    } catch (error) {
+        console.error('Error sending email:', error);
+        throw error; // Throw error to handle it in the route handler
     }
 }
 
@@ -571,17 +590,25 @@ app.post('/checkout', isAuthenticated, async (req, res) => {
     const userEmail = req.body.email;
     const purchasedTickets = req.body.tickets;
 
+    // Check if userEmail is defined and not empty
+    if (!userEmail) {
+        return res.status(400).send('Email pengguna tidak valid');
+    }
+
     // Process checkout, save order to database, etc. Here you can call the function
     // to send confirmation email
     try {
-        await sendCheckoutConfirmation(userEmail, purchasedTickets);
-        res.send('Checkout berhasil! Email konfirmasi telah dikirim.');
+        // Send confirmation email
+        await sendCheckoutConfirmation(userEmail);
+        
+        // Send success message to the client
+        res.send('Pesanan anda berhasil! Email konfirmasi telah dikirim.');
     } catch (error) {
-        res
-            .status(500)
-            .send('Gagal melakukan checkout: ' + error);
+        // Send error message to the client if there's an issue
+        res.status(500).send('Gagal melakukan checkout: ' + error);
     }
 });
+
 
 
 // Payment route

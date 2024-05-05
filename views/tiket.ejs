@@ -3,23 +3,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="tiket.css">
     <link rel="stylesheet" href="footer.css">
-    <!-- <link rel="stylesheet" href="index.css"> -->
     <link
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <title>Get Your Ticket</title>
     <link rel="icon" type="image/png" href="img/logonbg.png">
-    <link rel="stylesheet" href="nav.css"></head>
+    <!-- <link rel="stylesheet" href="nav.css"></head> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css" integrity="sha512-jnSuA4Ss2PkkikSOLtYs8BlYIeeIK1h99ty4YfvRPAlzr377vr3CXDb7sb7eEEBYjDtcYj+AjBH3FLv5uSJuXg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 <body>
-    <div class="container">
-        <!-- nav start -->
-        <%- include('layouts/nav.ejs') %>
-            <div class="icon-cart">
-                <i class="bi bi-cart-fill"></i>
-                <span>0</span>
+    
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class = "container">
+                <a href="/" class="navbar-brand">
+                    <img src="img/logonbg.png" alt="Logo" height="84">
+                </a>
+                <button class="navbar-toggler" data-bs-target="#my-nav"
+                data-bs-toggle="collapse" aria-controls="my-nav" aria-expanded="false"
+                aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div id="my-nav" class="collapse navbar-collapse">
+                    <u1 class = "navbar-nav ms-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/"><i class = "fas fa-home me-i"></i>Home</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#"><i class="fas fa-globe me-1"></i>About</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/footer"><i class="fas fa-envelope me-1"></i>Contact</a>
+                        </li>
+                    </u1> 
+                </div>
+                <div class="icon-cart">
+                    <i class="bi bi-cart-fill"></i>
+                    <span>0</span>
+                </div>
             </div>
         </nav>
-    </div>
+ 
     <!-- nav end -->
 
     <!-- penjelasan -->
@@ -34,7 +58,6 @@
     <div class="search">
         <h1>Cari destinasi anda disini!</h1>
     </div>
-
 
     <div class="search-bar">
         <input type="text" id="searchInput" placeholder="Search for tickets...">
@@ -122,9 +145,7 @@
             </div>
 
             <!-- footer -->
-            <div class="container">
-                <%- include('layouts/footer.ejs') %>
-                </div>
+            <%- include('layouts/footer.ejs') %>
 
                 <script src="tiket.js"></script>
                 <script>
@@ -143,13 +164,13 @@
                             }
                         })
 
-                        // Tambahkan event listener untuk tombol checkout
-                        const checkoutBtn = document.getElementById('checkoutBtn');
+                       // Tambahkan event listener untuk tombol checkout
+                       const checkoutBtn = document.getElementById('checkoutBtn');
                         if (checkoutBtn) {
                             checkoutBtn.addEventListener('click', function () {
                                 // Dapatkan alamat email pengguna dari sesi
                                 const userEmail = '<%= user.email %>'; // Ganti dengan sintaks EJS yang sesuai
-
+                                console.log(userEmail);
                                 // Kirim permintaan POST ke '/checkout' dengan alamat email pengguna
                                 fetch('/checkout', {
                                     method: 'POST',

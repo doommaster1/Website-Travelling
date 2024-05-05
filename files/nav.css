@@ -13,10 +13,6 @@ nav {
     background-color: transparent;
 }
 
-nav .icon img {
-    width: 6.5em;
-}
-
 nav .menu > .menu-item {
     display: inline-block;
     margin-left: 2em;
@@ -32,82 +28,6 @@ nav .menu > .menu-item > a {
     transition: all 0.3s ease;
 }
 
-.open-nav-menu {
-    height: 34px;
-    width: 40px;
-    margin-right: 15px;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-}
-
-.open-nav-menu span {
-    position: relative;
-    display: block;
-    height: 3px;
-    width: 24px;
-    background-color: #000;
-}
-
-.open-nav-menu span:after,
-.open-nav-menu span:before {
-    content: "";
-    position: absolute;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #000;
-    box-sizing: border-box;
-}
-
-.open-nav-menu span:before {
-    top: -7px;
-}
-
-.open-nav-menu span:after {
-    top: 7px;
-}
-
-.close-nav-menu {
-    height: 40px;
-    width: 40px;
-    background-color: #fff;
-    margin: 0 0 15px 15px;
-    cursor: pointer;
-    display: none;
-    justify-content: center;
-    align-items: center;
-}
-
-/* nav .nav-menu{
-    padding: 0 25px;
-} */
-
-.close-nav-menu i {
-    font-size: 30px;
-    color: #000;
-}
-
-nav .menu > .menu-item > .sub-menu > .menu-item > a:hover,
-nav .menu > .menu-item:hover a {
-    /* color: #fdcb2c;  */
-}
-
-nav .menu > .menu-item > .sub-menu {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    width: 220px;
-    position: absolute;
-    left: 0;
-    top: 100%;
-    background-color: #fff;
-    padding: 10px 0;
-    border-top: 3px solid #fdcb2c;
-    transform: translateY(10px);
-    transition: all 0.3s ease;
-    opacity: 0;
-    visibility: hidden;
-}
 
 @media(min-width: 992px) {
     nav .menu > .menu-item-has-children:hover > .sub-menu {
@@ -130,27 +50,6 @@ nav .menu > .menu-item > .sub-menu > .menu-item > a {
     transition: all 0.3s ease;
 }
 
-nav .menu-overlay {
-    position: fixed;
-    z-index: 999;
-    background-color: rgba(0, 0, 0, 0.5);
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 100%;
-    visibility: hidden;
-    opacity: 0;
-}
-
-nav .menu-overlay.active {
-    visibility: visible;
-    opacity: 1;
-}
-
-nav.scrolled {
-    background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-}
 
 nav .login a i {
     color: #000;
@@ -279,90 +178,4 @@ nav .menu > .menu-item > .sub-menu > .menu-item > a:hover::before {
 .login button a {
     text-decoration: none;
     color: #fff;
-}
-
-/* responsive */
-@media(max-width: 991px) {
-    nav {
-        display: flex;
-        padding: 20px;
-        justify-content: space-between;
-    }
-
-    nav .nav-menu {
-        position: fixed;
-        right: -280px;
-        visibility: hidden;
-        height: 100%;
-        overflow-y: auto;
-        width: 280px;
-        top: 0;
-        background-color: #222;
-        z-index: 1000;
-        padding: 15px 0;
-        transition: all 0.5s ease;
-        /* justify-content: start; */
-    }
-
-    nav .nav-menu.open {
-        visibility: visible;
-        right: 0;
-        padding-right: 20px;
-    }
-
-    nav .menu > .menu-item {
-        display: block;
-        margin: 0;
-    }
-
-    nav .icon {
-        display: none;
-    }
-
-    nav .menu > .menu-item-has-children > a {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    nav .menu > .menu-item a {
-        color: #fff;
-        padding: 12px 15px;
-        border-bottom: 1px solid #333;
-    }
-
-    nav .menu > .menu-item:first-child > a {
-        border-top: 1px solid #333;
-    }
-
-    nav .menu > .menu-item > .sub-menu {
-        width: 100%;
-        position: relative;
-        opacity: 1;
-        visibility: visible;
-        border: none;
-        background-color: transparent;
-        box-shadow: none;
-        transform: translateY(0px);
-        padding: 0;
-        left: auto;
-        top: auto;
-        max-height: 0;
-        overflow: hidden;
-    }
-
-    nav .menu > .menu-item > .sub-menu > .menu-item > a {
-        padding: 12px 45px;
-        border-bottom: 1px solid #333;
-        color: #fff;
-    }
-
-    nav ul a::before {
-        display: none;
-    }
-
-    nav .close-nav-menu,
-    nav .open-nav-menu {
-        display: flex;
-    }
 }
