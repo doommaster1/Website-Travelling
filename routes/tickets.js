@@ -94,6 +94,8 @@ router.get('/tiket', (req, res) => {
                     res.json({message: err.message});
                 });
         }
+    } else {
+        res.redirect('/');
     }
 });
 

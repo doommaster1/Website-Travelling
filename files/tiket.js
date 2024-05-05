@@ -157,6 +157,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 return priceA - priceB;
             } else if (selectedOrder === 'highToLow') {
                 return priceB - priceA;
+            } else{
+                location.reload();
             }
         });
 
