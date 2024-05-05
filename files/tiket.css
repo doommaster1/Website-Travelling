@@ -252,11 +252,12 @@ nav.scrolled .icon-cart i {
     z-index: 1;
 }
 
-/* .newTiket{
-    margin: 20px auto;
+.add{
+    margin: 10px auto;
     display: flex;
     justify-content: center;
-} */
+    
+}
 
 .addTickets {
     padding: 30px;

@@ -17,21 +17,31 @@ const fs = require('fs');
 const {MongoClient} = require('mongodb');
 
 app.use(cors());
-
 app.use("/api", tiketRoutes)
+app.use(favicon(path.join(__dirname, 'files/img', 'logonbg.png')));
+
+// Middleware Ticket
+app.use(express.json());
+app.use(express.urlencoded({extended: false}));
 
 // Setup session middleware
 app.use(
     session({secret: 'SESSION_SECRET', resave: false, saveUninitialized: true})
 );
 
-// convert to json
-app.use(express.json());
-app.use(express.urlencoded({extended: false}));
+app.use((req,res,next)=>{
+    res.locals.message = req.session.message;
+    delete req.session.message;
+    next();
+});
 
+app.use(express.static('uploads'));
+
+// set template engine
 app.set("view engine", "ejs");
 
-app.use(favicon(path.join(__dirname, 'files/img', 'logonbg.png')));
+app.use("", require('./routes/tickets'));
+
 
 // Middleware to check if user is authenticated
 const isAuthenticated = (req, res, next) => {
