@@ -10,7 +10,7 @@ const ticketSchema = new mongoose.Schema({
         required:true
     },
     harga: {
-        type: String,
+        type: Number,
         required: true
     },
     created:{
