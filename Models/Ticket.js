@@ -1,13 +1,22 @@
 const mongoose = require("mongoose");
 
 const ticketSchema = new mongoose.Schema({
-    name: {
+    kota: {
         type: String,
         required: true
     },
-    price: {
+    negara:{
+        type: String,
+        required:true
+    },
+    harga: {
         type: Number,
         required: true
+    },
+    created:{
+        type: Date,
+        required: true,
+        default: Date.now,
     },
     benua: {
         type: String,
