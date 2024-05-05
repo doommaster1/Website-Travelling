@@ -14,7 +14,11 @@ closeCart.addEventListener('click', () => {
 })
 document.addEventListener('DOMContentLoaded', function () {
     let cartItems = [];
-
+    const savedCart = localStorage.getItem('cartItems');
+    if (savedCart) {
+        cartItems = JSON.parse(savedCart);
+        renderCart(); // Render ulang keranjang saat halaman dimuat untuk menampilkan item yang tersimpan
+    }
     function addToCart(ticket) {
         // Cek apakah tiket sudah ada di keranjang
         const existingItem = cartItems.find(item => item.ticket.kota === ticket.kota && item.ticket.negara === ticket.negara);
@@ -24,6 +28,8 @@ document.addEventListener('DOMContentLoaded', function () {
             cartItems.push({ ticket: ticket, quantity: 1 }); // Jika belum, tambahkan dengan jumlah 1
         }
         renderCart();
+        
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
     }
 
     function renderCart() {
@@ -88,6 +94,9 @@ document.addEventListener('DOMContentLoaded', function () {
             } else {
                 // Empty the shopping cart
                 cartItems = [];
+
+                
+                localStorage.removeItem('cartItems');
                 // Redirect to the payment page
                 window.location.href = "/payment";
             }
@@ -96,4 +105,67 @@ document.addEventListener('DOMContentLoaded', function () {
     
 
     
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    const searchInput = document.getElementById('searchInput');
+    const cards = document.querySelectorAll('.card');
+
+    searchInput.addEventListener('input', function () {
+        const searchTerm = searchInput.value.toLowerCase().trim();
+
+        cards.forEach(card => {
+            const cityName = card.querySelector('.card-title').textContent.toLowerCase();
+
+            if (cityName.includes(searchTerm)) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    });
+});
+document.addEventListener('DOMContentLoaded', function () {
+    const continentSelect = document.getElementById('continent');
+    const cards = document.querySelectorAll('.card');
+
+    continentSelect.addEventListener('change', function () {
+        const selectedContinent = continentSelect.value.toLowerCase();
+
+        cards.forEach(card => {
+            const cardContinent = card.querySelector('.card-subtitle').textContent.toLowerCase();
+
+            if (selectedContinent === 'all' || cardContinent === selectedContinent) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    });
+}); 
+
+document.addEventListener('DOMContentLoaded', function () {
+    const priceOrderSelect = document.getElementById('priceOrder');
+    const cardsContainer = document.querySelector('.row.my-4');
+
+    priceOrderSelect.addEventListener('change', function () {
+        const selectedOrder = priceOrderSelect.value;
+
+        const cards = Array.from(cardsContainer.querySelectorAll('.card'));
+
+        cards.sort((a, b) => {
+            const priceA = parseFloat(a.querySelector('.card-text').textContent.replace('Rp.', '').replace(',', ''));
+            const priceB = parseFloat(b.querySelector('.card-text').textContent.replace('Rp.', '').replace(',', ''));
+
+            if (selectedOrder === 'lowToHigh') {
+                return priceA - priceB;
+            } else if (selectedOrder === 'highToLow') {
+                return priceB - priceA;
+            }
+        });
+
+        cards.forEach(card => {
+            cardsContainer.appendChild(card);
+        });
+    });
 });

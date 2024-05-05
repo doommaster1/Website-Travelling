@@ -49,7 +49,6 @@ router.post('/add', upload, (req, res) => {
         .catch((err) => {
             res.json({message: err.message, type: 'danger'});
         });
-
 });
 
 // get all tickets route
@@ -57,7 +56,9 @@ router.get('/tiket', (req, res) => {
     // Memeriksa apakah req.session.user terdefinisi
     if (req.session && req.session.user) {
         const username = req.session.user.username;
+        const email = req.session.user.email;
         console.log(username);
+        console.log(req.session.user.email);
         // Jika pengguna adalah admin, render 'admintiket'
         if (username === 'admin') {
             Ticket
@@ -68,7 +69,7 @@ router.get('/tiket', (req, res) => {
                         title: 'Tiket Page',
                         ticket: ticket,
                             user: {
-                                username: username
+                                username: username , email:email
                             }
                     });
                 })
@@ -85,7 +86,7 @@ router.get('/tiket', (req, res) => {
                         title: 'Tiket Page',
                         ticket: ticket,
                             user: {
-                                username: username
+                                username: username, email:email
                             }
                     });
                 })
