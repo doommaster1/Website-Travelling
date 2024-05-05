@@ -280,6 +280,11 @@ body {
     overflow-y: auto;
 }
 
+#popupContent h2{
+    color: #000;
+    margin: 0;
+}
+
 .popup-buttons {
     display: flex;
     justify-content: space-between;
@@ -287,26 +292,17 @@ body {
     margin-top: 20px;
 }
 
+
+.popup-buttons #yes,
 .popup-buttons #no {
     flex: 1;
     margin: 5px;
     padding: 10px 20px;
     border: none;
     cursor: pointer;
+    color: #fff;
+    background-color: #0b5ed7;
 }
-
-.popup-buttons #yes {
-    flex: 1;
-    margin: 5px;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-}
-
-/* .alert {
-    color: red;
-    margin-top: 10em;
-} */
 
 .floating-alert {
     position: absolute;

@@ -1,112 +1,146 @@
 [
     {
-        "name": " Bali, Indonesia",
-        "price": 2000000,
-        "image": "img/bali,indonesia.jpg.crdownload",
+        "kota": "Bali",
+        "negara": "Indonesia",
+        "harga": 2000000,
         "benua": "Asia",
-        "fasilitas": ["Pesawat", "Kapal", "Bus"]
-    }, {
-        "name": " London, England",
-        "price": 40000000,
-        "image": "img/london,england.jpg",
+        "fasilitas": ["Pesawat", "Kapal", "Bus"],
+        "image": "img/bali,indonesia.jpg.crdownload"
+    },
+    {
+        "kota": "London",
+        "negara": "England",
+        "harga": 40000000,
         "benua": "Europe",
-        "fasilitas": ["Pesawat", "Kapal", "Kereta"]
-    }, {
-        "name": " Dubai, UAE",
-        "price": 100000000,
-        "image": "img/dubai,UAE.jpg",
+        "fasilitas": ["Pesawat", "Kapal", "Kereta"],
+        "image": "img/london,england.jpg"
+    },
+    {
+        "kota": "Dubai",
+        "negara": "UAE",
+        "harga": 100000000,
         "benua": "Asia",
-        "fasilitas": ["Pesawat", "Kereta"]
-    }, {
-        "name": " Singapore, Singapore",
-        "price": 10000000,
-        "image": "img/singapura1.jpg",
+        "fasilitas": ["Pesawat", "Kereta"],
+        "image": "img/dubai,UAE.jpg"
+    },
+    {
+        "kota": "Singapore",
+        "negara": "Singapore",
+        "harga": 10000000,
         "benua": "Asia",
-        "fasilitas": ["Pesawat", "Kapal", "Kereta"]
-    }, {
-        "name": " Tokyo, Japan",
-        "price": 10000000,
-        "image": "img/tokyo,japan.jpg",
+        "fasilitas": ["Pesawat", "Kapal", "Kereta"],
+        "image": "img/singapura1.jpg"
+    },
+    {
+        "kota": "Tokyo",
+        "negara": "Japan",
+        "harga": 10000000,
         "benua": "Asia",
-        "fasilitas": ["Pesawat", "Kapal", "Kereta"]
-    }, {
-        "name": " Kuala Lumpur, Malaysia",
-        "price": 5000000,
-        "image": "img/kuala lumpur.jpg",
+        "fasilitas": ["Pesawat", "Kapal", "Kereta"],
+        "image": "img/tokyo,japan.jpg"
+    },
+    {
+        "kota": "Kuala Lumpur",
+        "negara": "Malaysia",
+        "harga": 5000000,
         "benua": "Asia",
-        "fasilitas": ["Kapal", "Kereta", "Bus"]
-    }, {
-        "name": " New York City, USA",
-        "price": 30000000,
-        "image": "img/newyork.jpg",
+        "fasilitas": ["Kapal", "Kereta", "Bus"],
+        "image": "img/kuala lumpur.jpg"
+    },
+    {
+        "kota": "New York City",
+        "negara": "USA",
+        "harga": 30000000,
         "benua": "America",
-        "fasilitas": ["Pesawat", "Kapal", "Kereta"]
-    }, {
-        "name": " Madrid, Spain",
-        "price": 14000000,
-        "image": "img/madrid.jpg",
+        "fasilitas": ["Pesawat", "Kapal", "Kereta"],
+        "image": "img/newyork.jpg"
+    },
+    {
+        "kota": "Madrid",
+        "negara": "Spain",
+        "harga": 14000000,
         "benua": "Europe",
-        "fasilitas": ["Pesawat", "Kapal", "Kereta"]
-    }, {
-        "name": "Paris, France ",
-        "price": 27000000,
-        "image": "img/paris1.jpg",
+        "fasilitas": ["Pesawat", "Kapal", "Kereta"],
+        "image": "img/madrid.jpg"
+    },
+    {
+        "kota": "Paris",
+        "negara": "France",
+        "harga": 27000000,
         "benua": "Europe",
-        "fasilitas": ["Pesawat", "Kereta"]
-    }, {
-        "name": "Rome, Italia ",
-        "price": 47000000,
-        "image": "img/roma.jpg",
+        "fasilitas": ["Pesawat", "Kereta"],
+        "image": "img/paris1.jpg"
+    },
+    {
+        "kota": "Rome",
+        "negara": "Italia",
+        "harga": 47000000,
         "benua": "Europe",
-        "fasilitas": ["Pesawat", "Kereta"]
-    }, {
-        "name": "Barcelona, Spain",
-        "price": 43000000,
-        "image": "img/barcelona.webp",
+        "fasilitas": ["Pesawat", "Kereta"],
+        "image": "img/roma.jpg"
+    },
+    {
+        "kota": "Barcelona",
+        "negara": "Spain",
+        "harga": 43000000,
         "benua": "Europe",
-        "fasilitas": ["Pesawat", "Bus"]
-    }, {
-        "name": "Istanbul, Turkey ",
-        "price": 62000000,
-        "image": "img/istanbul.jpg",
+        "fasilitas": ["Pesawat", "Bus"],
+        "image": "img/barcelona.webp"
+    },
+    {
+        "kota": "Istanbul",
+        "negara": "Turkey",
+        "harga": 62000000,
         "benua": "Europe",
-        "fasilitas": ["Pesawat", "Kereta"]
-    }, {
-        "name": "Hallstatt, Austria",
-        "price": 13000000,
-        "image": "img/hallstatt.jpg",
+        "fasilitas": ["Pesawat", "Kereta"],
+        "image": "img/istanbul.jpg"
+    },
+    {
+        "kota": "Hallstatt",
+        "negara": "Austria",
+        "harga": 13000000,
         "benua": "Europe",
-        "fasilitas": ["Pesawat"]
-    }, {
-        "name": "Amsterdam, Netherlands ",
-        "price": 21000000,
-        "image": "img/amssterdam.jpg",
+        "fasilitas": ["Pesawat"],
+        "image": "img/hallstatt.jpg"
+    },
+    {
+        "kota": "Amsterdam",
+        "negara": "Netherlands",
+        "harga": 21000000,
         "benua": "Europe",
-        "fasilitas": ["Pesawat"]
-    }, {
-        "name": "Angkor Wat, Cambodia",
-        "price": 32000000,
-        "image": "img/angkorwat.jpg",
+        "fasilitas": ["Pesawat"],
+        "image": "img/amssterdam.jpg"
+    },
+    {
+        "kota": "Angkor Wat",
+        "negara": "Cambodia",
+        "harga": 32000000,
         "benua": "Asia",
-        "fasilitas": ["Pesawat", "Kapal", "Bus"]
-    }, {
-        "name": "Seoul, South Korea",
-        "price": 9000000,
-        "image": "img/seoul.webp",
+        "fasilitas": ["Pesawat", "Kapal", "Bus"],
+        "image": "img/angkorwat.jpg"
+    },
+    {
+        "kota": "Seoul",
+        "negara": "South Korea",
+        "harga": 9000000,
         "benua": "Asia",
-        "fasilitas": ["Pesawat", "Kapal"]
-    }, {
-        "name": "Santorini, Greece",
-        "price": 42000000,
-        "image": "img/santorini.webp",
+        "fasilitas": ["Pesawat", "Kapal"],
+        "image": "img/seoul.webp"
+    },
+    {
+        "kota": "Santorini",
+        "negara": "Greece",
+        "harga": 42000000,
         "benua": "Europe",
-        "fasilitas": ["Pesawat", "Kapal"]
-    }, {
-        "name": "Praha, Czech Republic",
-        "price": 42000000,
-        "image": "img/praha.jpg",
+        "fasilitas": ["Pesawat", "Kapal"],
+        "image": "img/santorini.webp"
+    },
+    {
+        "kota": "Praha",
+        "negara": "Czech Republic",
+        "harga": 42000000,
         "benua": "Europe",
-        "fasilitas": ["Pesawat"]
+        "fasilitas": ["Pesawat"],
+        "image": "img/praha.jpg"
     }
-
 ]

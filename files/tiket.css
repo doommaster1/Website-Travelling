@@ -145,6 +145,14 @@ nav.scrolled .icon-cart i {
     font-size: xx-large;
 }
 
+.search{
+    display: flex;
+    justify-content: center;
+    margin: 30px auto 10px;
+    font-weight: bolder;
+    font-size: 30px;
+}
+
 .listProduct .item img {
     width: 100%;
     height: 100%;

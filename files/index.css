@@ -153,7 +153,7 @@ body {
     height: 800px;
 }
 
-.home .penjelasan {
+.penjelasan {
     place-items: center;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -218,7 +218,6 @@ button {
     display: flex;
     /* align-items: center; */
     flex-direction: column;
-    margin: 2em;
 }
 
 .popular .judul-popular {
