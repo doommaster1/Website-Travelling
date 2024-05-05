@@ -5,7 +5,70 @@
                 <title>Pembayaran Berhasil</title>
             </head>
             <body>
-                <!-- <%- include('layouts/nav.ejs') %> -->
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <div class="container">
+                        <a href="/" class="navbar-brand">
+                            <img src="img/logonbg.png" alt="Logo" height="84">
+                        </a>
+                        <button class="navbar-toggler" data-bs-target="#my-nav"
+                        data-bs-toggle="collapse" aria-controls="my-nav" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                         </button>
+                         <div id="my-nav" class="collapse navbar-collapse">
+                            <u1 class = "navbar-nav ms-auto">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="/"><i class = "fas fa-home me-i"></i>Home</a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="#about"><i class="fas fa-globe me-1"></i>About</a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="#footer"><i class="fas fa-envelope me-1"></i>Contact</a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="/tiket"><i class="bi bi-ticket-fill"></i>Tickets</a>
+                                </li>
+                            </u1>
+                            <div class="login">
+                                <a href="#">
+                                    <i class="bi bi-person-circle user-pic" onclick="toggleMenu()"></i>
+                                </a>
+                            </div>
+                            <div class="submenus-wrap" id="subMenu">
+                                <div class="sub-menus">
+                                    <div class="user-info">
+                                        <img src="img/logonbg.png">
+                                            <h3>Hello,
+                                                <%= user.username %></h3>
+                                        </div>
+                                        <hr>
+                                            <a href="/setting" class="sub-menu-link">
+                                                <img src="img/img_profile/profile.png" alt="">
+                                                    <p>Edit Profile</p>
+                                                    <span>
+                                                        <i class="bi bi-chevron-right"></i>
+                                                    </span>
+                                                </a>
+                                                <a href="/#footer" class="sub-menu-link">
+                                                    <img src="img/img_profile/help.png" alt="">
+                                                        <p>Help & Support</p>
+                                                        <span>
+                                                            <i class="bi bi-chevron-right"></i>
+                                                        </span>
+                                                    </a>
+                                                    <a href="/logout" class="sub-menu-link">
+                                                        <img src="img/img_profile/logout.png" alt="">
+                                                            <p>Logout</p>
+                                                            <span>
+                                                                <i class="bi bi-chevron-right"></i>
+                                                            </span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                     </div>
+                                    </nav>
                 <div class="popup-box">
                     <div class="checklist">
                         <i class="bi bi-check2"></i>
