@@ -153,7 +153,7 @@ body {
     height: 800px;
 }
 
-.penjelasan {
+.awal-penjelasan {
     place-items: center;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -166,13 +166,13 @@ body {
     background-size: cover;
 }
 
-.penjelasan h4 {
+.awal-penjelasan h4 {
     font-size: 25px;
     padding-bottom: 13px;
     font-weight: lighter;
 }
 
-.penjelasan h1 {
+.awal-penjelasan h1 {
     font-size: 50px;
     font-weight: bolder;
     padding-bottom: 13px;
@@ -193,11 +193,11 @@ button {
     z-index: 1;
 }
 
-.penjelasan button:hover {
+.awal-penjelasan button:hover {
     color: black;
 }
 
-.penjelasan button::before {
+.awal-penjelasan button::before {
     content: '';
     position: absolute;
     top: 0;
@@ -209,20 +209,22 @@ button {
     transition: 0.5s;
 }
 
-.penjelasan button:hover::before {
+.awal-penjelasan button:hover::before {
     width: 100%;
 }
 
 /* popular */
 .popular {
     display: flex;
-    /* align-items: center; */
     flex-direction: column;
 }
 
 .popular .judul-popular {
     font-size: 2rem;
     padding-bottom: 15px;
+    display: flex;
+    margin: 50px auto 20px;
+    justify-content: center;
 }
 
 .popular .popular-item {
@@ -234,6 +236,7 @@ button {
 .popular-card {
     border-radius: 10px;
     width: 24em;
+   
     font-size: 16px;
     object-fit: cover;
     overflow: hidden;
@@ -246,8 +249,8 @@ button {
 }
 
 .popular-card .info {
-    height: 4em;
-    padding: 10px;
+    height: 6em;
+    padding: 20px;
     /* box-sizing: border-box; */
 }
 
@@ -333,7 +336,7 @@ button {
 .popup .destinasi-hotel {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    min-height: 400px;
+    place-content: center;
 }
 
 .popup .destinasi-hotel .gambar img {
@@ -346,11 +349,10 @@ button {
 .popup .destinasi-hotel .penjelasan {
     background-color: #2e6d99;
     color: #fff;
+    min-height: 400px;
     display: grid;
-    align-content: center;
-    text-align: left;
-    padding: 20px;
-    box-sizing: border-box;
+    padding: 10px;
+    place-content: center;
 }
 
 .popup .destinasi-hotel .penjelasan h2 {

@@ -1,39 +1,105 @@
 <%- include('layouts/header.ejs') %>
     <link rel="stylesheet" href="index.css">
-        <link rel="stylesheet" href="nav.css">
-            <link rel="stylesheet" href="footer.css">
-                <link
-                    rel="stylesheet"
-                    href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css"
-                    integrity="sha512-jnSuA4Ss2PkkikSOLtYs8BlYIeeIK1h99ty4YfvRPAlzr377vr3CXDb7sb7eEEBYjDtcYj+AjBH3FLv5uSJuXg=="
-                    crossorigin="anonymous"
-                    referrerpolicy="no-referrer"/>
-                <link
-                    rel="stylesheet"
-                    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-                    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-                    crossorigin="anonymous"
-                    referrerpolicy="no-referrer"/>
-                <title>Travel with Us</title>
-                <body>
-                    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                        <div class="container">
-                            <a href="/" class="navbar-brand">
-                                <img src="img/logonbg.png" alt="Logo" height="84"></a>
-                                <button
-                                    class="navbar-toggler"
-                                    data-bs-target="#my-nav"
-                                    data-bs-toggle="collapse"
-                                    aria-controls="my-nav"
-                                    aria-expanded="false"
-                                    aria-label="Toggle navigation">
-                                    <span class="navbar-toggler-icon"></span>
-                                </button>
-                                <div id="my-nav" class="collapse navbar-collapse">
-                                    <u1 class="navbar-nav ms-auto">
-                                        <li class="nav-item active">
-                                            <a class="nav-link" href="/">
-                                                <i class="fas fa-home me-i"></i>Home</a>
+    <link rel="stylesheet" href="nav.css">
+    <link rel="stylesheet" href="footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css" integrity="sha512-jnSuA4Ss2PkkikSOLtYs8BlYIeeIK1h99ty4YfvRPAlzr377vr3CXDb7sb7eEEBYjDtcYj+AjBH3FLv5uSJuXg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Travel with Us</title>
+    <body>
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="container">
+                    <a href="/" class="navbar-brand">
+                        <img src="img/logonbg.png" alt="Logo" height="84">
+                    </a>
+                    <button class="navbar-toggler" data-bs-target="#my-nav"
+                    data-bs-toggle="collapse" aria-controls="my-nav" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                     </button>
+                     <div id="my-nav" class="collapse navbar-collapse">
+                        <u1 class = "navbar-nav ms-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="/"><i class = "fas fa-home me-i"></i>Home</a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#about"><i class="fas fa-globe me-1"></i>About</a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#footer"><i class="fas fa-envelope me-1"></i>Contact</a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="/tiket"><i class="bi bi-ticket-fill"></i>Tickets</a>
+                            </li>
+                        </u1>
+                        <div class="login">
+                            <a href="#">
+                                <i class="bi bi-person-circle user-pic" onclick="toggleMenu()"></i>
+                            </a>
+                        </div>
+                        <div class="submenus-wrap" id="subMenu">
+                            <div class="sub-menus">
+                                <div class="user-info">
+                                    <img src="img/logonbg.png">
+                                        <h3>Hello,
+                                            <%= user.username %></h3>
+                                    </div>
+                                    <hr>
+                                        <a href="/setting" class="sub-menu-link">
+                                            <img src="img/img_profile/profile.png" alt="">
+                                                <p>Edit Profile</p>
+                                                <span>
+                                                    <i class="bi bi-chevron-right"></i>
+                                                </span>
+                                            </a>
+                                            <a href="/#footer" class="sub-menu-link">
+                                                <img src="img/img_profile/help.png" alt="">
+                                                    <p>Help & Support</p>
+                                                    <span>
+                                                        <i class="bi bi-chevron-right"></i>
+                                                    </span>
+                                                </a>
+                                                <a href="/logout" class="sub-menu-link">
+                                                    <img src="img/img_profile/logout.png" alt="">
+                                                        <p>Logout</p>
+                                                        <span>
+                                                            <i class="bi bi-chevron-right"></i>
+                                                        </span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                 </div>
+                                </nav>
+                                <div class="awal-penjelasan">
+                                    <div class="travel-judul">
+                                        <h1>Explore Beautiful World</h1>
+                                        <a href="/tiket"><button>Selengkapnya</button></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="popular">
+                                <div class="judul-popular">
+                                    <h1>Popular Place</h1>
+                                </div>
+                                <ul class="popular-item">
+                                    <li class="popular-card">
+                                        <img src="img/bali.jpg" alt="">
+                                            <div class="info">
+                                                <div class="rating">
+                                                    <div class="city">
+                                                        <a href=""></a>
+                                                        <button onclick="togglePopup()">
+                                                            <h1>Bali</h1>
+                                                        </button>
+                                                    </div>
+                                                    <div class="rate">
+                                                        <i class="bi bi-star-fill"></i>
+                                                        4.3</div>
+                                                </div>
+                                                <div class="location">
+                                                    <i class="bi bi-geo-alt-fill"></i>Indonesia</div>
+                                            </div>
+
                                         </li>
                                         <li class="nav-item active">
                                             <a class="nav-link" href="#about">
@@ -321,13 +387,68 @@
                                                                                                                                                                                             <div class="penjelasan">
                                                                                                                                                                                                 <h2>Singapure, Singapure</h2>
                                                                                                                                                                                                 <p>
-                                                                                                                                                                                                    Singapura merupakan negara yang modern dan maju, dengan infrastruktur yang baik
-                                                                                                                                                                                                    dan standar hidup yang tinggi. Singapura menjadi objek wisata yang menarik
-                                                                                                                                                                                                    karena merupakan negara terbersih yang berada di Asia Tenggara.
-                                                                                                                                                                                                </p>
+
+                                                                                                                                                                                                    <i class='bx bxs-hotel'></i>
+                                                                                                                                                                                                    Hotel</p>
+                                                                                                                                                                                                <p>
+                                                                                                                                                                                                    <i class='bx bxs-plane'></i>
+                                                                                                                                                                                                    Plane</p>
                                                                                                                                                                                             </div>
                                                                                                                                                                                         </div>
-                                                                                                                                                                                        <%- include('layouts/popup.ejs') %>
+                                                                                                                                                                                    </div>
+                                                                                                                                                                                </div>
+                                                                                                                                                                                <div id="gallery"></div>
+                                                                                                                                                                                <div class="gallery">
+                                                                                                                                                                                    <div class="gallery-judul">
+                                                                                                                                                                                        Our Gallery
+                                                                                                                                                                                    </div>
+                                                                                                                                                                                    <div class="content">
+                                                                                                                                                                                        <div class="gambar satu">
+                                                                                                                                                                                            <div class="title-box">
+                                                                                                                                                                                                <div class="title">Tokyo, Japan</div>
+                                                                                                                                                                                            </div>
+                                                                                                                                                                                        </div>
+                                                                                                                                                                                        <div class="gambar dua">
+                                                                                                                                                                                            <div class="title-box">
+                                                                                                                                                                                                <div class="title">Hawaii, Amerika</div>
+                                                                                                                                                                                            </div>
+                                                                                                                                                                                        </div>
+                                                                                                                                                                                        <div class="gambar tiga">
+                                                                                                                                                                                            <div class="title-box">
+                                                                                                                                                                                                <div class="title">Zurich, Swiss</div>
+                                                                                                                                                                                            </div>
+                                                                                                                                                                                        </div>
+                                                                                                                                                                                        <div class="gambar empat">
+                                                                                                                                                                                            <div class="title-box">
+                                                                                                                                                                                                <div class="title">Paris, Perancis</div>
+                                                                                                                                                                                            </div>
+                                                                                                                                                                                        </div>
+                                                                                                                                                                                        <div class="gambar lima">
+                                                                                                                                                                                            <div class="title-box">
+                                                                                                                                                                                                <div class="title">Bali, Indonesia</div>
+                                                                                                                                                                                            </div>
+                                                                                                                                                                                        </div>
+                                                                                                                                                                                        <div class="gambar enam">
+                                                                                                                                                                                            <div class="title-box">
+                                                                                                                                                                                                <div class="title">Oslo, Norwegia</div>
+                                                                                                                                                                                            </div>
+                                                                                                                                                                                        </div>
+                                                                                                                                                                                    </div>
+                                                                                                                                                                                </div>
+                                                                                                                                                                                <div id="about"></div>
+                                                                                                                                                                                <div class="faq">
+                                                                                                                                                                                    <div class="faq-penjelasan">
+                                                                                                                                                                                        <h1>FAQ</h1>
+                                                                                                                                                                                        <p>Fitur FAQ kami memungkinkan Anda untuk dengan mudah menemukan jawaban atas
+                                                                                                                                                                                            pertanyaan-pertanyaan umum tentang berbagai topik terkait perjalanan. Anda hanya
+                                                                                                                                                                                            perlu memasukkan kata kunci seperti destinasi, cuaca, festival, dan lainnya
+                                                                                                                                                                                            untuk menemukan informasi yang Anda butuhkan dengan cepat. Dengan fitur ini,
+                                                                                                                                                                                            Anda dapat menghemat waktu dan mendapatkan jawaban yang relevan dengan mudah.</p>
+                                                                                                                                                                                    </div>
+
+                                                                                                                                                                                    <div class="input">
+                                                                                                                                                                                        <div ng-app="pertanyaan" ng-controller="controller" class="input2">
+
 
                                                                                                                                                                                             <div class="explore">
                                                                                                                                                                                                 <div class="explore-img">

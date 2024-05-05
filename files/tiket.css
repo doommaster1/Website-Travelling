@@ -99,16 +99,6 @@ body ul li {
     list-style: none;
 }
 
-.container {
-    position: relative;
-    width: 100%;
-    margin: auto;
-    /* max-width: 90vw; */
-    text-align: center;
-    /* padding-top: 10px; */
-    transition: transform 0.5s;
-}
-
 nav .icon-cart {
     position: relative;
 }
@@ -137,10 +127,6 @@ nav .icon-cart span {
     margin-right: 10px;
 }
 
-nav.scrolled .icon-cart i {
-    color: #000;
-}
-
 .title {
     font-size: xx-large;
 }
@@ -157,7 +143,6 @@ nav.scrolled .icon-cart i {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* filter: drop-shadow(0 50px 20px rgba(48, 41, 41, 0.6)); */
     border-radius: 15px;
 }
 
@@ -274,98 +259,6 @@ nav.scrolled .icon-cart i {
     align-items: center;
     margin: 20px auto;
 }
-
-.popup .overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.7);
-    z-index: 1;
-    display: none;
-}
-
-.popup .content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    background: #fff;
-    width: 60vw;
-    height: 60vh;
-    z-index: 2;
-    text-align: start;
-    padding: 20px;
-    box-sizing: border-box;
-    align-items: center;
-    display: grid;
-    grid-template-columns: 0.4fr 0.6fr;
-}
-
-.upload {
-    margin-top: 10px;
-    text-align: left;
-}
-
-.upload input {
-    padding: 5px;
-}
-
-.popup .content .form {
-    display: grid;
-    gap: 7px;
-}
-
-.popup .content .form label {
-    font-weight: bolder;
-    margin-bottom: 10px;
-}
-
-.popup .content .preview {
-    width: 100%;
-}
-
-.popup .content .preview img {
-    width: 100%;
-    object-fit: cover;
-    height: 100%;
-}
-
-.popup .close-btn {
-    position: absolute;
-    right: 20px;
-    top: 20px;
-    width: 30px;
-    height: 30px;
-    background: #222;
-    color: #fff;
-    font-size: 25px;
-    font-weight: 600;
-    line-height: 30px;
-    text-align: center;
-    border-radius: 50%;
-    cursor: pointer;
-}
-
-.fasilitas-checkbox h4 {
-    font-weight: bolder;
-}
-
-#popup-ticket .fasilitas-checkbox label {
-    font-weight: normal;
-}
-
-.popup.active .overlay {
-    display: block;
-}
-
-.popup.active .content {
-    position: fixed;
-    transition: all 300ms ease-in-out;
-    transform: translate(-50%, -50%) scale(1);
-}
-
 /* cart */
 .cartTab {
     width: 400px;
@@ -425,13 +318,17 @@ body.showCart .listProduct {
     width: 85px;
     height: 50px;
 }
+
 .listCart .item {
     display: grid;
-    grid-template-columns: 70px 150px 50px 1fr;
-    gap: 10px;
+    grid-template-columns: 70px 100px 100px 1fr;
+    gap: 16px;
     text-align: center;
     align-items: center;
+    padding: 6px;
+    font-size: 16px;
 }
+
 .listCart .quantity span {
     display: inline-block;
     width: 25px;
@@ -441,20 +338,25 @@ body.showCart .listProduct {
     color: #555;
     cursor: pointer;
 }
+
 .listCart .quantity span:nth-child(2) {
     background-color: transparent;
     color: #f08d47;
     cursor: auto;
 }
+
 .listCart .item:nth-child(even) {
     background-color: #eee1;
 }
+
 .listCart {
     overflow: auto;
 }
+
 .listCart::-webkit-scrollbar {
     width: 0;
 }
+
 @media only screen and (max-width: 992px) {
     .listProduct {
         grid-template-columns: repeat(3, 1fr);

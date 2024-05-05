@@ -44,33 +44,6 @@
                                         required="required"/>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="benua">Benua</label>
-                                    <select class="form-select" aria-label="Default select example" name="benua">
-                                        <option value="" <% if (!ticket.benua) { %> selected="selected" <% } %>>Pilih Benua</option>
-                                        <option
-                                            value="Amerika"
-                                            <% if (ticket.benua === 'Amerika') { %>
-                                            selected="selected"
-                                            <% } %>>Amerika</option>
-                                        <option
-                                            value="Asia"
-                                            <% if (ticket.benua === 'Asia') { %>
-                                            selected="selected"
-                                            <% } %>>Asia</option>
-                                        <option
-                                            value="Australia"
-                                            <% if (ticket.benua === 'Australia') { %>
-                                            selected="selected"
-                                            <% } %>>Australia</option>
-                                        <option
-                                            value="Eropa"
-                                            <% if (ticket.benua === 'Eropa') { %>
-                                            selected="selected"
-                                            <% } %>>Eropa</option>
-                                    </select>
-                                </div>
-
-                                <div class="mb-3">
                                     <label for="image" class="form-label">Upload gambar</label>
                                     <input
                                         type="file"
