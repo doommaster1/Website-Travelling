@@ -1,6 +1,143 @@
 const router = require("express").Router();
 const Ticket = require("../Models/Ticket");
 const tickets = require("../files/tiket.json");
+const express = require('express');
+const multer = require('multer')
+const fs = require('fs');
+const { type } = require('os');
+
+router.get('/add', (req, res) => {
+    res.render('add_tickets', {title: "Add Tickets"});
+});
+
+// upload gambar
+var storage = multer.diskStorage({
+    destination: function(req, file, cb){
+        cb(null, './uploads');
+    },
+    filename: function(req, file, cb){
+        cb(null, file.fieldname + "_" + Date.now()+ "_" + file.originalname);
+    },
+});
+
+var upload = multer({
+    storage: storage,
+}).single('image');
+
+
+//Insert a tiket into database route
+router.post('/add', upload, (req, res) =>{
+    const tiket = new Ticket({
+        kota: req.body.kota,
+        negara: req.body.negara,
+        harga: req.body.harga,
+        benua: req.body.benua,
+        image: req.file.filename
+    });
+
+    tiket.save()
+    .then(() => {
+        req.session.message = {
+            type: 'success',
+            message: 'Ticket added successfully!'
+        };
+        res.redirect('/tiket');
+    })
+    .catch((err) => {
+        res.json({ message: err.message, type: 'danger' });
+    });
+
+});
+
+// get all tickets route
+router.get('/tiket', (req, res) => {
+    Ticket.find().exec()
+    .then(ticket => {
+        res.render('admintiket', {
+            title: 'Tiket Page',
+            ticket: ticket,
+        });
+    }).catch(err =>{
+        res.json({message: err.message});
+    });
+});
+
+// edit a ticket route
+router.get('/edit/:id', (req, res) => {
+    let id = req.params.id;
+    Ticket.findById(id)
+        .then(ticket => {
+            if (!ticket) { // Mengganti "ticket == ull" dengan "!ticket"
+                res.redirect('/');
+            } else {
+                res.render('edit_tickets', {
+                    title: 'Edit Ticket',
+                    ticket: ticket,
+                });
+            }
+        })
+        .catch(err => {
+            console.error(err);
+            res.redirect('/');
+        });
+});
+
+
+router.post('/update/:id', upload, (req, res) => {
+    let id = req.params.id;
+    let new_image = '';
+
+    if (req.file) {
+        new_image = req.file.filename;
+        try {
+            fs.unlinkSync('./uploads/' + req.body.old_image);
+        } catch (err) {
+            console.log(err);
+        }
+    } else {
+        new_image = req.body.old_image;
+    }
+
+    Ticket.findByIdAndUpdate(id, {
+            kota: req.body.kota,
+            negara: req.body.negara,
+            harga: req.body.harga,
+            image: new_image,
+        })
+        .then(result => {
+            req.session.message = {
+                type: 'success',
+                message: 'Ticket updated successfully!',
+            };
+            res.redirect("/");
+        })
+        .catch(err => {
+            res.json({ message: err.message, type: 'danger' });
+        });
+});
+
+// Delete ticket route
+router.get('/delete/:id', (req, res) => {
+    let id = req.params.id;
+    Ticket.findByIdAndDelete(id)
+        .then(result => {
+            if (result.image != '') {
+                try {
+                    fs.unlinkSync('./uploads/' + result.image);
+                } catch (err) {
+                    console.log(err);
+                }
+            }
+            req.session.message = {
+                type: 'info',
+                message: 'Ticket deleted successfully!'
+            };
+            res.redirect('/');
+        })
+        .catch(err => {
+            res.json({ message: err.message });
+        });
+});
 
 router.get("/tiket", async (req, res) => {
     try {
