@@ -1,5 +1,3 @@
-
-                                
 <%- include('layouts/header_admin') %>
 <!-- Search Bar -->
 <div class="search-bar">
@@ -49,7 +47,7 @@
                             <div class="card-body">
                                 <h5 class="card-title"><%= row.kota %>, <%= row.negara %></h5>
                                 <h6 class="card-subtitle mb-2 text-body-secondary"><%= row.benua %></h6>
-                                <p class="card-text mb-2">$<%= row.harga %></>
+                                <p class="card-text mb-2">Rp. <%= row.harga %></>
                                     <br>
                                 <a href="/edit/<%= row.id %>" class="card-link text-success"><i class="fas fa-edit fa-lg"></i></a>
                                 <a href="/delete/<%= row.id %>" class="card-link text-danger"><i class="fas fa-trash fa-lg"></i></a>
