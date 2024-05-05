@@ -142,7 +142,7 @@ router.get('/delete/:id', (req, res) => {
 router.get("/tiket", async (req, res) => {
     try {
         const page = parseInt(req.query.page) - 1 || 0;
-        const limit = parseInt(req.query.limit) || 5;
+        const limit = parseInt(req.query.limit) || 100;
         const search = req.query.search || "";
         let sort = req.query.sort || "harga";
         let fasilitas = req.query.fasilitas || "All";
@@ -172,7 +172,7 @@ router.get("/tiket", async (req, res) => {
             })
             .where("fasilitas")
             . in ([...fasilitas])
-            .sort(sortBy)
+            .sort(sortBy) // Gunakan pengurutan yang ditentukan
             .skip(page * limit)
             .limit(limit);
 
@@ -191,7 +191,7 @@ router.get("/tiket", async (req, res) => {
             total,
             page: page + 1,
             limit,
-            genres: genreOptions,
+            genres: fasilitasOptions,
             tickets
         };
 
@@ -210,20 +210,16 @@ router.get("/tiket", async (req, res) => {
 
 const insertTickets = async () => {
     try {
-        // Ambil semua kode tiket yang sudah ada di database
-        const existingTicketCodes = (await Ticket.find({}, {
-            _id: 0,
-            code: 1
-        })).map(ticket => ticket.code);
+        // Ambil semua nama tiket yang sudah ada di database
+        const existingTicketNames = await Ticket.distinct("name");
 
         // Filter data tiket yang belum ada di database
-        const newTickets = tickets.filter(
-            ticket => !existingTicketCodes.includes(ticket.code)
-        );
+        const newTickets = tickets.filter(ticket => !existingTicketNames.includes(ticket.name));
 
         // Jika ada tiket baru, masukkan ke database
         if (newTickets.length > 0) {
             const docs = await Ticket.insertMany(newTickets);
+            console.log("Data baru telah ditambahkan ke database.");
             return Promise.resolve(docs);
         } else {
             console.log("Tidak ada data baru untuk dimasukkan.");
