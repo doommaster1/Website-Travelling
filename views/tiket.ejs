@@ -146,43 +146,43 @@
                         })
 
                         // Tambahkan event listener untuk tombol checkout
-                        // const checkoutBtn = document.getElementById('checkoutBtn');
-                        // if (checkoutBtn) {
-                        //     checkoutBtn.addEventListener('click', function () {
-                        //         // Dapatkan alamat email pengguna dari sesi
-                        //         const userEmail = '; // Ganti dengan sintaks EJS yang sesuai
-
-                            //     // Kirim permintaan POST ke '/checkout' dengan alamat email pengguna
-                            //     fetch('/checkout', {
-                            //         method: 'POST',
-                            //         headers: {
-                            //             'Content-Type': 'application/json'
-                            //         },
-                            //         body: JSON.stringify({
-                            //             email: userEmail,
-                            //             tickets: [
-                            //                 {
-                            //                     name: 'Ticket Travel',
-                            //                     quantity: 2
-                            //                 }
-                            //             ]
-                            //         }) // Ganti dengan data yang sesuai
-                            //     })
-                            //         .then(response => {
-                            //             if (!response.ok) {
-                            //                 throw new Error('Terjadi kesalahan saat melakukan checkout');
-                            //             }
-                            //             return response.text();
-                            //         })
-                            //         .then(message => {
-                            //             alert(message); // Tampilkan pesan dari server
-                            //         })
-                            //         .catch(error => {
-                            //             console.error('Error:', error);
-                            //             alert('Terjadi kesalahan saat melakukan checkout');
-                            //         });
-                        //     });
-                        // }
+                        const checkoutBtn = document.getElementById('checkoutBtn');
+                        if (checkoutBtn) {
+                            checkoutBtn.addEventListener('click', function () {
+                                // Dapatkan alamat email pengguna dari sesi
+                                const userEmail = '<%= user.email %>'; // Ganti dengan sintaks EJS yang sesuai
+                                console.log(userEmail);
+                                // Kirim permintaan POST ke '/checkout' dengan alamat email pengguna
+                                fetch('/checkout', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body: JSON.stringify({
+                                        email: userEmail,
+                                        tickets: [
+                                            {
+                                                name: 'Ticket Travel',
+                                                quantity: 2
+                                            }
+                                        ]
+                                    }) // Ganti dengan data yang sesuai
+                                })
+                                    .then(response => {
+                                        if (!response.ok) {
+                                            throw new Error('Terjadi kesalahan saat melakukan checkout');
+                                        }
+                                        return response.text();
+                                    })
+                                    .then(message => {
+                                        alert(message); // Tampilkan pesan dari server
+                                    })
+                                    .catch(error => {
+                                        console.error('Error:', error);
+                                        alert('Terjadi kesalahan saat melakukan checkout');
+                                    });
+                            });
+                        }
                     });
                 </script>
             </body>

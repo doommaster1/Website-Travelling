@@ -2,7 +2,6 @@
 <!-- Search Bar -->
 <div class="search-bar">
     <input type="text" id="searchInput" placeholder="Search for tickets...">
-        <button id="searchBtn">Search</button>
     </div>
 
     <!-- Filter Continent -->
@@ -10,10 +9,10 @@
         <label for="continent">Select Continent:</label>
         <select id="continent">
             <option value="all">All</option>
-            <option value="asia">Asia</option>
-            <option value="europe">Europe</option>
-            <option value="australia">Australia</option>
-            <option value="america">America</option>
+            <option value="Asia">Asia</option>
+            <option value="Europe">Europe</option>
+            <option value="Australia">Australia</option>
+            <option value="America">America</option>
             <!-- Add options for other continents if needed -->
         </select>
         <label for="priceOrder">Price Order:</label>
@@ -68,7 +67,6 @@
 
     <!-- footer -->
     <%- include('layouts/footer.ejs') %>
-        <script src="tiket.js"></script>
         <script>
             document.addEventListener('DOMContentLoaded', function () {
                 document.addEventListener('scroll', () => {
@@ -88,5 +86,77 @@
 
             });
         </script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                // Ambil elemen input untuk pencarian
+                const searchInput = document.getElementById('searchInput');
+                // Ambil semua card tiket
+                const tickets = document.querySelectorAll('.card');
+        
+                // Tambahkan event listener untuk input pencarian
+                searchInput.addEventListener('input', function () {
+                    const searchText = this.value.toLowerCase(); // Ambil teks pencarian dan ubah menjadi lowercase
+        
+                    // Iterasi melalui setiap card tiket
+                    tickets.forEach(ticket => {
+                        // Ambil teks dari judul kota pada card tiket dan ubah menjadi lowercase
+                        const cityName = ticket.querySelector('.card-title').textContent.toLowerCase();
+                        
+                        // Cek apakah teks pencarian cocok dengan judul kota pada card tiket
+                        if (cityName.includes(searchText)) {
+                            ticket.style.display = 'block'; // Jika cocok, tampilkan card tiket
+                        } else {
+                            ticket.style.display = 'none'; // Jika tidak cocok, sembunyikan card tiket
+                        }
+                    });
+                });
+        
+                // ...
+            });
+        </script>
+        <script>document.addEventListener('DOMContentLoaded', function () {
+            const continentSelect = document.getElementById('continent');
+            const cards = document.querySelectorAll('.card');
+        
+            continentSelect.addEventListener('change', function () {
+                const selectedContinent = continentSelect.value.toLowerCase();
+        
+                cards.forEach(card => {
+                    const cardContinent = card.querySelector('.card-subtitle').textContent.toLowerCase();
+        
+                    if (selectedContinent === 'all' || cardContinent === selectedContinent) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        }); 
+        </script>
+        <script>document.addEventListener('DOMContentLoaded', function () {
+            const priceOrderSelect = document.getElementById('priceOrder');
+            const cardsContainer = document.querySelector('.row.my-4');
+        
+            priceOrderSelect.addEventListener('change', function () {
+                const selectedOrder = priceOrderSelect.value;
+        
+                const cards = Array.from(cardsContainer.querySelectorAll('.card'));
+        
+                cards.sort((a, b) => {
+                    const priceA = parseFloat(a.querySelector('.card-text').textContent.replace('Rp.', '').replace(',', ''));
+                    const priceB = parseFloat(b.querySelector('.card-text').textContent.replace('Rp.', '').replace(',', ''));
+        
+                    if (selectedOrder === 'lowToHigh') {
+                        return priceA - priceB;
+                    } else if (selectedOrder === 'highToLow') {
+                        return priceB - priceA;
+                    }
+                });
+        
+                cards.forEach(card => {
+                    cardsContainer.appendChild(card);
+                });
+            });
+        });</script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js" integrity="sha512-7Pi/otdlbbCR+LnW+F7PwFcSDJOuUJB3OxtEHbg4vSMvzvJjde4Po1v4BR9Gdc9aXNUNFVUY+SK51wWT8WF0Gg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     </body>
