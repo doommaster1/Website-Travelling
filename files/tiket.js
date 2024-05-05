@@ -86,22 +86,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     // Event listener untuk tombol checkout
-    const checkoutBtn = document.getElementById('checkoutBtn');
-    if (checkoutBtn) {
-        checkoutButton.addEventListener('click', function () {
-            if (cartItems.length === 0) {
-                alert('Cart kosong. Silakan tambahkan barang ke keranjang sebelum checkout.');
-            } else {
-                // Empty the shopping cart
-                cartItems = [];
-
-                
-                localStorage.removeItem('cartItems');
-                // Redirect to the payment page
-                window.location.href = "/payment";
-            }
-        });
-    }
+    checkoutBtn.addEventListener('click', function () {
+        if (cartItems.length === 0) {
+            alert('Cart kosong. Silakan tambahkan barang ke keranjang sebelum checkout.');
+        } else {
+            // Empty the shopping cart
+            cartItems = [];
+            localStorage.removeItem('cartItems');
+            renderCart(); // Render ulang keranjang setelah mengosongkan
+            // Redirect to the payment page
+            window.location.href = "/payment";
+        }
+    });
     
 
     
