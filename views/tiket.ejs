@@ -1,137 +1,184 @@
 <head>
     <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <link rel="stylesheet" href="tiket.css">
-                <link rel="stylesheet" href="footer.css">
-                    <!-- <link rel="stylesheet" href="index.css"> -->
-                    <link
-                        rel="stylesheet"
-                        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-                        <title>Get Your Ticket</title>
-                        <link rel="icon" type="image/png" href="img/logonbg.png">
-                            <link rel="stylesheet" href="nav.css"></head>
-                            <body>
-                                <div class="container">
-                                    <!-- nav start -->
-                                    <%- include('layouts/nav.ejs') %>
-                                        <div class="icon-cart">
-                                            <i class="bi bi-cart-fill"></i>
-                                            <span>0</span>
-                                        </div>
-                                    </nav>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="tiket.css">
+    <link rel="stylesheet" href="footer.css">
+    <!-- <link rel="stylesheet" href="index.css"> -->
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <title>Get Your Ticket</title>
+    <link rel="icon" type="image/png" href="img/logonbg.png">
+    <link rel="stylesheet" href="nav.css"></head>
+<body>
+    <div class="container">
+        <!-- nav start -->
+        <%- include('layouts/nav.ejs') %>
+            <div class="icon-cart">
+                <i class="bi bi-cart-fill"></i>
+                <span>0</span>
+            </div>
+        </nav>
+    </div>
+    <!-- nav end -->
+
+    <!-- penjelasan -->
+    <div class="penjelasan">
+        <div class="travel-judul">
+            <h1>Buy Your Tickets now</h1>
+            <button>Selengkapnya</button>
+        </div>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="search">
+        <h1>Cari destinasi anda disini!</h1>
+    </div>
+
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search for tickets...">
+    </div>
+
+    <!-- Filter Continent -->
+    <div class="filter">
+        <label for="continent">Select Continent:</label>
+        <select id="continent">
+            <option value="all">All</option>
+            <option value="Asia">Asia</option>
+            <option value="Europe">Europe</option>
+            <option value="Australia">Australia</option>
+            <option value="America">America</option>
+            <!-- Add options for other continents if needed -->
+        </select>
+        <label for="priceOrder">Price Order:</label>
+        <select id="priceOrder">
+            <option value="all">All</option>
+            <option value="lowToHigh">Low to High</option>
+            <option value="highToLow">High to Low</option>
+        </select>
+    </div>
+
+    <!-- mulai tiket -->
+    <div class="judul-tiket">
+        <h1>Destinasi</h1>
+    </div>
+    <!-- <div class="listProduct"></div> -->
+    <div class="container">
+        <div class="row my-4">
+            <% if (message) { %>
+                <div class="col-lg-12">
+                    <div
+                        class="alert alert-dismissible fade show alert-<%= message.type %>"
+                        role="alert">
+                        <button
+                            class="btn-close"
+                            type="button"
+                            data-bs-dismiss="alert"
+                            aria-label="Close"></button>
+                        <strong><%= message.message %></strong>
+                    </div>
+                </div>
+            <% } %>
+
+            <% if (ticket != '') { %>
+                <% ticket.forEach((row, index) => { %>
+                    <div class="col-lg-4">
+                        <div class="card mb-3">
+                            <img
+                                src="<%= row.image %>"
+                                class="card-img-top"
+                                alt="<%= row.kota %>"
+                                style="height: 15rem;">
+                            <div class="card-body">
+                                <h5 class="card-title"><%= row.kota %>,
+                                    <%= row.negara %></h5>
+                                <h6 class="card-subtitle mb-2 text-body-secondary"><%= row.benua %></h6>
+                                <p class="card-text mb-2">Rp.<%= row.harga %></>
+                                <div class="d-flex justify-content-center">
+                                    <button class="btn btn-primary" type="submit">Buy Now</button>
                                 </div>
-                                <!-- nav end -->
+                            </div>
 
-                                <!-- penjelasan -->
-                                <div class="penjelasan">
-                                    <div class="travel-judul">
-                                        <h1>Buy Your Tickets now</h1>
-                                        <button>Selengkapnya</button>
-                                    </div>
-                                </div>
+                        </div>
+                    </div>
+                    <% }) %>
+                    <% } else { %>
+                        <div class="col-lg-12">
+                            <h1 class="text-center text-secondary mt-5">No ticket found in database!</h1>
+                        </div>
+                    <% } %>
+                </div>
+            </div>
+            <div class="cartTab">
+                <h1>Shopping Cart</h1>
+                <div class="listCart"></div>
+                <h1 class="total"></h1>
+                <div class="btn">
+                    <button class="close">CLOSE</button>
+                    <button id="checkoutBtn" class="checkOut">CHECK OUT</button>
+                </div>
+            </div>
 
-                                <!-- Search Bar -->
-                                    <p>Cari destinasi anda disini!</p>
-                                <div class="search-bar">
-                                    <input type="text" id="searchInput" placeholder="Search for tickets...">
-                                    </div>
+            <!-- footer -->
+            <div class="container">
+                <%- include('layouts/footer.ejs') %>
+                </div>
 
-                                    <!-- Filter Continent -->
-                                    <div class="filter">
-                                        <label for="continent">Select Continent:</label>
-                                        <select id="continent">
-                                            <option value="all">All</option>
-                                            <option value="Asia">Asia</option>
-                                            <option value="Europe">Europe</option>
-                                            <option value="Australia">Australia</option>
-                                            <option value="America">America</option>
-                                            <!-- Add options for other continents if needed -->
-                                        </select>
-                                        <label for="priceOrder">Price Order:</label>
-                                        <select id="priceOrder">
-                                            <option value="all">All</option>
-                                            <option value="lowToHigh">Low to High</option>
-                                            <option value="highToLow">High to Low</option>
-                                        </select>
-                                    </div>
+                <script src="tiket.js"></script>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        document.addEventListener('scroll', () => {
+                            const nav = document.querySelector('nav');
 
-                                    <!-- mulai tiket -->
-                                    <div class="judul-tiket">
-                                        <h1>Destinasi</h1>
-                                    </div>
-                                    <div class="listProduct"></div>
+                            if (window.scrollY > 0) {
+                                nav
+                                    .classList
+                                    .add('scrolled');
+                            } else {
+                                nav
+                                    .classList
+                                    .remove('scrolled')
+                            }
+                        })
 
-                                    <!-- <div class="listProduct"></div> -->
-                                    <div class="cartTab">
-                                        <h1>Shopping Cart</h1>
-                                        <div class="listCart"></div>
-                                        <h1 class="total"></h1>
-                                        <div class="btn">
-                                            <button class="close">CLOSE</button>
-                                            <button id="checkoutBtn" class="checkOut">CHECK OUT</button>
-                                        </div>
-                                    </div>
+                        // Tambahkan event listener untuk tombol checkout
+                        const checkoutBtn = document.getElementById('checkoutBtn');
+                        if (checkoutBtn) {
+                            checkoutBtn.addEventListener('click', function () {
+                                // Dapatkan alamat email pengguna dari sesi
+                                const userEmail = '<%= user.email %>'; // Ganti dengan sintaks EJS yang sesuai
 
-                                    <!-- footer -->
-                                    <div class="container">
-                                        <%- include('layouts/footer.ejs') %>
-                                        </div>
-
-                                        <script src="tiket.js"></script>
-                                        <script>
-                                            document.addEventListener('DOMContentLoaded', function () {
-                                                document.addEventListener('scroll', () => {
-                                                    const nav = document.querySelector('nav');
-
-                                                    if (window.scrollY > 0) {
-                                                        nav
-                                                            .classList
-                                                            .add('scrolled');
-                                                    } else {
-                                                        nav
-                                                            .classList
-                                                            .remove('scrolled')
-                                                    }
-                                                })
-
-                                                // Tambahkan event listener untuk tombol checkout
-                                                const checkoutBtn = document.getElementById('checkoutBtn');
-                                                if (checkoutBtn) {
-                                                    checkoutBtn.addEventListener('click', function () {
-                                                        // Dapatkan alamat email pengguna dari sesi
-                                                        const userEmail = '<%= user.email %>'; // Ganti dengan sintaks EJS yang sesuai
-
-                                                        // Kirim permintaan POST ke '/checkout' dengan alamat email pengguna
-                                                        fetch('/checkout', {
-                                                            method: 'POST',
-                                                            headers: {
-                                                                'Content-Type': 'application/json'
-                                                            },
-                                                            body: JSON.stringify({
-                                                                email: userEmail,
-                                                                tickets: [
-                                                                    {
-                                                                        name: 'Ticket Travel',
-                                                                        quantity: 2
-                                                                    }
-                                                                ]
-                                                            }) // Ganti dengan data yang sesuai
-                                                        })
-                                                            .then(response => {
-                                                                if (!response.ok) {
-                                                                    throw new Error('Terjadi kesalahan saat melakukan checkout');
-                                                                }
-                                                                return response.text();
-                                                            })
-                                                            .then(message => {
-                                                                alert(message); // Tampilkan pesan dari server
-                                                            })
-                                                            .catch(error => {
-                                                                console.error('Error:', error);
-                                                                alert('Terjadi kesalahan saat melakukan checkout');
-                                                            });
-                                                    });
-                                                }
-                                            });
-                                        </script>
-                                    </body>
+                                // Kirim permintaan POST ke '/checkout' dengan alamat email pengguna
+                                fetch('/checkout', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body: JSON.stringify({
+                                        email: userEmail,
+                                        tickets: [
+                                            {
+                                                name: 'Ticket Travel',
+                                                quantity: 2
+                                            }
+                                        ]
+                                    }) // Ganti dengan data yang sesuai
+                                })
+                                    .then(response => {
+                                        if (!response.ok) {
+                                            throw new Error('Terjadi kesalahan saat melakukan checkout');
+                                        }
+                                        return response.text();
+                                    })
+                                    .then(message => {
+                                        alert(message); // Tampilkan pesan dari server
+                                    })
+                                    .catch(error => {
+                                        console.error('Error:', error);
+                                        alert('Terjadi kesalahan saat melakukan checkout');
+                                    });
+                            });
+                        }
+                    });
+                </script>
+            </body>

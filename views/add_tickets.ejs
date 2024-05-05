@@ -1,6 +1,6 @@
 <%- include('layouts/header_admin') %>
 
- <div class="container">
+    <div class="container">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 mx-auto mt-4">
@@ -12,32 +12,55 @@
                             <form action="/add" method="post" id="add-form" enctype="multipart/form-data">
                                 <div class="mb-3">
                                     <label for="kota">Kota</label>
-                                    <input type="text" name="kota" class="form-control form-control-lg" placeholder="Masukkan kota" required/>
+                                    <input
+                                        type="text"
+                                        name="kota"
+                                        class="form-control form-control-lg"
+                                        placeholder="Masukkan kota"
+                                        required="required"/>
                                 </div>
                                 <div class="mb-3">
                                     <label for="negara">Negara</label>
-                                    <input type="text" name="negara" class="form-control form-control-lg" placeholder="Masukkan negara" required/>
+                                    <input
+                                        type="text"
+                                        name="negara"
+                                        class="form-control form-control-lg"
+                                        placeholder="Masukkan negara"
+                                        required="required"/>
                                 </div>
                                 <div class="mb-3">
                                     <label for="harga">Harga</label>
-                                    <input type="text" name="harga" class="form-control form-control-lg" placeholder="Masukkan harga" required/>
+                                    <input
+                                        type="text"
+                                        name="harga"
+                                        class="form-control form-control-lg"
+                                        placeholder="Masukkan harga"
+                                        required="required"/>
                                 </div>
                                 <div class="mb-3">
                                     <label for="benua">Benua</label>
                                     <select class="form-select" aria-label="Default select example" name="benua">
-                                        <option selected>Pilih Benua</option>
+                                        <option selected="selected">Pilih Benua</option>
                                         <option value="Amerika">Amerika</option>
                                         <option value="Asia">Asia</option>
                                         <option value="Australia">Australia</option>
                                         <option value="Eropa">Eropa</option>
-                                      </select>
-                                </div> 
-                                <div class="mb-3">
-                                    <label for="image" class="form-label">Upload gambar</label>
-                                    <input type="file" name="image" class="form-control form-control-lg" required/>
+                                    </select>
                                 </div>
                                 <div class="mb-3">
-                                    <input type="submit" name="submit" value="Add Ticket" class="btn btn-primary btn-lg" />
+                                    <label for="image" class="form-label">Upload gambar</label>
+                                    <input
+                                        type="file"
+                                        name="image"
+                                        class="form-control form-control-lg"
+                                        required="required"/>
+                                </div>
+                                <div class="mb-3">
+                                    <input
+                                        type="submit"
+                                        name="submit"
+                                        value="Add Ticket"
+                                        class="btn btn-primary btn-lg"/>
                                 </div>
                             </form>
                         </div>
@@ -48,4 +71,3 @@
     </div>
 
     <%- include('layouts/footer_admin') %>
-

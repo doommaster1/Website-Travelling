@@ -64,10 +64,10 @@ menuItem.appendChild(link);
 
 (() => {
     const openNavMenu = document.querySelector(".open-nav-menu"),
-        closeNavMenu = document.querySelector(".close-nav-menu"),
-        navMenu = document.querySelector(".nav-menu"),
-        menuOverlay = document.querySelector(".menu-overlay"),
-        mediaSize = 991;
+            closeNavMenu = document.querySelector(".close-nav-menu"),
+            navMenu = document.querySelector(".nav-menu"),
+            menuOverlay = document.querySelector(".menu-overlay"),
+            mediaSize = 991;
 
     openNavMenu.addEventListener("click", toggleNav);
     closeNavMenu.addEventListener("click", toggleNav);
