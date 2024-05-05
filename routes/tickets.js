@@ -9,7 +9,7 @@ const session = require('express-session');
 
 // Middleare to check session
 router.use(session({
-    secret: 'your_secret_key', // ganti dengan kunci rahasia sesi Anda
+    secret: 'valeroy', // ganti dengan kunci rahasia sesi Anda
     resave: false,
     saveUninitialized: true
 }));
@@ -55,8 +55,9 @@ router.post('/add', upload, (req, res) => {
 // get all tickets route
 router.get('/tiket', (req, res) => {
     // Memeriksa apakah req.session.user terdefinisi
-    if (req.session.user) {
+    if (req.session && req.session.user) {
         const username = req.session.user.username;
+        console.log(username);
         // Jika pengguna adalah admin, render 'admintiket'
         if (username === 'admin') {
             Ticket
@@ -65,7 +66,10 @@ router.get('/tiket', (req, res) => {
                 .then(ticket => {
                     res.render('admintiket', {
                         title: 'Tiket Page',
-                        ticket: ticket
+                        ticket: ticket,
+                            user: {
+                                username: username
+                            }
                     });
                 })
                 .catch(err => {
@@ -73,15 +77,22 @@ router.get('/tiket', (req, res) => {
                 });
         } else {
             // Jika pengguna bukan admin, render 'tiket'
-            res.render('tiket', {
-                user: {
-                    username: username
-                }
-            });
+            Ticket
+                .find()
+                .exec()
+                .then(ticket => {
+                    res.render('tiket', {
+                        title: 'Tiket Page',
+                        ticket: ticket,
+                            user: {
+                                username: username
+                            }
+                    });
+                })
+                .catch(err => {
+                    res.json({message: err.message});
+                });
         }
-    } else {
-        // Handle the case where req.session.user is not defined
-        res.redirect('/login'); // Redirect to login page or handle as needed
     }
 });
 

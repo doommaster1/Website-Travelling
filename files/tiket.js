@@ -52,11 +52,11 @@ const addDataToHTML = () => {
                 .classList
                 .add('item');
             newProduct.innerHTML = `<div class="image">
-            <img src="${product.image}" alt="${product.name}">
+            <img src="${product.image}" alt="${product.kota}">
         </div>
         <div class="info">
-            <h2>${product.name}</h2>
-            <div class="price">Rp.${addThousandSeparator(product.price)}</div>
+            <h2>${product.kota}, ${product.negara}</h2>
+            <div class="price">Rp.${addThousandSeparator(product.harga)}</div>
             <button class="addCart">Add To Cart</button>
         </div>`;
             listProductHTML.appendChild(newProduct);
@@ -64,21 +64,21 @@ const addDataToHTML = () => {
     }
 }
 
-// Update addToCart function to store MongoDB document ID
+// Update addToCart function to use _id from MongoDB
 const addToCart = (productId) => {
     if (cart.length <= 0) {
         cart = [
             {
-                productId: productId,
+                _id: productId, // Gunakan _id dari MongoDB
                 quantity: 1
             }
         ];
     } else {
         let positionThisProductInCart = cart.findIndex(
-            (value) => value.productId === productId
+            (value) => value._id === productId // Gunakan _id dari MongoDB
         );
         if (positionThisProductInCart < 0) {
-            cart.push({productId: productId, quantity: 1});
+            cart.push({_id: productId, quantity: 1}); // Gunakan _id dari MongoDB
         } else {
             cart[positionThisProductInCart].quantity++;
         }
@@ -87,7 +87,6 @@ const addToCart = (productId) => {
     addCartToMemory();
 };
 
-// Update addCartToHTML function to use MongoDB document ID
 const addCartToHTML = () => {
     listCartHTML.innerHTML = '';
     let totalQuantity = 0;
@@ -109,16 +108,16 @@ const addCartToHTML = () => {
                     <img src="${info.image}">
                 </div>
                 <div class="name">
-                    ${info.name}
+                    ${info.kota}, ${info.negara} <!-- Perbaiki disini -->
                 </div>
-                <div class="totalPrice">Rp.${addThousandSeparator(info.price * item.quantity)}</div>
+                <div class="totalPrice">Rp.${addThousandSeparator(info.harga * item.quantity)}</div>
                 <div class="quantity">
                     <span class="minus">-</span>
                     <span>${item.quantity}</span>
                     <span class="plus">+</span>
                 </div>
             `;
-            totalPrice += info.price * item.quantity;
+            totalPrice += info.harga * item.quantity;
         });
     }
     iconCartSpan.innerText = totalQuantity;
@@ -127,6 +126,7 @@ const addCartToHTML = () => {
         totalElement.textContent = `Total: Rp.${addThousandSeparator(totalPrice)}`;
     }
 };
+
 
 listCartHTML.addEventListener('click', (event) => {
     let positionClick = event.target;
@@ -172,12 +172,12 @@ const addThousandSeparator = (price) => {
 
 const addThousandSeparatorToJSON = (data) => {
     return data.map(item => {
-        item.price = addThousandSeparator(item.price);
+        item.harga = addThousandSeparator(item.harga);
         return item;
     });
 };
 
-// Hapus pemanggilan addThousandSeparatorToJSON dari initApp
+// Update initApp function to use _id from MongoDB
 const initApp = () => {
     // Saat mendapatkan data produk dari MongoDB
     fetch('/api/tiket')
@@ -185,8 +185,9 @@ const initApp = () => {
         .then(data => {
             products = data.tickets.map(product => ({
                 ...product,
-                mongoId: product._id // Simpan ID MongoDB sebagai bagian dari data produk
+                _id: product._id // Gunakan _id sebagai identifikasi unik
             }));
+            console.log(producs);
             addDataToHTML();
             iconCartSpan.innerText = data.totalItemsInCart || 0;
         })
@@ -194,7 +195,6 @@ const initApp = () => {
             console.error('Error fetching data:', error);
         });
 };
-
 
 initApp();
 
@@ -237,7 +237,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         let filteredProducts = products.filter(product => {
             const productName = product
-                .name
+                .kota
                 .toLowerCase();
             return productName.includes(searchTerm);
         });
@@ -249,9 +249,9 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         if (priceOrder === 'lowToHigh') {
-            filteredProducts.sort((a, b) => a.price - b.price);
+            filteredProducts.sort((a, b) => a.harga - b.harga);
         } else if (priceOrder === 'highToLow') {
-            filteredProducts.sort((a, b) => b.price - a.price);
+            filteredProducts.sort((a, b) => b.harga - a.harga);
         }
 
         listProductHTML.innerHTML = '';
@@ -263,11 +263,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 .classList
                 .add('item');
             newProduct.innerHTML = `<div class="image">
-        <img src="${product.image}" alt="${product.name}">
+        <img src="${product.image}" alt="${product.kota}">
     </div>
     <div class="info">
-        <h2>${product.name}</h2>
-        <div class="price">Rp.${addThousandSeparator(product.price)}</div>
+        <h2>${product.kota}, ${product.negara}</h2>
+        <div class="price">Rp.${addThousandSeparator(product.harga)}</div>
         <button class="addCart">Add To Cart</button>
     </div>`;
             listProductHTML.appendChild(newProduct);
