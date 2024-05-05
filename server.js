@@ -3,7 +3,6 @@ const session = require('express-session');
 const app = express();
 const port = 3000;
 const ejs = require('ejs');
-const expresslayout = require('express-ejs-layouts');
 const favicon = require('serve-favicon');
 const path = require('path');
 const bcrypt = require('bcrypt');
@@ -12,7 +11,6 @@ const nodemailer = require('nodemailer');
 const bodyParser = require('body-parser');
 const cors = require("cors");
 const tiketRoutes = require("./routes/tickets");
-const checkoutRoutes = require("./routes/checkout");
 const fs = require('fs');
 const {MongoClient} = require('mongodb');
 const cookieParser = require('cookie-parser');
@@ -572,6 +570,7 @@ async function sendCheckoutConfirmation(userEmail, purchasedTickets) {
 app.post('/checkout', isAuthenticated, async (req, res) => {
     const userEmail = req.body.email;
     const purchasedTickets = req.body.tickets;
+    console.log(userEmail);
 
     // Process checkout, save order to database, etc. Here you can call the function
     // to send confirmation email
