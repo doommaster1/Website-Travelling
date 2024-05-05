@@ -1,11 +1,6 @@
-let listProductHTML = document.querySelector('.listProduct');
-let listCartHTML = document.querySelector('.listCart');
 let iconCart = document.querySelector('.icon-cart');
-let iconCartSpan = document.querySelector('.icon-cart span');
 let body = document.querySelector('body');
 let closeCart = document.querySelector('.close');
-let products = [];
-let cart = [];
 
 iconCart.addEventListener('click', () => {
     body
@@ -17,263 +12,88 @@ closeCart.addEventListener('click', () => {
         .classList
         .toggle('showCart');
 })
+document.addEventListener('DOMContentLoaded', function () {
+    let cartItems = [];
 
-// }
-function togglePopup() {
-    document
-        .getElementById("popup-ticket")
-        .classList
-        .toggle("active");
-}
-
-// Event listener for adding to cart
-listProductHTML.addEventListener('click', (event) => {
-    let positionClick = event.target;
-    if (positionClick.classList.contains('addCart')) {
-        const productId = positionClick
-            .closest('.item')
-            .dataset
-            .id; // Ambil ID produk dari elemen HTML
-        addToCart(productId); // Panggil fungsi addToCart dengan ID produk
-    }
-});
-
-const addCartToMemory = () => {
-    localStorage.setItem('cart', JSON.stringify(cart));
-};
-
-const addDataToHTML = () => {
-    // remove datas default from HTML add new datas
-    if (products.length > 0) { // if has data
-        products.forEach(product => {
-            let newProduct = document.createElement('div');
-            newProduct.dataset.id = product._id; // Menggunakan ID dari MongoDB
-            newProduct
-                .classList
-                .add('item');
-            newProduct.innerHTML = `<div class="image">
-            <img src="${product.image}" alt="${product.kota}">
-        </div>
-        <div class="info">
-            <h2>${product.kota}, ${product.negara}</h2>
-            <div class="price">Rp.${addThousandSeparator(product.harga)}</div>
-            <button class="addCart">Add To Cart</button>
-        </div>`;
-            listProductHTML.appendChild(newProduct);
-        });
-    }
-}
-
-// Update addToCart function to use _id from MongoDB
-const addToCart = (productId) => {
-    if (cart.length <= 0) {
-        cart = [
-            {
-                _id: productId, // Gunakan _id dari MongoDB
-                quantity: 1
-            }
-        ];
-    } else {
-        let positionThisProductInCart = cart.findIndex(
-            (value) => value._id === productId // Gunakan _id dari MongoDB
-        );
-        if (positionThisProductInCart < 0) {
-            cart.push({_id: productId, quantity: 1}); // Gunakan _id dari MongoDB
+    function addToCart(ticket) {
+        // Cek apakah tiket sudah ada di keranjang
+        const existingItem = cartItems.find(item => item.ticket.kota === ticket.kota && item.ticket.negara === ticket.negara);
+        if (existingItem) {
+            existingItem.quantity++; // Jika sudah ada, tingkatkan jumlahnya
         } else {
-            cart[positionThisProductInCart].quantity++;
+            cartItems.push({ ticket: ticket, quantity: 1 }); // Jika belum, tambahkan dengan jumlah 1
         }
+        renderCart();
     }
-    addCartToHTML();
-    addCartToMemory();
-};
 
-const addCartToHTML = () => {
-    listCartHTML.innerHTML = '';
-    let totalQuantity = 0;
-    let totalPrice = 0;
+    function renderCart() {
+        const listCart = document.querySelector('.listCart');
+        let totalPrice = 0;
+        listCart.innerHTML = '';
 
-    if (cart.length > 0) {
-        cart.forEach(item => {
-            totalQuantity += item.quantity;
-            let newItem = document.createElement('div');
-            newItem
-                .classList
-                .add('item');
-            newItem.dataset.id = item.productId; // Gunakan ID dari database
-            let productId = item.productId; // Gunakan ID dari database untuk mengakses produk dari array products
-            let info = products.find(product => product._id === productId);
-            listCartHTML.appendChild(newItem);
-            newItem.innerHTML = `
+        cartItems.forEach(item => {
+            const ticket = item.ticket;
+            const ticketItem = document.createElement('div');
+            ticketItem.classList.add('item');
+            ticketItem.innerHTML = `
                 <div class="image">
-                    <img src="${info.image}">
+                    <img src="${ticket.image}">
                 </div>
                 <div class="name">
-                    ${info.kota}, ${info.negara} <!-- Perbaiki disini -->
+                    ${ticket.kota}, ${ticket.negara}
                 </div>
-                <div class="totalPrice">Rp.${addThousandSeparator(info.harga * item.quantity)}</div>
+                <div class="totalPrice">Rp.${ticket.harga * item.quantity}</div>
                 <div class="quantity">
-                    <span class="minus">-</span>
                     <span>${item.quantity}</span>
-                    <span class="plus">+</span>
                 </div>
             `;
-            totalPrice += info.harga * item.quantity;
+            listCart.appendChild(ticketItem);
+            totalPrice += ticket.harga * item.quantity;
         });
+
+        const totalElement = document.querySelector('.total');
+        totalElement.textContent = `Total: Rp.${totalPrice}`;
+
+        const cartCounter = document.querySelector('.icon-cart span');
+        cartCounter.textContent = cartItems.reduce((total, item) => total + item.quantity, 0); // Menghitung total jumlah item di keranjang
     }
-    iconCartSpan.innerText = totalQuantity;
-    const totalElement = document.querySelector('.total');
-    if (totalElement) {
-        totalElement.textContent = `Total: Rp.${addThousandSeparator(totalPrice)}`;
-    }
-};
 
+    const buyNowButtons = document.querySelectorAll('.btn.btn-primary');
+    buyNowButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            const card = button.closest('.card');
+            const cityName = card.querySelector('.card-title').textContent;
+            const countryName = card.querySelector('.card-subtitle').textContent;
+            const price = parseFloat(card.querySelector('.card-text').textContent.replace('Rp.', ''));
+            const image = card.querySelector('.card-img-top').getAttribute('src');
 
-listCartHTML.addEventListener('click', (event) => {
-    let positionClick = event.target;
-    if (positionClick.classList.contains('minus') || positionClick.classList.contains('plus')) {
-        let product_id = positionClick.parentElement.parentElement.dataset.id;
-        let type = 'minus';
-        if (positionClick.classList.contains('plus')) {
-            type = 'plus';
-        }
-        changeQuantityCart(product_id, type);
-    }
-})
-const changeQuantityCart = (product_id, type) => {
-    let positionItemInCart = cart.findIndex(
-        (value) => value.product_id == product_id
-    );
-    if (positionItemInCart >= 0) {
-        let info = cart[positionItemInCart];
-        switch (type) {
-            case 'plus':
-                cart[positionItemInCart].quantity = cart[positionItemInCart].quantity + 1;
-                break;
+            const ticket = {
+                kota: cityName,
+                negara: countryName,
+                harga: price,
+                image: image
+            };
 
-            default:
-                let changeQuantity = cart[positionItemInCart].quantity - 1;
-                if (changeQuantity > 0) {
-                    cart[positionItemInCart].quantity = changeQuantity;
-                } else {
-                    cart.splice(positionItemInCart, 1);
-                }
-                break;
-        }
-    }
-    addCartToHTML();
-    addCartToMemory();
-}
-
-const addThousandSeparator = (price) => {
-    return price
-        .toString()
-        .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-};
-
-const addThousandSeparatorToJSON = (data) => {
-    return data.map(item => {
-        item.harga = addThousandSeparator(item.harga);
-        return item;
-    });
-};
-
-// Update initApp function to use _id from MongoDB
-const initApp = () => {
-    // Saat mendapatkan data produk dari MongoDB
-    fetch('/api/tiket')
-        .then(response => response.json())
-        .then(data => {
-            products = data.tickets.map(product => ({
-                ...product,
-                _id: product._id // Gunakan _id sebagai identifikasi unik
-            }));
-            console.log(producs);
-            addDataToHTML();
-            iconCartSpan.innerText = data.totalItemsInCart || 0;
-        })
-        .catch(error => {
-            console.error('Error fetching data:', error);
+            addToCart(ticket);
         });
-};
-
-initApp();
-
-document.addEventListener('DOMContentLoaded', function () {
-    const checkoutButton = document.querySelector('.checkOut');
-
-    checkoutButton.addEventListener('click', function () {
-        if (cart.length === 0) {
-            alert('Cart kosong. Silakan tambahkan barang ke keranjang sebelum checkout.');
-        } else {
-            // Empty the shopping cart
-            cart = [];
-            // Update the HTML representation of the cart
-            addCartToHTML();
-            // Update local storage
-            addCartToMemory();
-            // Redirect to the payment page
-            window.location.href = "/payment";
-        }
     });
 
-});
 
-document.addEventListener('DOMContentLoaded', function () {
-    const searchInput = document.getElementById('searchInput');
-    const continentSelect = document.getElementById('continent');
-    const priceOrderSelect = document.getElementById('priceOrder');
-
-    // Event listener untuk input pencarian
-    searchInput.addEventListener('input', filterTickets);
-    continentSelect.addEventListener('change', filterTickets);
-    priceOrderSelect.addEventListener('change', filterTickets);
-
-    function filterTickets() {
-        const searchTerm = searchInput
-            .value
-            .toLowerCase();
-        const selectedContinent = continentSelect.value;
-        const priceOrder = priceOrderSelect.value;
-
-        let filteredProducts = products.filter(product => {
-            const productName = product
-                .kota
-                .toLowerCase();
-            return productName.includes(searchTerm);
-        });
-
-        if (selectedContinent !== 'all') {
-            filteredProducts = filteredProducts.filter(
-                product => product.benua === selectedContinent
-            );
-        }
-
-        if (priceOrder === 'lowToHigh') {
-            filteredProducts.sort((a, b) => a.harga - b.harga);
-        } else if (priceOrder === 'highToLow') {
-            filteredProducts.sort((a, b) => b.harga - a.harga);
-        }
-
-        listProductHTML.innerHTML = '';
-
-        filteredProducts.forEach(product => {
-            let newProduct = document.createElement('div');
-            newProduct.dataset.id = product.mongoId;
-            newProduct
-                .classList
-                .add('item');
-            newProduct.innerHTML = `<div class="image">
-        <img src="${product.image}" alt="${product.kota}">
-    </div>
-    <div class="info">
-        <h2>${product.kota}, ${product.negara}</h2>
-        <div class="price">Rp.${addThousandSeparator(product.harga)}</div>
-        <button class="addCart">Add To Cart</button>
-    </div>`;
-            listProductHTML.appendChild(newProduct);
+    // Event listener untuk tombol checkout
+    const checkoutBtn = document.getElementById('checkoutBtn');
+    if (checkoutBtn) {
+        checkoutButton.addEventListener('click', function () {
+            if (cartItems.length === 0) {
+                alert('Cart kosong. Silakan tambahkan barang ke keranjang sebelum checkout.');
+            } else {
+                // Empty the shopping cart
+                cartItems = [];
+                // Redirect to the payment page
+                window.location.href = "/payment";
+            }
         });
     }
+    
 
-    // Panggil filterTickets saat halaman dimuat
-    filterTickets();
+    
 });

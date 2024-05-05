@@ -570,6 +570,7 @@ async function sendCheckoutConfirmation(userEmail, purchasedTickets) {
 app.post('/checkout', isAuthenticated, async (req, res) => {
     const userEmail = req.body.email;
     const purchasedTickets = req.body.tickets;
+    console.log(userEmail);
 
     // Process checkout, save order to database, etc. Here you can call the function
     // to send confirmation email
