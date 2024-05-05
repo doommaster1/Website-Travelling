@@ -104,13 +104,14 @@ app.get('/login', loginRedirect, (req, res) => {
 // Login route
 app.post('/login', async (req, res) => {
     const user = req.session.user;
-    const { userlogin, passwordlogin, rememberme } = req.body;
+    const { userlogin, rememberme } = req.body;
     // For remember me functionality, check if rememberme checkbox is checked
     if (rememberme) {
         // Generate remember me token
         const rememberMeToken = generateRememberMeToken();
         // Set remember me cookie with the token
         res.cookie('rememberMe', rememberMeToken, { maxAge: 7 * 24 * 60 * 60 * 1000, httpOnly: true });
+        console.log(rememberMeToken);
         // Save rememberMeToken to the user document in the database
         try {
             await collection.updateOne({ username: userlogin }, { $set: { rememberMeToken } });
@@ -262,7 +263,8 @@ app.post('/verification', async (req, res) => {
                 username: req.session.userregis.username,
                 email: email,
                 password: req.session.userregis.password,
-                name: req.session.userregis.name
+                name: req.session.userregis.name,
+                rememberMeToken: ""
             }
 
             const existuser = await collection.findOne({username: data.username})
@@ -406,6 +408,7 @@ app.post('/reset', async (req, res) => {
 // Logout route
 app.get('/logout', (req, res) => {
     // Clear session
+    res.clearCookie('rememberMe');
     req
         .session
         .destroy(err => {
@@ -417,20 +420,20 @@ app.get('/logout', (req, res) => {
         });
 });
 
-// Middleware untuk cek admin
-function isAdmin(req, res, next) {
-    const user = req.session.user;
-    if (user.name === 'admin') {
-        next();
-    } else {
-        res
-            .status(403)
-            .send(
-                `<script>alert("Forbidden"); window.location="/setting";</s' +
-            'cript>`
-            );
-    }
-}
+// // Middleware untuk cek admin
+// function isAdmin(req, res, next) {
+//     const user = req.session.user;
+//     if (user.name === 'admin') {
+//         next();
+//     } else {
+//         res
+//             .status(403)
+//             .send(
+//                 `<script>alert("Forbidden"); window.location="/setting";</s' +
+//             'cript>`
+//             );
+//     }
+// }
 
 //Tiket route
 app.get('/tiket', isAuthenticated, (req, res) => {
