@@ -27,6 +27,10 @@ connect
     password: {
         type: String,
         require: true
+    },
+    rememberMeToken:{
+        type: String,
+        require: true
     }
 })
 

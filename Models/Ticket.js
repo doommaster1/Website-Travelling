@@ -9,10 +9,6 @@ const ticketSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    id: {
-        type: Number,
-        required: true
-    },
     benua: {
         type: String,
         required: true
